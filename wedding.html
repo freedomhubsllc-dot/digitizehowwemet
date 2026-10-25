@@ -4,65 +4,93 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wedding Services | Digitize How We Met</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold-primary: #D4AF37;
-      --gold-hover: #AA820A;
-      --gold-light: #FAF5E9;
-      --text-dark: #2C2A29;
+      /* Foil Gold Palette */
+      --gold-gradient: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+      --gold-solid: #C59B27;
+      --gold-dark: #8C6211;
+      --gold-light-bg: #F4EFE6;
+      --bg-cream: #FAF8F5;
+      --bg-card: #FFFFFF;
+      --text-dark: #222222;
       --text-muted: #666666;
-      --bg-white: #FFFFFF;
-      --border-color: #E8E2D5;
-      --shadow-soft: 0 10px 30px rgba(212, 175, 55, 0.12);
-      --font-family: 'Helvetica Neue', Arial, sans-serif;
+      --border-gold: #D4AF37;
+      --shadow-foil: 0 8px 25px rgba(197, 155, 39, 0.15);
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Montserrat', Arial, sans-serif;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-family); color: var(--text-dark); background-color: #FDFBF7; line-height: 1.6; }
+    body { font-family: var(--font-sans); color: var(--text-dark); background-color: var(--bg-cream); line-height: 1.5; }
     a { text-decoration: none; color: inherit; }
 
-    header { background: var(--bg-white); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; }
-    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
-    .logo { font-size: 1.5rem; font-weight: 700; color: var(--gold-primary); }
+    /* Top Contact Bar */
+    .contact-bar { background: #F1ECE1; border-bottom: 1px solid rgba(197, 155, 39, 0.3); padding: 0.4rem 2rem; font-size: 0.8rem; text-align: center; color: var(--text-muted); font-weight: 500; }
+    .contact-bar strong { color: var(--gold-dark); }
+    .contact-bar span { margin: 0 8px; opacity: 0.4; }
+
+    /* Header & Navigation */
+    header { background: var(--bg-card); border-bottom: 2px solid var(--border-gold); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 12px rgba(0,0,0,0.03); }
+    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 2rem; }
+    .logo { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--gold-dark); letter-spacing: -0.2px; }
     .logo span { color: var(--text-dark); }
-    nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
-    nav a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); }
-    
+    nav ul { display: flex; list-style: none; gap: 1.8rem; align-items: center; }
+    nav a { font-weight: 600; font-size: 0.88rem; color: var(--text-dark); text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
+    nav a:hover { color: var(--gold-solid); }
+
+    /* Dropdown Navigation */
     .dropdown { position: relative; }
-    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-white); border: 1px solid var(--border-color); box-shadow: var(--shadow-soft); border-radius: 8px; min-width: 200px; overflow: hidden; padding: 0.5rem 0; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border-gold); box-shadow: var(--shadow-foil); border-radius: 6px; min-width: 200px; overflow: hidden; padding: 0.4rem 0; }
     .dropdown:hover .dropdown-menu { display: block; }
-    .dropdown-menu a { display: block; padding: 0.75rem 1.25rem; font-size: 0.9rem; }
-    .dropdown-menu a:hover { background: var(--gold-light); }
+    .dropdown-menu a { display: block; padding: 0.6rem 1.2rem; font-size: 0.85rem; text-transform: none; font-weight: 500; }
+    .dropdown-menu a:hover { background: var(--gold-light-bg); color: var(--gold-dark); }
 
-    .btn-gold { background: var(--gold-primary); color: #FFF !important; padding: 0.75rem 1.5rem; border-radius: 30px; font-weight: 600; border: none; cursor: pointer; }
+    /* Foil Button */
+    .btn-gold { background: var(--gold-gradient); color: #111 !important; padding: 0.6rem 1.4rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; box-shadow: 0 3px 10px rgba(197, 155, 39, 0.3); transition: all 0.3s; display: inline-block; text-align: center; }
+    .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 5px 15px rgba(197, 155, 39, 0.5); }
 
-    .contact-bar { background: var(--gold-light); border-bottom: 1px solid var(--border-color); padding: 0.6rem 2rem; font-size: 0.85rem; text-align: center; }
+    .container { max-width: 1200px; margin: 2.5rem auto; padding: 0 2rem; }
+    .page-title { text-align: center; margin-bottom: 2.5rem; }
+    .page-title h1 { font-family: var(--font-serif); font-size: 2.2rem; color: var(--gold-dark); margin-bottom: 0.4rem; }
+    .page-title p { color: var(--text-muted); font-size: 0.95rem; }
 
-    .container { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
-    .page-title { text-align: center; margin-bottom: 3rem; }
-    .page-title h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 2.5rem; }
+    .price-card { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 12px; padding: 2rem; box-shadow: var(--shadow-foil); display: flex; flex-direction: column; position: relative; transition: transform 0.3s; }
+    .price-card:hover { transform: translateY(-4px); }
+    .price-card.featured { border: 2px solid var(--gold-dark); }
+    .badge { position: absolute; top: -12px; right: 20px; background: var(--gold-gradient); color: #000; padding: 3px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
-    .price-card { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem 2rem; box-shadow: var(--shadow-soft); display: flex; flex-direction: column; }
-    .price-card.featured { border: 2px solid var(--gold-primary); }
-    .price { font-size: 2.5rem; font-weight: 700; color: var(--gold-hover); margin-bottom: 1.5rem; }
-    .price-card ul { list-style: none; margin-bottom: 2rem; flex-grow: 1; }
-    .price-card ul li { margin-bottom: 0.8rem; font-size: 0.95rem; color: var(--text-muted); display: flex; gap: 8px; }
-    .price-card ul li::before { content: "✓"; color: var(--gold-primary); font-weight: bold; }
+    .price-card h3 { font-family: var(--font-serif); font-size: 1.35rem; color: var(--gold-dark); margin-bottom: 0.4rem; }
+    .price { font-size: 2.4rem; font-weight: 700; color: var(--text-dark); margin-bottom: 1.2rem; }
+    .price-card ul { list-style: none; margin-bottom: 1.8rem; flex-grow: 1; }
+    .price-card ul li { margin-bottom: 0.7rem; font-size: 0.9rem; color: var(--text-muted); display: flex; gap: 8px; }
+    .price-card ul li::before { content: "♦"; color: var(--gold-solid); font-size: 0.8rem; }
 
-    .table-card { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-soft); }
+    .table-card { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 12px; padding: 1.8rem; box-shadow: var(--shadow-foil); }
+    .table-card h3 { font-family: var(--font-serif); margin-bottom: 1.2rem; color: var(--gold-dark); font-size: 1.3rem; }
     table { width: 100%; border-collapse: collapse; text-align: left; }
-    th, td { padding: 12px 16px; border-bottom: 1px solid var(--border-color); }
-    th { background: var(--gold-light); }
+    th, td { padding: 10px 14px; border-bottom: 1px solid #EFEAE0; font-size: 0.9rem; }
+    th { background: var(--gold-light-bg); color: var(--gold-dark); font-weight: 700; font-family: var(--font-serif); }
 
-    footer { background: var(--bg-white); border-top: 1px solid var(--border-color); padding: 3rem 2rem; text-align: center; margin-top: 5rem; font-size: 0.9rem; color: var(--text-muted); }
+    /* Footer */
+    footer { background: #F1ECE1; border-top: 2px solid var(--border-gold); padding: 2.5rem 2rem; text-align: center; margin-top: 4rem; font-size: 0.85rem; color: var(--text-muted); }
+    footer a { color: var(--gold-dark); font-weight: 600; margin: 0 8px; }
   </style>
 </head>
 <body>
 
+  <!-- Top Contact Bar -->
   <div class="contact-bar">
-    Direct Contact Phone: <strong>(904) 472-7777</strong> | Email: Direct Contact (for fastest Response): <strong>freedomhubsll@gmail.com</strong>
+    Direct Contact Phone: <strong>(904) 472-7777</strong>
+    <span>|</span>
+    Email: Direct Contact (for fastest Response): <strong>freedomhubsll@gmail.com</strong>
   </div>
 
+  <!-- Header -->
   <header>
     <div class="nav-container">
       <a href="index.html" class="logo">Digitize How We Met<span>.com</span></a>
@@ -89,9 +117,10 @@
     </div>
 
     <div class="pricing-grid">
+      <!-- Package 1 -->
       <div class="price-card">
         <h3>PACKAGE 1: OUR SIGNATURE REHEARSAL FILM</h3>
-        <p style="color:var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">"Rehearsal Dinner Feature"</p>
+        <p style="color:var(--text-muted); font-size: 0.85rem; margin-bottom: 0.8rem;">"Rehearsal Dinner Feature"</p>
         <div class="price">$250</div>
         <ul>
           <li>Up to 5-minute custom film</li>
@@ -100,12 +129,14 @@
           <li>100 Custom QR Favor Gift Cards</li>
           <li>Web Link Delivery of Final Film</li>
         </ul>
-        <a href="index.html" class="btn-gold" style="text-align:center;">Book Package 1</a>
+        <a href="index.html" class="btn-gold">Select Package 1</a>
       </div>
 
+      <!-- Package 2 -->
       <div class="price-card featured">
+        <div class="badge">Most Popular Archive</div>
         <h3>PACKAGE 2: THE HERITAGE ARCHIVE</h3>
-        <p style="color:var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">"Full Preservation & Event Film"</p>
+        <p style="color:var(--text-muted); font-size: 0.85rem; margin-bottom: 0.8rem;">"Full Preservation & Event Film"</p>
         <div class="price">$400</div>
         <ul>
           <li>Everything in Package 1 PLUS:</li>
@@ -113,7 +144,7 @@
           <li>ALL 20 high-res AI-animated photos delivered as individual standalone video files</li>
           <li>Custom Branded Flash Drive with the complete digital archive</li>
         </ul>
-        <a href="index.html" class="btn-gold" style="text-align:center;">Book Package 2</a>
+        <a href="index.html" class="btn-gold">Select Package 2</a>
       </div>
     </div>
 
@@ -135,7 +166,7 @@
 
   <footer>
     <p>© 2026 DigitizeHowWeMet.com | Freedom Hubs LLC. All Rights Reserved.</p>
-    <p style="margin-top: 10px;"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+    <p style="margin-top: 8px;"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
   </footer>
 
 </body>
