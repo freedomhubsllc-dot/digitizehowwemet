@@ -4,109 +4,114 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Digitize How We Met | Custom Wedding & Legacy Media Restoration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold-primary: #D4AF37;
-      --gold-hover: #F3C63F;
-      --gold-dark: #A3821F;
-      --gold-bg-subtle: rgba(212, 175, 55, 0.08);
-      --bg-black: #0D0D0D;
-      --bg-card: #141414;
-      --bg-input: #1A1A1A;
-      --text-white: #FFFFFF;
-      --text-gold: #E5C158;
-      --text-muted: #B3B3B3;
-      --border-color: #2A2415;
+      /* Foil Gold Palette */
+      --gold-gradient: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+      --gold-solid: #C59B27;
+      --gold-dark: #8C6211;
+      --gold-light-bg: #F4EFE6;
+      --bg-cream: #FAF8F5;
+      --bg-card: #FFFFFF;
+      --text-dark: #222222;
+      --text-muted: #666666;
       --border-gold: #D4AF37;
-      --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.15);
-      --font-family: 'Helvetica Neue', Arial, sans-serif;
+      --shadow-foil: 0 8px 25px rgba(197, 155, 39, 0.15);
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Montserrat', Arial, sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-family); color: var(--text-white); background-color: var(--bg-black); line-height: 1.6; }
+    body { font-family: var(--font-sans); color: var(--text-dark); background-color: var(--bg-cream); line-height: 1.5; }
     a { text-decoration: none; color: inherit; }
 
     /* Top Contact Bar */
-    .contact-bar { background: #16130C; border-bottom: 1px solid var(--border-color); padding: 0.6rem 2rem; font-size: 0.85rem; text-align: center; color: var(--text-muted); }
-    .contact-bar strong { color: var(--gold-primary); }
-    .contact-bar span { margin: 0 10px; opacity: 0.3; }
+    .contact-bar { background: #F1ECE1; border-bottom: 1px solid rgba(197, 155, 39, 0.3); padding: 0.4rem 2rem; font-size: 0.8rem; text-align: center; color: var(--text-muted); font-weight: 500; }
+    .contact-bar strong { color: var(--gold-dark); }
+    .contact-bar span { margin: 0 8px; opacity: 0.4; }
 
     /* Header & Navigation */
-    header { background: #111111; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.8); }
-    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
-    .logo { font-size: 1.5rem; font-weight: 700; color: var(--gold-primary); letter-spacing: -0.5px; }
-    .logo span { color: var(--text-white); }
-    nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
-    nav a { font-weight: 500; font-size: 0.95rem; color: var(--text-white); transition: color 0.3s; }
-    nav a:hover { color: var(--gold-primary); }
+    header { background: var(--bg-card); border-bottom: 2px solid var(--border-gold); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 12px rgba(0,0,0,0.03); }
+    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 2rem; }
+    .logo { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--gold-dark); letter-spacing: -0.2px; }
+    .logo span { color: var(--text-dark); }
+    nav ul { display: flex; list-style: none; gap: 1.8rem; align-items: center; }
+    nav a { font-weight: 600; font-size: 0.88rem; color: var(--text-dark); text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
+    nav a:hover { color: var(--gold-solid); }
 
     /* Dropdown Navigation */
     .dropdown { position: relative; }
-    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #161616; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.9); border-radius: 8px; min-width: 200px; overflow: hidden; padding: 0.5rem 0; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border-gold); box-shadow: var(--shadow-foil); border-radius: 6px; min-width: 200px; overflow: hidden; padding: 0.4rem 0; }
     .dropdown:hover .dropdown-menu { display: block; }
-    .dropdown-menu a { display: block; padding: 0.75rem 1.25rem; font-size: 0.9rem; color: var(--text-white); }
-    .dropdown-menu a:hover { background: var(--gold-bg-subtle); color: var(--gold-primary); }
+    .dropdown-menu a { display: block; padding: 0.6rem 1.2rem; font-size: 0.85rem; text-transform: none; font-weight: 500; }
+    .dropdown-menu a:hover { background: var(--gold-light-bg); color: var(--gold-dark); }
 
-    .btn-gold { background: var(--gold-primary); color: #000 !important; padding: 0.75rem 1.6rem; border-radius: 30px; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s; }
-    .btn-gold:hover { background: var(--gold-hover); box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); transform: translateY(-1px); }
+    /* Foil Button */
+    .btn-gold { background: var(--gold-gradient); color: #111 !important; padding: 0.6rem 1.4rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; box-shadow: 0 3px 10px rgba(197, 155, 39, 0.3); transition: all 0.3s; }
+    .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 5px 15px rgba(197, 155, 39, 0.5); }
 
-    /* Hero Section */
-    .hero-section { max-width: 1200px; margin: 3.5rem auto; padding: 0 2rem; }
-    .hero-header { text-align: center; max-width: 800px; margin: 0 auto 2.5rem; }
-    .hero-header h1 { font-size: 2.6rem; color: var(--text-gold); font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.5px; }
-    .hero-header p { font-size: 1.1rem; color: var(--text-muted); }
+    /* Hero Section (Above the Fold Compact View) */
+    .hero-section { max-width: 1200px; margin: 1.2rem auto 2rem; padding: 0 2rem; }
+    .hero-header { text-align: center; max-width: 850px; margin: 0 auto 1.2rem; }
+    .hero-header h1 { font-family: var(--font-serif); font-size: 1.75rem; color: var(--gold-dark); font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.2px; }
+    .hero-header p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.4; }
     
-    .hero-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-gold); padding: 1.5rem; }
-    .hero-media { width: 100%; height: 380px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.2); }
-    .video-placeholder { width: 100%; height: 380px; background: #000; border: 1px solid var(--border-color); border-radius: 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--text-white); text-align: center; position: relative; }
-    .video-placeholder p { margin-top: 10px; font-size: 0.9rem; color: var(--text-muted); }
+    /* Swapped Split View: Left Video / Right Photo */
+    .hero-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: center; background: var(--bg-card); border: 2px solid var(--border-gold); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-foil); padding: 1rem; }
+    
+    /* Left Spot: Video Placeholder */
+    .video-placeholder { width: 100%; height: 320px; background: #111111; border-radius: 8px; border: 1px solid var(--border-gold); display: flex; flex-direction: column; justify-content: center; align-items: center; color: #FFFFFF; text-align: center; position: relative; }
+    .video-placeholder p { margin-top: 8px; font-size: 0.85rem; color: #DDDDDD; }
+
+    /* Right Spot: Audience Image */
+    .hero-media { width: 100%; height: 320px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-gold); }
 
     /* Pricing Section */
-    .section-title { text-align: center; margin: 5rem 0 2.5rem; }
-    .section-title h2 { font-size: 2.2rem; color: var(--text-gold); }
-    .section-title p { color: var(--text-muted); }
+    .section-title { text-align: center; margin: 3.5rem 0 1.8rem; }
+    .section-title h2 { font-family: var(--font-serif); font-size: 2rem; color: var(--gold-dark); }
+    .section-title p { color: var(--text-muted); font-size: 0.95rem; }
 
     .pricing-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; padding: 0 2rem; }
-    .price-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: column; position: relative; transition: transform 0.3s, border-color 0.3s; }
-    .price-card:hover { transform: translateY(-5px); border-color: var(--gold-primary); }
-    .price-card.featured { border: 2px solid var(--gold-primary); box-shadow: var(--shadow-gold); }
-    .badge { position: absolute; top: -12px; right: 20px; background: var(--gold-primary); color: #000; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
+    .price-card { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 12px; padding: 2rem; box-shadow: var(--shadow-foil); display: flex; flex-direction: column; position: relative; transition: transform 0.3s; }
+    .price-card:hover { transform: translateY(-4px); }
+    .price-card.featured { border: 2px solid var(--gold-dark); }
+    .badge { position: absolute; top: -12px; right: 20px; background: var(--gold-gradient); color: #000; padding: 3px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
     
-    .price-card h3 { font-size: 1.4rem; color: var(--text-white); margin-bottom: 0.5rem; }
-    .price { font-size: 2.8rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 1.5rem; }
-    .price-card ul { list-style: none; margin-bottom: 2rem; flex-grow: 1; }
-    .price-card ul li { margin-bottom: 0.8rem; font-size: 0.95rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 8px; }
-    .price-card ul li::before { content: "✓"; color: var(--gold-primary); font-weight: bold; }
+    .price-card h3 { font-family: var(--font-serif); font-size: 1.35rem; color: var(--gold-dark); margin-bottom: 0.4rem; }
+    .price { font-size: 2.4rem; font-weight: 700; color: var(--text-dark); margin-bottom: 1.2rem; }
+    .price-card ul { list-style: none; margin-bottom: 1.8rem; flex-grow: 1; }
+    .price-card ul li { margin-bottom: 0.7rem; font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 8px; }
+    .price-card ul li::before { content: "♦"; color: var(--gold-solid); font-size: 0.8rem; }
 
     /* Add-ons & General Pricing Tables */
-    .info-container { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; }
-    .table-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 2.5rem; }
-    .table-card h3 { margin-bottom: 1.5rem; color: var(--text-gold); font-size: 1.4rem; }
+    .info-container { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
+    .table-card { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 12px; padding: 1.8rem; box-shadow: var(--shadow-foil); margin-bottom: 2rem; }
+    .table-card h3 { font-family: var(--font-serif); margin-bottom: 1.2rem; color: var(--gold-dark); font-size: 1.3rem; }
     table { width: 100%; border-collapse: collapse; text-align: left; }
-    th, td { padding: 14px 16px; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; color: var(--text-muted); }
-    th { background: #1A160C; color: var(--gold-primary); font-weight: 700; }
-    td { color: var(--text-white); }
+    th, td { padding: 10px 14px; border-bottom: 1px solid #EFEAE0; font-size: 0.9rem; }
+    th { background: var(--gold-light-bg); color: var(--gold-dark); font-weight: 700; font-family: var(--font-serif); }
 
     /* Modals */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(4px); }
-    .modal-content { background: #141414; border: 1px solid var(--gold-primary); max-width: 600px; width: 100%; border-radius: 16px; padding: 2.5rem; position: relative; max-height: 90vh; overflow-y: auto; color: var(--text-white); }
-    .close-btn { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
-    .close-btn:hover { color: var(--gold-primary); }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(3px); }
+    .modal-content { background: var(--bg-card); border: 2px solid var(--border-gold); max-width: 580px; width: 100%; border-radius: 12px; padding: 2rem; position: relative; max-height: 90vh; overflow-y: auto; }
+    .close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
+    .close-btn:hover { color: var(--gold-dark); }
     
-    .form-group { margin-bottom: 1.2rem; }
-    .form-group label { display: block; font-weight: 600; margin-bottom: 0.4rem; font-size: 0.9rem; color: var(--text-gold); }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.8rem; background: var(--bg-input); border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 0.95rem; color: var(--text-white); }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold-primary); outline: none; }
-    .upsell-box { background: var(--gold-bg-subtle); border: 1px dashed var(--gold-primary); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; font-size: 0.95rem; color: #EFEFEF; }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 0.3rem; font-size: 0.85rem; color: var(--gold-dark); }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.7rem; background: #FAF9F6; border: 1px solid #DDD6C8; border-radius: 6px; font-family: inherit; font-size: 0.9rem; }
+    .upsell-box { background: var(--gold-light-bg); border: 1px dashed var(--gold-solid); padding: 1.2rem; border-radius: 8px; margin-bottom: 1.2rem; font-size: 0.9rem; }
 
     /* Footer */
-    footer { background: #080808; border-top: 1px solid var(--border-color); padding: 3rem 2rem; text-align: center; margin-top: 5rem; font-size: 0.9rem; color: var(--text-muted); }
-    footer a { color: var(--gold-primary); margin: 0 10px; }
-    footer a:hover { text-decoration: underline; }
+    footer { background: #F1ECE1; border-top: 2px solid var(--border-gold); padding: 2.5rem 2rem; text-align: center; margin-top: 4rem; font-size: 0.85rem; color: var(--text-muted); }
+    footer a { color: var(--gold-dark); font-weight: 600; margin: 0 8px; }
 
     @media (max-width: 768px) {
       .hero-split { grid-template-columns: 1fr; }
-      nav ul { gap: 1rem; }
+      nav ul { gap: 0.8rem; }
     }
   </style>
 </head>
@@ -139,7 +144,7 @@
     </div>
   </header>
 
-  <!-- Hero Split View Section -->
+  <!-- Hero Split View Section (Slightly higher & compact above the fold) -->
   <section class="hero-section">
     <div class="hero-header">
       <h1>Relive Your Story, Reimagined For Your Special Day</h1>
@@ -147,15 +152,15 @@
     </div>
 
     <div class="hero-split">
-      <!-- Left Spot: Audience Image -->
-      <img src="watermarked_img_11535639794728117534.jpg" alt="Bride and Groom watching video preview at wedding reception" class="hero-media">
-      
-      <!-- Right Spot: Video Sample Placeholder -->
+      <!-- Left Spot: Sample Video Spot -->
       <div class="video-placeholder">
-        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-        <p style="font-weight: 600; margin-top: 12px; color: var(--gold-primary);">Sample Video Highlight Reel</p>
+        <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#C59B27" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        <p style="font-weight: 600; margin-top: 8px; color: #C59B27;">Sample Video Highlight Reel</p>
         <p>[ Reserved Spot for Embedded Rehearsal Film ]</p>
       </div>
+
+      <!-- Right Spot: Audience Image (Bride/Groom looking left toward video) -->
+      <img src="watermarked_img_11535639794728117534.jpg" alt="Bride and Groom watching video preview at wedding reception" class="hero-media">
     </div>
   </section>
 
@@ -169,7 +174,7 @@
     <!-- Package 1 -->
     <div class="price-card">
       <h3>PACKAGE 1: OUR SIGNATURE REHEARSAL FILM</h3>
-      <p style="color:var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">"Rehearsal Dinner Feature"</p>
+      <p style="color:var(--text-muted); font-size: 0.85rem; margin-bottom: 0.8rem;">"Rehearsal Dinner Feature"</p>
       <div class="price">$250</div>
       <ul>
         <li>Up to 5-minute custom film</li>
@@ -185,7 +190,7 @@
     <div class="price-card featured">
       <div class="badge">Most Popular Archive</div>
       <h3>PACKAGE 2: THE HERITAGE ARCHIVE</h3>
-      <p style="color:var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">"Full Preservation & Event Film"</p>
+      <p style="color:var(--text-muted); font-size: 0.85rem; margin-bottom: 0.8rem;">"Full Preservation & Event Film"</p>
       <div class="price">$400</div>
       <ul>
         <li>Everything in Package 1 PLUS:</li>
@@ -216,7 +221,7 @@
 
     <div class="table-card">
       <h3>General Non-Wedding Services Overview</h3>
-      <p style="margin-bottom: 1rem; color: var(--text-muted);">Looking for standalone tape conversion or photo animation without a wedding film package?</p>
+      <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">Looking for standalone tape conversion or photo animation without a wedding film package?</p>
       <table>
         <thead>
           <tr><th>Service</th><th>Quantity Tier</th><th>Price</th></tr>
@@ -238,7 +243,7 @@
   <div id="upsellModal" class="modal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal('upsellModal')">&times;</span>
-      <h3 style="margin-bottom: 1rem; color: var(--gold-primary);">Special Archive Recommendation</h3>
+      <h3 style="font-family: var(--font-serif); margin-bottom: 0.8rem; color: var(--gold-dark);">Special Archive Recommendation</h3>
       <div class="upsell-box">
         <p id="upsellText">
           We have your $250 Rehearsal Film package reserved! Most of our couples find that while 6 tapes and 14 photos make a perfect 4-minute film, parents usually have 2 or 3 extra tapes sitting in a drawer that haven't been seen in 20 years.<br><br>
@@ -246,7 +251,7 @@
         </p>
       </div>
       <div style="display: flex; gap: 10px; justify-content: flex-end;">
-        <button class="btn-gold" style="background: #444; color: #FFF !important;" onclick="declineUpsell()">Keep Package 1 ($250)</button>
+        <button class="btn-gold" style="background: #888; color: #FFF !important;" onclick="declineUpsell()">Keep Package 1 ($250)</button>
         <button class="btn-gold" onclick="acceptUpsell()">Upgrade to Package 2 ($400)</button>
       </div>
     </div>
@@ -256,12 +261,12 @@
   <div id="checkoutModal" class="modal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal('checkoutModal')">&times;</span>
-      <h3 style="margin-bottom: 1rem; color: var(--gold-primary);">Complete Your Reservation</h3>
+      <h3 style="font-family: var(--font-serif); margin-bottom: 0.8rem; color: var(--gold-dark);">Complete Your Reservation</h3>
       
       <form id="checkoutForm" onsubmit="handleCheckoutSubmit(event)">
         <div class="form-group">
           <label>Selected Package / Service</label>
-          <input type="text" id="selectedPackageInput" readonly style="background: #222; color: var(--gold-primary);">
+          <input type="text" id="selectedPackageInput" readonly style="background: #F0ECE1; color: var(--gold-dark); font-weight: 700;">
         </div>
 
         <div class="form-group">
@@ -299,10 +304,10 @@
           <textarea rows="3" placeholder="Client provides script/narrative. Let us know any special requests..."></textarea>
         </div>
 
-        <div style="background: var(--gold-bg-subtle); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
-          <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.1rem;">
+        <div style="background: var(--gold-light-bg); border: 1px solid var(--border-gold); padding: 0.8rem; border-radius: 6px; margin-bottom: 1.2rem;">
+          <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.05rem;">
             <span>Estimated Total:</span>
-            <span id="checkoutTotalDisplay" style="color: var(--gold-primary);">$250.00</span>
+            <span id="checkoutTotalDisplay" style="color: var(--gold-dark);">$250.00</span>
           </div>
         </div>
 
@@ -314,7 +319,7 @@
   <!-- Footer -->
   <footer>
     <p>© 2026 DigitizeHowWeMet.com | Freedom Hubs LLC. All Rights Reserved.</p>
-    <p style="margin-top: 10px;">
+    <p style="margin-top: 8px;">
       <a href="privacy.html">Privacy Policy</a> | 
       <a href="terms.html">Terms of Service</a>
     </p>
