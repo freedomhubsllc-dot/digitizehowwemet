@@ -1,1 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digitize How We Met | Custom Wedding & Legacy Media Restoration</title>
+  <style>
+    :root {
+      --gold-primary: #D4AF37;
+      --gold-hover: #AA820A;
+      --gold-light: #FAF5E9;
+      --text-dark: #2C2A29;
+      --text-muted: #666666;
+      --bg-white: #FFFFFF;
+      --border-color: #E8E2D5;
+      --shadow-soft: 0 10px 30px rgba(212, 175, 55, 0.12);
+      --font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-family); color: var(--text-dark); background-color: #FDFBF7; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header & Navigation */
+    header { background: var(--bg-white); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: var(--gold-primary); letter-spacing: -0.5px; }
+    .logo span { color: var(--text-dark); }
+    nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
+    nav a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); transition: color 0.3s; }
+    nav a:hover { color: var(--gold-primary); }
+
+    /* Dropdown Navigation */
+    .dropdown { position: relative; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-white); border: 1px solid var(--border-color); box-shadow: var(--shadow-soft); border-radius: 8px; min-width: 200px; overflow: hidden; padding: 0.5rem 0; }
+    .dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { display: block; padding: 0.75rem 1.25rem; font-size: 0.9rem; }
+    .dropdown-menu a:hover { background: var(--gold-light); color: var(--gold-hover); }
+
+    .btn-gold { background: var(--gold-primary); color: #FFF !important; padding: 0.75rem 1.5rem; border-radius: 30px; font-weight: 600; border: none; cursor: pointer; transition: background 0.3s, transform 0.2s; }
+    .btn-gold:hover { background: var(--gold-hover); transform: translateY(-1px); }
+
+    /* Top Contact Bar */
+    .contact-bar { background: var(--gold-light); border-bottom: 1px solid var(--border-color); padding: 0.6rem 2rem; font-size: 0.85rem; text-align: center; color: var(--text-dark); }
+    .contact-bar strong { color: var(--gold-hover); }
+    .contact-bar span { margin: 0 10px; opacity: 0.4; }
+
+    /* Hero Section */
+    .hero-section { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
+    .hero-header { text-align: center; max-width: 800px; margin: 0 auto 2.5rem; }
+    .hero-header h1 { font-size: 2.5rem; color: var(--text-dark); font-weight: 700; margin-bottom: 1rem; }
+    .hero-header p { font-size: 1.1rem; color: var(--text-muted); }
+    
+    .hero-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-soft); padding: 1.5rem; }
+    .hero-media { width: 100%; height: 380px; object-fit: cover; border-radius: 12px; }
+    .video-placeholder { width: 100%; height: 380px; background: #000; border-radius: 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #FFF; text-align: center; position: relative; }
+    .video-placeholder p { margin-top: 10px; font-size: 0.9rem; opacity: 0.8; }
+
+    /* Pricing Section */
+    .section-title { text-align: center; margin: 4rem 0 2rem; }
+    .section-title h2 { font-size: 2rem; color: var(--text-dark); }
+    .section-title p { color: var(--text-muted); }
+
+    .pricing-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; padding: 0 2rem; }
+    .price-card { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem 2rem; box-shadow: var(--shadow-soft); display: flex; flex-direction: column; position: relative; transition: transform 0.3s; }
+    .price-card:hover { transform: translateY(-5px); }
+    .price-card.featured { border: 2px solid var(--gold-primary); }
+    .badge { position: absolute; top: -12px; right: 20px; background: var(--gold-primary); color: #FFF; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+    
+    .price-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .price { font-size: 2.5rem; font-weight: 700; color: var(--gold-hover); margin-bottom: 1.5rem; }
+    .price-card ul { list-style: none; margin-bottom: 2rem; flex-grow: 1; }
+    .price-card ul li { margin-bottom: 0.8rem; font-size: 0.95rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 8px; }
+    .price-card ul li::before { content: "✓"; color: var(--gold-primary); font-weight: bold; }
+
+    /* Add-ons & General Pricing Tables */
+    .info-container { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
+    .table-card { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-soft); margin-bottom: 2rem; }
+    .table-card h3 { margin-bottom: 1.5rem; color: var(--gold-hover); }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th, td { padding: 12px 16px; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; }
+    th { background: var(--gold-light); font-weight: 600; color: var(--text-dark); }
+
+    /* Modals */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; }
+    .modal-content { background: var(--bg-white); max-width: 600px; width: 100%; border-radius: 16px; padding: 2.5rem; position: relative; max-height: 90vh; overflow-y: auto; }
+    .close-btn { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
+    
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 0.4rem; font-size: 0.9rem; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 0.95rem; }
+    .upsell-box { background: var(--gold-light); border: 1px dashed var(--gold-primary); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; font-size: 0.95rem; }
+
+    /* Footer */
+    footer { background: var(--bg-white); border-top: 1px solid var(--border-color); padding: 3rem 2rem; text-align: center; margin-top: 5rem; font-size: 0.9rem; color: var(--text-muted); }
+    footer a { color: var(--gold-hover); margin: 0 10px; }
+
+    @media (max-width: 768px) {
+      .hero-split { grid-template-columns: 1fr; }
+      nav ul { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Contact Bar -->
+  <div class="contact-bar">
+    Direct Contact Phone: <strong>(904) 472-7777</strong>
+    <span>|</span>
+    Email: Direct Contact (for fastest Response): <strong>freedomhubsll@gmail.com</strong>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">Digitize How We Met<span>.com</span></a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Basic Plus</a></li>
+          <li class="dropdown">
+            <a href="#">Our Services ▾</a>
+            <div class="dropdown-menu">
+              <a href="wedding.html">Wedding Services</a>
+              <a href="generalservices.html">General Services</a>
+            </div>
+          </li>
+          <li><button class="btn-gold" onclick="openCheckoutModal('Package 1')">Book Now</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Split View Section -->
+  <section class="hero-section">
+    <div class="hero-header">
+      <h1>Relive Your Story, Reimagined For Your Special Day</h1>
+      <p>Transforming vintage VHS tapes and family photos into breathtaking AI-animated love stories for wedding receptions, rehearsal dinners, and anniversaries.</p>
+    </div>
+
+    <div class="hero-split">
+      <!-- Left Spot: Audience Image -->
+      <img src="watermarked_img_11535639794728117534.jpg" alt="Bride and Groom watching video preview at wedding reception" class="hero-media">
+      
+      <!-- Right Spot: Video Sample Placeholder -->
+      <div class="video-placeholder">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        <p style="font-weight: 600; margin-top: 12px;">Sample Video Highlight Reel</p>
+        <p>[ Reserved Spot for Embedded Rehearsal Film ]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wedding Packages Section -->
+  <section class="section-title">
+    <h2>Signature Wedding Packages</h2>
+    <p>Elegant media preservation & customized rehearsal dinner film packages</p>
+  </section>
+
+  <section class="pricing-grid">
+    <!-- Package 1 -->
+    <div class="price-card">
+      <h3>PACKAGE 1: OUR SIGNATURE REHEARSAL FILM</h3>
+      <p style="color:var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">"Rehearsal Dinner Feature"</p>
+      <div class="price">$250</div>
+      <ul>
+        <li>Up to 5-minute custom film</li>
+        <li>Media Included: Up to 6 Tapes + 14 Animated Photos (OR up to 20 photos if no tapes)</li>
+        <li>Client provides script/narrative</li>
+        <li>100 Custom QR Favor Gift Cards</li>
+        <li>Web Link Delivery of Final Film</li>
+      </ul>
+      <button class="btn-gold" onclick="triggerPackageSelection('Package 1')">Select Package 1</button>
+    </div>
+
+    <!-- Package 2 -->
+    <div class="price-card featured">
+      <div class="badge">Most Popular Archive</div>
+      <h3>PACKAGE 2: THE HERITAGE ARCHIVE</h3>
+      <p style="color:var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">"Full Preservation & Event Film"</p>
+      <div class="price">$400</div>
+      <ul>
+        <li>Everything in Package 1 PLUS:</li>
+        <li>ALL fully converted VHS video files (un-cut, full-length raw transfers)</li>
+        <li>ALL 20 high-res AI-animated photos delivered as individual standalone video files</li>
+        <li>Custom Branded Flash Drive with the complete digital archive</li>
+      </ul>
+      <button class="btn-gold" onclick="triggerPackageSelection('Package 2')">Select Package 2</button>
+    </div>
+  </section>
+
+  <!-- Add-ons & General Services Overview -->
+  <div class="info-container">
+    <div class="table-card">
+      <h3>Add-On Services</h3>
+      <table>
+        <thead>
+          <tr><th>Item</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Extra Minutes</td><td>$19.99 / minute</td></tr>
+          <tr><td>Extra Tape Conversion</td><td>$39.99 / tape</td></tr>
+          <tr><td>Extra Photo Animation</td><td>$4.99 / photo</td></tr>
+          <tr><td>Additional Favor Cards</td><td>$100.00 / batch of 50 cards (50-card increments)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-card">
+      <h3>General Non-Wedding Services Overview</h3>
+      <p style="margin-bottom: 1rem; color: var(--text-muted);">Looking for standalone tape conversion or photo animation without a wedding film package?</p>
+      <table>
+        <thead>
+          <tr><th>Service</th><th>Quantity Tier</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+          <tr><td rowspan="3">Tape Conversion</td><td>1 – 4 Tapes</td><td>$39.99 / tape</td></tr>
+          <tr><td>5 – 10 Tapes</td><td>$34.99 / tape</td></tr>
+          <tr><td>10+ Tapes</td><td>$29.99 / tape</td></tr>
+          <tr><td rowspan="3">Photo Animation</td><td>1 – 5 Photos</td><td>$4.99 / photo</td></tr>
+          <tr><td>5 – 10 Photos</td><td>$3.99 / photo</td></tr>
+          <tr><td>10+ Photos</td><td>$2.99 / photo</td></tr>
+          <tr><td>5-Min Photo Montage Video</td><td>20 Photos + Customer Script</td><td>$50.00 flat ($2.99/extra photo)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Package 1 Upsell Modal -->
+  <div id="upsellModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('upsellModal')">&times;</span>
+      <h3 style="margin-bottom: 1rem; color: var(--gold-hover);">Special Archive Recommendation</h3>
+      <div class="upsell-box">
+        <p id="upsellText">
+          We have your $250 Rehearsal Film package reserved! Most of our couples find that while 6 tapes and 14 photos make a perfect 4-minute film, parents usually have 2 or 3 extra tapes sitting in a drawer that haven't been seen in 20 years.<br><br>
+          For just $150 more ($400 total), we’ll digitize ALL your raw, full-length tapes, convert all 20 photos into individual motion files, and put the entire digital library onto a custom wooden USB drive for your parents as a heirloom gift. Would you like us to include the full heritage archive kit?
+        </p>
+      </div>
+      <div style="display: flex; gap: 10px; justify-content: flex-end;">
+        <button class="btn-gold" style="background: #888;" onclick="declineUpsell()">Keep Package 1 ($250)</button>
+        <button class="btn-gold" onclick="acceptUpsell()">Upgrade to Package 2 ($400)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('checkoutModal')">&times;</span>
+      <h3 style="margin-bottom: 1rem; color: var(--gold-hover);">Complete Your Reservation</h3>
+      
+      <form id="checkoutForm" onsubmit="handleCheckoutSubmit(event)">
+        <div class="form-group">
+          <label>Selected Package / Service</label>
+          <input type="text" id="selectedPackageInput" readonly style="background: #f5f5f5;">
+        </div>
+
+        <div class="form-group">
+          <label>Event Date / Timeline Requirement</label>
+          <input type="date" required>
+        </div>
+
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Sarah Johnson" required>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="sarah@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(904) 472-7777" required>
+        </div>
+
+        <div class="form-group">
+          <label>Physical Media Return Preference</label>
+          <select id="returnShippingSelect" onchange="calculateTotal()">
+            <option value="0">Free Eco-Friendly Disposal / Recycling (After 30 days)</option>
+            <option value="10">Return Shipping - 1 Tape ($10.00)</option>
+            <option value="18">Return Shipping - 2 to 8 Tapes ($18.00)</option>
+            <option value="25">Return Shipping - 9+ Tapes ($25.00)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Notes / Custom Script Instructions</label>
+          <textarea rows="3" placeholder="Client provides script/narrative. Let us know any special requests..."></textarea>
+        </div>
+
+        <div style="background: var(--gold-light); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.1rem;">
+            <span>Estimated Total:</span>
+            <span id="checkoutTotalDisplay">$250.00</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-gold" style="width: 100%;">Submit Order & Payment Setup</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 DigitizeHowWeMet.com | Freedom Hubs LLC. All Rights Reserved.</p>
+    <p style="margin-top: 10px;">
+      <a href="privacy.html">Privacy Policy</a> | 
+      <a href="terms.html">Terms of Service</a>
+    </p>
+  </footer>
+
+  <script>
+    let currentSelectedPrice = 250;
+
+    function triggerPackageSelection(pkgName) {
+      if (pkgName === 'Package 1') {
+        document.getElementById('upsellModal').style.display = 'flex';
+      } else {
+        openCheckoutModal('Package 2 - The Heritage Archive ($400)', 400);
+      }
+    }
+
+    function declineUpsell() {
+      closeModal('upsellModal');
+      openCheckoutModal('Package 1 - Our Signature Rehearsal Film ($250)', 250);
+    }
+
+    function acceptUpsell() {
+      closeModal('upsellModal');
+      openCheckoutModal('Package 2 - The Heritage Archive ($400)', 400);
+    }
+
+    function openCheckoutModal(pkgTitle, price = 250) {
+      currentSelectedPrice = price;
+      document.getElementById('selectedPackageInput').value = pkgTitle;
+      calculateTotal();
+      document.getElementById('checkoutModal').style.display = 'flex';
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+
+    function calculateTotal() {
+      const shippingFee = parseFloat(document.getElementById('returnShippingSelect').value) || 0;
+      const grandTotal = currentSelectedPrice + shippingFee;
+      document.getElementById('checkoutTotalDisplay').innerText = '$' + grandTotal.toFixed(2);
+    }
+
+    function handleCheckoutSubmit(e) {
+      e.preventDefault();
+      alert('Thank you for your order request! We have received your details and will contact you directly at your provided email/phone within 24 hours to coordinate script submission and shipping instructions.');
+      closeModal('checkoutModal');
+    }
+  </script>
+</body>
+</html>
