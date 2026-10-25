@@ -1,1 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Services | Digitize How We Met</title>
+  <style>
+    :root {
+      --gold-primary: #D4AF37;
+      --gold-hover: #AA820A;
+      --gold-light: #FAF5E9;
+      --text-dark: #2C2A29;
+      --text-muted: #666666;
+      --bg-white: #FFFFFF;
+      --border-color: #E8E2D5;
+      --shadow-soft: 0 10px 30px rgba(212, 175, 55, 0.12);
+      --font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-family); color: var(--text-dark); background-color: #FDFBF7; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
 
+    header { background: var(--bg-white); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; }
+    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: var(--gold-primary); }
+    .logo span { color: var(--text-dark); }
+    nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
+    nav a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); }
+    
+    .dropdown { position: relative; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-white); border: 1px solid var(--border-color); box-shadow: var(--shadow-soft); border-radius: 8px; min-width: 200px; overflow: hidden; padding: 0.5rem 0; }
+    .dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { display: block; padding: 0.75rem 1.25rem; font-size: 0.9rem; }
+    .dropdown-menu a:hover { background: var(--gold-light); }
+
+    .btn-gold { background: var(--gold-primary); color: #FFF !important; padding: 0.75rem 1.5rem; border-radius: 30px; font-weight: 600; border: none; cursor: pointer; }
+
+    .contact-bar { background: var(--gold-light); border-bottom: 1px solid var(--border-color); padding: 0.6rem 2rem; font-size: 0.85rem; text-align: center; }
+
+    .container { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
+    .page-title { text-align: center; margin-bottom: 3rem; }
+    .page-title h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+    .price-card { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem 2rem; box-shadow: var(--shadow-soft); display: flex; flex-direction: column; }
+    .price-card.featured { border: 2px solid var(--gold-primary); }
+    .price { font-size: 2.5rem; font-weight: 700; color: var(--gold-hover); margin-bottom: 1.5rem; }
+    .price-card ul { list-style: none; margin-bottom: 2rem; flex-grow: 1; }
+    .price-card ul li { margin-bottom: 0.8rem; font-size: 0.95rem; color: var(--text-muted); display: flex; gap: 8px; }
+    .price-card ul li::before { content: "✓"; color: var(--gold-primary); font-weight: bold; }
+
+    .table-card { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-soft); }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th, td { padding: 12px 16px; border-bottom: 1px solid var(--border-color); }
+    th { background: var(--gold-light); }
+
+    footer { background: var(--bg-white); border-top: 1px solid var(--border-color); padding: 3rem 2rem; text-align: center; margin-top: 5rem; font-size: 0.9rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+  <div class="contact-bar">
+    Direct Contact Phone: <strong>(904) 472-7777</strong> | Email: Direct Contact (for fastest Response): <strong>freedomhubsll@gmail.com</strong>
+  </div>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">Digitize How We Met<span>.com</span></a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Basic Plus</a></li>
+          <li class="dropdown">
+            <a href="#">Our Services ▾</a>
+            <div class="dropdown-menu">
+              <a href="wedding.html">Wedding Services</a>
+              <a href="generalservices.html">General Services</a>
+            </div>
+          </li>
+          <li><a href="index.html" class="btn-gold">Back To Main</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-title">
+      <h1>Wedding & Event Film Packages</h1>
+      <p>Custom storytelling for Rehearsal Dinners, Reception Cocktails, and Anniversary Celebrations</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>PACKAGE 1: OUR SIGNATURE REHEARSAL FILM</h3>
+        <p style="color:var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">"Rehearsal Dinner Feature"</p>
+        <div class="price">$250</div>
+        <ul>
+          <li>Up to 5-minute custom film</li>
+          <li>Media Included: Up to 6 Tapes + 14 Animated Photos (OR up to 20 photos if no tapes)</li>
+          <li>Client provides script/narrative</li>
+          <li>100 Custom QR Favor Gift Cards</li>
+          <li>Web Link Delivery of Final Film</li>
+        </ul>
+        <a href="index.html" class="btn-gold" style="text-align:center;">Book Package 1</a>
+      </div>
+
+      <div class="price-card featured">
+        <h3>PACKAGE 2: THE HERITAGE ARCHIVE</h3>
+        <p style="color:var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">"Full Preservation & Event Film"</p>
+        <div class="price">$400</div>
+        <ul>
+          <li>Everything in Package 1 PLUS:</li>
+          <li>ALL fully converted VHS video files (un-cut, full-length raw transfers)</li>
+          <li>ALL 20 high-res AI-animated photos delivered as individual standalone video files</li>
+          <li>Custom Branded Flash Drive with the complete digital archive</li>
+        </ul>
+        <a href="index.html" class="btn-gold" style="text-align:center;">Book Package 2</a>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <h3>Wedding Service Add-Ons</h3>
+      <table>
+        <thead>
+          <tr><th>Item</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Extra Minutes</td><td>$19.99 / minute</td></tr>
+          <tr><td>Extra Tape Conversion</td><td>$39.99 / tape</td></tr>
+          <tr><td>Extra Photo Animation</td><td>$4.99 / photo</td></tr>
+          <tr><td>Additional Favor Cards</td><td>$100.00 / batch of 50 cards (50-card increments)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 DigitizeHowWeMet.com | Freedom Hubs LLC. All Rights Reserved.</p>
+    <p style="margin-top: 10px;"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+  </footer>
+
+</body>
+</html>
