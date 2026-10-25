@@ -4,58 +4,94 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>General Services | Digitize How We Met</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold-primary: #D4AF37;
-      --gold-hover: #AA820A;
-      --gold-light: #FAF5E9;
-      --text-dark: #2C2A29;
+      --gold-gradient: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+      --gold-solid: #C59B27;
+      --gold-dark: #8C6211;
+      --gold-light-bg: #F4EFE6;
+      --bg-cream: #FAF8F5;
+      --bg-card: #FFFFFF;
+      --text-dark: #222222;
       --text-muted: #666666;
-      --bg-white: #FFFFFF;
-      --border-color: #E8E2D5;
-      --shadow-soft: 0 10px 30px rgba(212, 175, 55, 0.12);
-      --font-family: 'Helvetica Neue', Arial, sans-serif;
+      --border-gold: #D4AF37;
+      --shadow-foil: 0 8px 25px rgba(197, 155, 39, 0.15);
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Montserrat', Arial, sans-serif;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-family); color: var(--text-dark); background-color: #FDFBF7; line-height: 1.6; }
+    body { font-family: var(--font-sans); color: var(--text-dark); background-color: var(--bg-cream); line-height: 1.5; }
     a { text-decoration: none; color: inherit; }
 
-    header { background: var(--bg-white); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; }
-    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
-    .logo { font-size: 1.5rem; font-weight: 700; color: var(--gold-primary); }
+    /* Top Contact Bar */
+    .contact-bar { background: #F1ECE1; border-bottom: 1px solid rgba(197, 155, 39, 0.3); padding: 0.4rem 2rem; font-size: 0.8rem; text-align: center; color: var(--text-muted); font-weight: 500; }
+    .contact-bar strong { color: var(--gold-dark); }
+    .contact-bar span { margin: 0 8px; opacity: 0.4; }
+
+    /* Header & Navigation */
+    header { background: var(--bg-card); border-bottom: 2px solid var(--border-gold); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 12px rgba(0,0,0,0.03); }
+    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 2rem; }
+    .logo { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--gold-dark); letter-spacing: -0.2px; }
     .logo span { color: var(--text-dark); }
-    nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
-    nav a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); }
+    nav ul { display: flex; list-style: none; gap: 1.8rem; align-items: center; }
+    nav a { font-weight: 600; font-size: 0.88rem; color: var(--text-dark); text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
+    nav a:hover { color: var(--gold-solid); }
 
+    /* Dropdown Navigation */
     .dropdown { position: relative; }
-    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-white); border: 1px solid var(--border-color); box-shadow: var(--shadow-soft); border-radius: 8px; min-width: 200px; overflow: hidden; padding: 0.5rem 0; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border-gold); box-shadow: var(--shadow-foil); border-radius: 6px; min-width: 200px; overflow: hidden; padding: 0.4rem 0; }
     .dropdown:hover .dropdown-menu { display: block; }
-    .dropdown-menu a { display: block; padding: 0.75rem 1.25rem; font-size: 0.9rem; }
-    .dropdown-menu a:hover { background: var(--gold-light); }
+    .dropdown-menu a { display: block; padding: 0.6rem 1.2rem; font-size: 0.85rem; text-transform: none; font-weight: 500; }
+    .dropdown-menu a:hover { background: var(--gold-light-bg); color: var(--gold-dark); }
 
-    .btn-gold { background: var(--gold-primary); color: #FFF !important; padding: 0.75rem 1.5rem; border-radius: 30px; font-weight: 600; border: none; cursor: pointer; }
+    .btn-gold { background: var(--gold-gradient); color: #111 !important; padding: 0.6rem 1.4rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; box-shadow: 0 3px 10px rgba(197, 155, 39, 0.3); transition: all 0.3s; }
+    .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 5px 15px rgba(197, 155, 39, 0.5); }
 
-    .contact-bar { background: var(--gold-light); border-bottom: 1px solid var(--border-color); padding: 0.6rem 2rem; font-size: 0.85rem; text-align: center; }
+    .container { max-width: 1200px; margin: 2.5rem auto; padding: 0 2rem; }
+    .page-title { text-align: center; margin-bottom: 2.5rem; }
+    .page-title h1 { font-family: var(--font-serif); font-size: 2.2rem; color: var(--gold-dark); margin-bottom: 0.4rem; }
+    .page-title p { color: var(--text-muted); font-size: 0.95rem; }
 
-    .container { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
-    .page-title { text-align: center; margin-bottom: 3rem; }
-    .page-title h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-
-    .table-card { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-soft); margin-bottom: 2rem; }
-    .table-card h3 { margin-bottom: 1.5rem; color: var(--gold-hover); }
+    .table-card { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 12px; padding: 1.8rem; box-shadow: var(--shadow-foil); margin-bottom: 2rem; }
+    .table-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px; }
+    .table-card h3 { font-family: var(--font-serif); color: var(--gold-dark); font-size: 1.3rem; margin: 0; }
     table { width: 100%; border-collapse: collapse; text-align: left; }
-    th, td { padding: 12px 16px; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; }
-    th { background: var(--gold-light); }
+    th, td { padding: 10px 14px; border-bottom: 1px solid #EFEAE0; font-size: 0.9rem; }
+    th { background: var(--gold-light-bg); color: var(--gold-dark); font-weight: 700; font-family: var(--font-serif); }
 
-    footer { background: var(--bg-white); border-top: 1px solid var(--border-color); padding: 3rem 2rem; text-align: center; margin-top: 5rem; font-size: 0.9rem; color: var(--text-muted); }
+    /* Modals */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(3px); }
+    .modal-content { background: var(--bg-card); border: 2px solid var(--border-gold); max-width: 580px; width: 100%; border-radius: 12px; padding: 2rem; position: relative; max-height: 90vh; overflow-y: auto; }
+    .close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
+    .close-btn:hover { color: var(--gold-dark); }
+    
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 0.3rem; font-size: 0.85rem; color: var(--gold-dark); }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.7rem; background: #FAF9F6; border: 1px solid #DDD6C8; border-radius: 6px; font-family: inherit; font-size: 0.9rem; }
+    
+    .summary-box { background: var(--gold-light-bg); border: 1px solid var(--border-gold); padding: 1rem; border-radius: 8px; margin-bottom: 1.2rem; }
+    .summary-row { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.4rem; }
+    .summary-row.total { font-weight: 700; font-size: 1.1rem; color: var(--gold-dark); border-top: 1px solid var(--border-gold); padding-top: 0.5rem; margin-top: 0.5rem; }
+
+    /* Footer */
+    footer { background: #F1ECE1; border-top: 2px solid var(--border-gold); padding: 2.5rem 2rem; text-align: center; margin-top: 4rem; font-size: 0.85rem; color: var(--text-muted); }
+    footer a { color: var(--gold-dark); font-weight: 600; margin: 0 8px; }
   </style>
 </head>
 <body>
 
+  <!-- Top Contact Bar -->
   <div class="contact-bar">
-    Direct Contact Phone: <strong>(904) 472-7777</strong> | Email: Direct Contact (for fastest Response): <strong>freedomhubsll@gmail.com</strong>
+    Direct Contact Phone: <strong>(904) 472-7777</strong>
+    <span>|</span>
+    Email: Direct Contact (for fastest Response): <strong>freedomhubsll@gmail.com</strong>
   </div>
 
+  <!-- Header -->
   <header>
     <div class="nav-container">
       <a href="index.html" class="logo">Digitize How We Met<span>.com</span></a>
@@ -69,7 +105,7 @@
               <a href="generalservices.html">General Services</a>
             </div>
           </li>
-          <li><a href="index.html" class="btn-gold">Back To Main</a></li>
+          <li><button class="btn-gold" onclick="openGeneralCheckout()">Cart & Checkout</button></li>
         </ul>
       </nav>
     </div>
@@ -78,13 +114,16 @@
   <div class="container">
     <div class="page-title">
       <h1>General Media Preservation Services</h1>
-      <p>A la carte VHS digitization, photo motion animation, and video montage creations</p>
+      <p>A la carte VHS digitization, photo motion animation, and customized video montages</p>
     </div>
 
     <!-- Tape Conversion Tier Table -->
     <div class="table-card">
-      <h3>1. Tape Conversion Services</h3>
-      <p style="margin-bottom: 1rem; color: var(--text-muted);">High-definition digitizing for VHS, VHS-C, Hi8, and MiniDV tapes.</p>
+      <div class="table-card-header">
+        <h3>1. Standalone Tape Conversion</h3>
+        <button class="btn-gold" onclick="openGeneralCheckout('tapes')">Order Tape Conversion</button>
+      </div>
+      <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">High-definition digital transfers for VHS, VHS-C, Hi8, and MiniDV tapes.</p>
       <table>
         <thead>
           <tr><th>Quantity Tier</th><th>Price Per Tape</th></tr>
@@ -99,8 +138,11 @@
 
     <!-- Photo Animation Tier Table -->
     <div class="table-card">
-      <h3>2. Photo Motion Animation</h3>
-      <p style="margin-bottom: 1rem; color: var(--text-muted);">AI-powered depth and motion animation for still photo prints.</p>
+      <div class="table-card-header">
+        <h3>2. Photo Motion Animation</h3>
+        <button class="btn-gold" onclick="openGeneralCheckout('photos')">Order Photo Animation</button>
+      </div>
+      <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">AI-powered depth and motion animation brought to your still photos.</p>
       <table>
         <thead>
           <tr><th>Quantity Tier</th><th>Price Per Photo</th></tr>
@@ -115,25 +157,171 @@
 
     <!-- 5-Min Video Montage -->
     <div class="table-card">
-      <h3>3. 5-Minute Photo Video Montage ($50 Flat)</h3>
-      <p style="margin-bottom: 1rem; color: var(--text-muted);">Includes animation of up to 20 photos in a 5-minute custom video montage with script/narrative provided by the customer.</p>
+      <div class="table-card-header">
+        <h3>3. 5-Minute Photo Video Montage ($50 Flat)</h3>
+        <button class="btn-gold" onclick="openGeneralCheckout('montage')">Order Video Montage</button>
+      </div>
+      <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">Includes animation of up to 20 photos set to a 5-minute video presentation with customer-provided script/narrative.</p>
       <table>
         <thead>
           <tr><th>Feature</th><th>Details</th></tr>
         </thead>
         <tbody>
-          <tr><td>Base Package</td><td>$50.00 (Includes 20 photos animated + 5-min edit)</td></tr>
-          <tr><td>Extra Photos</td><td>$2.99 / photo (Regardless of final video length)</td></tr>
-          <tr><td>Script Requirement</td><td>Customer provides storyline or script</td></tr>
+          <tr><td>Base Montage Package</td><td>$50.00 (Includes 20 photos animated + 5-min video edit)</td></tr>
+          <tr><td>Additional Photos</td><td>$2.99 / photo (Regardless of final video length)</td></tr>
+          <tr><td>Script Requirement</td><td>Customer provides storyline or narrative</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
+  <!-- General Services Checkout Modal -->
+  <div id="generalCheckoutModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('generalCheckoutModal')">&times;</span>
+      <h3 style="font-family: var(--font-serif); margin-bottom: 1rem; color: var(--gold-dark);">General Services Checkout</h3>
+      
+      <form id="generalCheckoutForm" onsubmit="handleCheckoutSubmit(event)">
+        <!-- Service Configuration Inputs -->
+        <div class="form-group">
+          <label>Tape Conversions (Quantity)</label>
+          <input type="number" id="tapeQtyInput" min="0" value="0" onchange="calculateGeneralTotal()">
+        </div>
+
+        <div class="form-group">
+          <label>Standalone Photo Motion Animations (Quantity)</label>
+          <input type="number" id="photoQtyInput" min="0" value="0" onchange="calculateGeneralTotal()">
+        </div>
+
+        <div class="form-group">
+          <label>5-Minute Photo Video Montage Packages ($50 Base / 20 Photos)</label>
+          <input type="number" id="montageQtyInput" min="0" value="0" onchange="calculateGeneralTotal()">
+        </div>
+
+        <div class="form-group">
+          <label>Extra Photos for Montage (Above 20 photos - $2.99/ea)</label>
+          <input type="number" id="extraMontagePhotoInput" min="0" value="0" onchange="calculateGeneralTotal()">
+        </div>
+
+        <div class="form-group">
+          <label>Physical Media Return Preference</label>
+          <select id="returnShippingSelect" onchange="calculateGeneralTotal()">
+            <option value="0">Free Eco-Friendly Disposal / Recycling (After 30 days)</option>
+            <option value="10">Return Shipping - 1 Tape ($10.00)</option>
+            <option value="18">Return Shipping - 2 to 8 Tapes ($18.00)</option>
+            <option value="25">Return Shipping - 9+ Tapes ($25.00)</option>
+          </select>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #DDD6C8; margin: 1.2rem 0;">
+
+        <!-- Contact Information -->
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="John Doe" required>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="john@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(904) 472-7777" required>
+        </div>
+
+        <div class="form-group">
+          <label>Notes & Script Instructions</label>
+          <textarea rows="2" placeholder="Include any special sequence order, script outlines, or details..."></textarea>
+        </div>
+
+        <!-- Calculated Summary Box -->
+        <div class="summary-box">
+          <div class="summary-row"><span>Tapes Subtotal:</span><span id="tapeSubtotalDisplay">$0.00</span></div>
+          <div class="summary-row"><span>Photos Subtotal:</span><span id="photoSubtotalDisplay">$0.00</span></div>
+          <div class="summary-row"><span>Montage Subtotal:</span><span id="montageSubtotalDisplay">$0.00</span></div>
+          <div class="summary-row"><span>Return Shipping:</span><span id="shippingDisplay">$0.00</span></div>
+          <div class="summary-row total"><span>Grand Total:</span><span id="grandTotalDisplay">$0.00</span></div>
+        </div>
+
+        <button type="submit" class="btn-gold" style="width: 100%;">Submit General Order Request</button>
+      </form>
+    </div>
+  </div>
+
   <footer>
     <p>© 2026 DigitizeHowWeMet.com | Freedom Hubs LLC. All Rights Reserved.</p>
-    <p style="margin-top: 10px;"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+    <p style="margin-top: 8px;">
+      <a href="privacy.html">Privacy Policy</a> | 
+      <a href="terms.html">Terms of Service</a>
+    </p>
   </footer>
 
+  <script>
+    function openGeneralCheckout(presetType = '') {
+      // Reset defaults
+      document.getElementById('tapeQtyInput').value = 0;
+      document.getElementById('photoQtyInput').value = 0;
+      document.getElementById('montageQtyInput').value = 0;
+      document.getElementById('extraMontagePhotoInput').value = 0;
+
+      if (presetType === 'tapes') {
+        document.getElementById('tapeQtyInput').value = 1;
+      } else if (presetType === 'photos') {
+        document.getElementById('photoQtyInput').value = 1;
+      } else if (presetType === 'montage') {
+        document.getElementById('montageQtyInput').value = 1;
+      }
+
+      calculateGeneralTotal();
+      document.getElementById('generalCheckoutModal').style.display = 'flex';
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+
+    function calculateGeneralTotal() {
+      const tapeQty = parseInt(document.getElementById('tapeQtyInput').value) || 0;
+      const photoQty = parseInt(document.getElementById('photoQtyInput').value) || 0;
+      const montageQty = parseInt(document.getElementById('montageQtyInput').value) || 0;
+      const extraMontagePhotos = parseInt(document.getElementById('extraMontagePhotoInput').value) || 0;
+      const shippingFee = parseFloat(document.getElementById('returnShippingSelect').value) || 0;
+
+      // 1. Calculate Tape Tiered Pricing
+      let tapePrice = 0;
+      if (tapeQty >= 1 && tapeQty <= 4) tapePrice = 39.99;
+      else if (tapeQty >= 5 && tapeQty <= 10) tapePrice = 34.99;
+      else if (tapeQty > 10) tapePrice = 29.99;
+      const tapeSubtotal = tapeQty * tapePrice;
+
+      // 2. Calculate Photo Tiered Pricing
+      let photoPrice = 0;
+      if (photoQty >= 1 && photoQty <= 5) photoPrice = 4.99;
+      else if (photoQty >= 6 && photoQty <= 10) photoPrice = 3.99;
+      else if (photoQty > 10) photoPrice = 2.99;
+      const photoSubtotal = photoQty * photoPrice;
+
+      // 3. Calculate Video Montage Pricing
+      const montageSubtotal = (montageQty * 50.00) + (extraMontagePhotos * 2.99);
+
+      // 4. Totals
+      const grandTotal = tapeSubtotal + photoSubtotal + montageSubtotal + shippingFee;
+
+      // Update UI displays
+      document.getElementById('tapeSubtotalDisplay').innerText = '$' + tapeSubtotal.toFixed(2);
+      document.getElementById('photoSubtotalDisplay').innerText = '$' + photoSubtotal.toFixed(2);
+      document.getElementById('montageSubtotalDisplay').innerText = '$' + montageSubtotal.toFixed(2);
+      document.getElementById('shippingDisplay').innerText = '$' + shippingFee.toFixed(2);
+      document.getElementById('grandTotalDisplay').innerText = '$' + grandTotal.toFixed(2);
+    }
+
+    function handleCheckoutSubmit(e) {
+      e.preventDefault();
+      alert('Thank you! Your general service order request has been submitted. We will email/call you within 24 hours to confirm media drop-off/shipping details.');
+      closeModal('generalCheckoutModal');
+    }
+  </script>
 </body>
 </html>
