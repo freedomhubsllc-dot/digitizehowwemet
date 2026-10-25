@@ -120,18 +120,18 @@
     <!-- Tape Conversion Tier Table -->
     <div class="table-card">
       <div class="table-card-header">
-        <h3>1. Standalone Tape Conversion</h3>
-        <button class="btn-gold" onclick="openGeneralCheckout('tapes')">Order Tape Conversion</button>
+        <h3>1. Standalone VHS Tape Conversion</h3>
+        <button class="btn-gold" onclick="openGeneralCheckout('tapes')">Order VHS Tape Conversion</button>
       </div>
       <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">High-definition digital transfers for VHS, VHS-C, Hi8, and MiniDV tapes.</p>
       <table>
         <thead>
-          <tr><th>Quantity Tier</th><th>Price Per Tape</th></tr>
+          <tr><th>Quantity Tier</th><th>Price Per VHS Tape</th></tr>
         </thead>
         <tbody>
-          <tr><td>1 to 4 Tapes</td><td>$39.99 / tape</td></tr>
-          <tr><td>5 to 10 Tapes</td><td>$34.99 / tape</td></tr>
-          <tr><td>10+ Tapes</td><td>$29.99 / tape</td></tr>
+          <tr><td>1 to 4 VHS Tapes</td><td>$39.99 / Tape</td></tr>
+          <tr><td>5 to 10 VHS Tapes</td><td>$34.99 / Tape</td></tr>
+          <tr><td>10+ VHS Tapes</td><td>$29.99 / Tape</td></tr>
         </tbody>
       </table>
     </div>
@@ -184,7 +184,7 @@
       <form id="generalCheckoutForm" onsubmit="handleCheckoutSubmit(event)">
         <!-- Service Configuration Inputs -->
         <div class="form-group">
-          <label>Tape Conversions (Quantity)</label>
+          <label>VHS Tape Conversions (Quantity)</label>
           <input type="number" id="tapeQtyInput" min="0" value="0" onchange="calculateGeneralTotal()">
         </div>
 
