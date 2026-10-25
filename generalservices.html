@@ -1,1 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>General Services | Digitize How We Met</title>
+  <style>
+    :root {
+      --gold-primary: #D4AF37;
+      --gold-hover: #AA820A;
+      --gold-light: #FAF5E9;
+      --text-dark: #2C2A29;
+      --text-muted: #666666;
+      --bg-white: #FFFFFF;
+      --border-color: #E8E2D5;
+      --shadow-soft: 0 10px 30px rgba(212, 175, 55, 0.12);
+      --font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-family); color: var(--text-dark); background-color: #FDFBF7; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
 
+    header { background: var(--bg-white); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; }
+    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: var(--gold-primary); }
+    .logo span { color: var(--text-dark); }
+    nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
+    nav a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); }
+
+    .dropdown { position: relative; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-white); border: 1px solid var(--border-color); box-shadow: var(--shadow-soft); border-radius: 8px; min-width: 200px; overflow: hidden; padding: 0.5rem 0; }
+    .dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { display: block; padding: 0.75rem 1.25rem; font-size: 0.9rem; }
+    .dropdown-menu a:hover { background: var(--gold-light); }
+
+    .btn-gold { background: var(--gold-primary); color: #FFF !important; padding: 0.75rem 1.5rem; border-radius: 30px; font-weight: 600; border: none; cursor: pointer; }
+
+    .contact-bar { background: var(--gold-light); border-bottom: 1px solid var(--border-color); padding: 0.6rem 2rem; font-size: 0.85rem; text-align: center; }
+
+    .container { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
+    .page-title { text-align: center; margin-bottom: 3rem; }
+    .page-title h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+    .table-card { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-soft); margin-bottom: 2rem; }
+    .table-card h3 { margin-bottom: 1.5rem; color: var(--gold-hover); }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th, td { padding: 12px 16px; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; }
+    th { background: var(--gold-light); }
+
+    footer { background: var(--bg-white); border-top: 1px solid var(--border-color); padding: 3rem 2rem; text-align: center; margin-top: 5rem; font-size: 0.9rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+  <div class="contact-bar">
+    Direct Contact Phone: <strong>(904) 472-7777</strong> | Email: Direct Contact (for fastest Response): <strong>freedomhubsll@gmail.com</strong>
+  </div>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">Digitize How We Met<span>.com</span></a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Basic Plus</a></li>
+          <li class="dropdown">
+            <a href="#">Our Services ▾</a>
+            <div class="dropdown-menu">
+              <a href="wedding.html">Wedding Services</a>
+              <a href="generalservices.html">General Services</a>
+            </div>
+          </li>
+          <li><a href="index.html" class="btn-gold">Back To Main</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-title">
+      <h1>General Media Preservation Services</h1>
+      <p>A la carte VHS digitization, photo motion animation, and video montage creations</p>
+    </div>
+
+    <!-- Tape Conversion Tier Table -->
+    <div class="table-card">
+      <h3>1. Tape Conversion Services</h3>
+      <p style="margin-bottom: 1rem; color: var(--text-muted);">High-definition digitizing for VHS, VHS-C, Hi8, and MiniDV tapes.</p>
+      <table>
+        <thead>
+          <tr><th>Quantity Tier</th><th>Price Per Tape</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1 to 4 Tapes</td><td>$39.99 / tape</td></tr>
+          <tr><td>5 to 10 Tapes</td><td>$34.99 / tape</td></tr>
+          <tr><td>10+ Tapes</td><td>$29.99 / tape</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Photo Animation Tier Table -->
+    <div class="table-card">
+      <h3>2. Photo Motion Animation</h3>
+      <p style="margin-bottom: 1rem; color: var(--text-muted);">AI-powered depth and motion animation for still photo prints.</p>
+      <table>
+        <thead>
+          <tr><th>Quantity Tier</th><th>Price Per Photo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1 to 5 Photos</td><td>$4.99 / photo</td></tr>
+          <tr><td>5 to 10 Photos</td><td>$3.99 / photo</td></tr>
+          <tr><td>10+ Photos</td><td>$2.99 / photo</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 5-Min Video Montage -->
+    <div class="table-card">
+      <h3>3. 5-Minute Photo Video Montage ($50 Flat)</h3>
+      <p style="margin-bottom: 1rem; color: var(--text-muted);">Includes animation of up to 20 photos in a 5-minute custom video montage with script/narrative provided by the customer.</p>
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Details</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Base Package</td><td>$50.00 (Includes 20 photos animated + 5-min edit)</td></tr>
+          <tr><td>Extra Photos</td><td>$2.99 / photo (Regardless of final video length)</td></tr>
+          <tr><td>Script Requirement</td><td>Customer provides storyline or script</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 DigitizeHowWeMet.com | Freedom Hubs LLC. All Rights Reserved.</p>
+    <p style="margin-top: 10px;"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+  </footer>
+
+</body>
+</html>
