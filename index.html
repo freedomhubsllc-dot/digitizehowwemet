@@ -7,94 +7,102 @@
   <style>
     :root {
       --gold-primary: #D4AF37;
-      --turquoise-primary: #2A9D8F;
-      --turquoise-hover: #1F7369;
-      --turquoise-light: #E6F4F1;
-      --text-dark: #2C2A29;
-      --text-muted: #555555;
-      --bg-white: #FFFFFF;
-      --border-color: #D2E7E4;
-      --shadow-soft: 0 10px 30px rgba(42, 157, 143, 0.12);
+      --gold-hover: #F3C63F;
+      --gold-dark: #A3821F;
+      --gold-bg-subtle: rgba(212, 175, 55, 0.08);
+      --bg-black: #0D0D0D;
+      --bg-card: #141414;
+      --bg-input: #1A1A1A;
+      --text-white: #FFFFFF;
+      --text-gold: #E5C158;
+      --text-muted: #B3B3B3;
+      --border-color: #2A2415;
+      --border-gold: #D4AF37;
+      --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.15);
       --font-family: 'Helvetica Neue', Arial, sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-family); color: var(--text-dark); background-color: #F4F9F8; line-height: 1.6; }
+    body { font-family: var(--font-family); color: var(--text-white); background-color: var(--bg-black); line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
 
+    /* Top Contact Bar */
+    .contact-bar { background: #16130C; border-bottom: 1px solid var(--border-color); padding: 0.6rem 2rem; font-size: 0.85rem; text-align: center; color: var(--text-muted); }
+    .contact-bar strong { color: var(--gold-primary); }
+    .contact-bar span { margin: 0 10px; opacity: 0.3; }
+
     /* Header & Navigation */
-    header { background: var(--bg-white); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
-    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
-    .logo { font-size: 1.5rem; font-weight: 700; color: var(--turquoise-hover); letter-spacing: -0.5px; }
-    .logo span { color: var(--gold-primary); }
+    header { background: #111111; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.8); }
+    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: var(--gold-primary); letter-spacing: -0.5px; }
+    .logo span { color: var(--text-white); }
     nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
-    nav a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); transition: color 0.3s; }
-    nav a:hover { color: var(--turquoise-primary); }
+    nav a { font-weight: 500; font-size: 0.95rem; color: var(--text-white); transition: color 0.3s; }
+    nav a:hover { color: var(--gold-primary); }
 
     /* Dropdown Navigation */
     .dropdown { position: relative; }
-    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-white); border: 1px solid var(--border-color); box-shadow: var(--shadow-soft); border-radius: 8px; min-width: 200px; overflow: hidden; padding: 0.5rem 0; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #161616; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.9); border-radius: 8px; min-width: 200px; overflow: hidden; padding: 0.5rem 0; }
     .dropdown:hover .dropdown-menu { display: block; }
-    .dropdown-menu a { display: block; padding: 0.75rem 1.25rem; font-size: 0.9rem; }
-    .dropdown-menu a:hover { background: var(--turquoise-light); color: var(--turquoise-hover); }
+    .dropdown-menu a { display: block; padding: 0.75rem 1.25rem; font-size: 0.9rem; color: var(--text-white); }
+    .dropdown-menu a:hover { background: var(--gold-bg-subtle); color: var(--gold-primary); }
 
-    .btn-gold { background: var(--turquoise-primary); color: #FFF !important; padding: 0.75rem 1.5rem; border-radius: 30px; font-weight: 600; border: none; cursor: pointer; transition: background 0.3s, transform 0.2s; }
-    .btn-gold:hover { background: var(--turquoise-hover); transform: translateY(-1px); }
-
-    /* Top Contact Bar */
-    .contact-bar { background: var(--turquoise-light); border-bottom: 1px solid var(--border-color); padding: 0.6rem 2rem; font-size: 0.85rem; text-align: center; color: var(--text-dark); }
-    .contact-bar strong { color: var(--turquoise-hover); }
-    .contact-bar span { margin: 0 10px; opacity: 0.4; }
+    .btn-gold { background: var(--gold-primary); color: #000 !important; padding: 0.75rem 1.6rem; border-radius: 30px; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s; }
+    .btn-gold:hover { background: var(--gold-hover); box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); transform: translateY(-1px); }
 
     /* Hero Section */
-    .hero-section { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
+    .hero-section { max-width: 1200px; margin: 3.5rem auto; padding: 0 2rem; }
     .hero-header { text-align: center; max-width: 800px; margin: 0 auto 2.5rem; }
-    .hero-header h1 { font-size: 2.5rem; color: var(--text-dark); font-weight: 700; margin-bottom: 1rem; }
+    .hero-header h1 { font-size: 2.6rem; color: var(--text-gold); font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.5px; }
     .hero-header p { font-size: 1.1rem; color: var(--text-muted); }
     
-    .hero-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-soft); padding: 1.5rem; }
-    .hero-media { width: 100%; height: 380px; object-fit: cover; border-radius: 12px; }
-    .video-placeholder { width: 100%; height: 380px; background: #1B3B36; border-radius: 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #FFF; text-align: center; position: relative; }
-    .video-placeholder p { margin-top: 10px; font-size: 0.9rem; opacity: 0.8; }
+    .hero-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-gold); padding: 1.5rem; }
+    .hero-media { width: 100%; height: 380px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.2); }
+    .video-placeholder { width: 100%; height: 380px; background: #000; border: 1px solid var(--border-color); border-radius: 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--text-white); text-align: center; position: relative; }
+    .video-placeholder p { margin-top: 10px; font-size: 0.9rem; color: var(--text-muted); }
 
     /* Pricing Section */
-    .section-title { text-align: center; margin: 4rem 0 2rem; }
-    .section-title h2 { font-size: 2rem; color: var(--text-dark); }
+    .section-title { text-align: center; margin: 5rem 0 2.5rem; }
+    .section-title h2 { font-size: 2.2rem; color: var(--text-gold); }
     .section-title p { color: var(--text-muted); }
 
     .pricing-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; padding: 0 2rem; }
-    .price-card { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem 2rem; box-shadow: var(--shadow-soft); display: flex; flex-direction: column; position: relative; transition: transform 0.3s; }
-    .price-card:hover { transform: translateY(-5px); }
-    .price-card.featured { border: 2px solid var(--turquoise-primary); }
-    .badge { position: absolute; top: -12px; right: 20px; background: var(--turquoise-primary); color: #FFF; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+    .price-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: column; position: relative; transition: transform 0.3s, border-color 0.3s; }
+    .price-card:hover { transform: translateY(-5px); border-color: var(--gold-primary); }
+    .price-card.featured { border: 2px solid var(--gold-primary); box-shadow: var(--shadow-gold); }
+    .badge { position: absolute; top: -12px; right: 20px; background: var(--gold-primary); color: #000; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
     
-    .price-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-    .price { font-size: 2.5rem; font-weight: 700; color: var(--turquoise-hover); margin-bottom: 1.5rem; }
+    .price-card h3 { font-size: 1.4rem; color: var(--text-white); margin-bottom: 0.5rem; }
+    .price { font-size: 2.8rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 1.5rem; }
     .price-card ul { list-style: none; margin-bottom: 2rem; flex-grow: 1; }
     .price-card ul li { margin-bottom: 0.8rem; font-size: 0.95rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 8px; }
-    .price-card ul li::before { content: "✓"; color: var(--turquoise-primary); font-weight: bold; }
+    .price-card ul li::before { content: "✓"; color: var(--gold-primary); font-weight: bold; }
 
     /* Add-ons & General Pricing Tables */
-    .info-container { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
-    .table-card { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-soft); margin-bottom: 2rem; }
-    .table-card h3 { margin-bottom: 1.5rem; color: var(--turquoise-hover); }
+    .info-container { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; }
+    .table-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 2.5rem; }
+    .table-card h3 { margin-bottom: 1.5rem; color: var(--text-gold); font-size: 1.4rem; }
     table { width: 100%; border-collapse: collapse; text-align: left; }
-    th, td { padding: 12px 16px; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; }
-    th { background: var(--turquoise-light); font-weight: 600; color: var(--text-dark); }
+    th, td { padding: 14px 16px; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; color: var(--text-muted); }
+    th { background: #1A160C; color: var(--gold-primary); font-weight: 700; }
+    td { color: var(--text-white); }
 
     /* Modals */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; }
-    .modal-content { background: var(--bg-white); max-width: 600px; width: 100%; border-radius: 16px; padding: 2.5rem; position: relative; max-height: 90vh; overflow-y: auto; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(4px); }
+    .modal-content { background: #141414; border: 1px solid var(--gold-primary); max-width: 600px; width: 100%; border-radius: 16px; padding: 2.5rem; position: relative; max-height: 90vh; overflow-y: auto; color: var(--text-white); }
     .close-btn { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
+    .close-btn:hover { color: var(--gold-primary); }
     
     .form-group { margin-bottom: 1.2rem; }
-    .form-group label { display: block; font-weight: 600; margin-bottom: 0.4rem; font-size: 0.9rem; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 0.95rem; }
-    .upsell-box { background: var(--turquoise-light); border: 1px dashed var(--turquoise-primary); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; font-size: 0.95rem; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 0.4rem; font-size: 0.9rem; color: var(--text-gold); }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.8rem; background: var(--bg-input); border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 0.95rem; color: var(--text-white); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold-primary); outline: none; }
+    .upsell-box { background: var(--gold-bg-subtle); border: 1px dashed var(--gold-primary); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; font-size: 0.95rem; color: #EFEFEF; }
 
     /* Footer */
-    footer { background: var(--bg-white); border-top: 1px solid var(--border-color); padding: 3rem 2rem; text-align: center; margin-top: 5rem; font-size: 0.9rem; color: var(--text-muted); }
-    footer a { color: var(--turquoise-hover); margin: 0 10px; }
+    footer { background: #080808; border-top: 1px solid var(--border-color); padding: 3rem 2rem; text-align: center; margin-top: 5rem; font-size: 0.9rem; color: var(--text-muted); }
+    footer a { color: var(--gold-primary); margin: 0 10px; }
+    footer a:hover { text-decoration: underline; }
 
     @media (max-width: 768px) {
       .hero-split { grid-template-columns: 1fr; }
@@ -144,8 +152,8 @@
       
       <!-- Right Spot: Video Sample Placeholder -->
       <div class="video-placeholder">
-        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2A9D8F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-        <p style="font-weight: 600; margin-top: 12px;">Sample Video Highlight Reel</p>
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        <p style="font-weight: 600; margin-top: 12px; color: var(--gold-primary);">Sample Video Highlight Reel</p>
         <p>[ Reserved Spot for Embedded Rehearsal Film ]</p>
       </div>
     </div>
@@ -154,7 +162,7 @@
   <!-- Wedding Packages Section -->
   <section class="section-title">
     <h2>Signature Wedding Packages</h2>
-    <p>Elegant media preservation & customized rehearsal dinner film packages</p>
+    <p>Premium media preservation & customized rehearsal dinner film packages</p>
   </section>
 
   <section class="pricing-grid">
@@ -230,7 +238,7 @@
   <div id="upsellModal" class="modal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal('upsellModal')">&times;</span>
-      <h3 style="margin-bottom: 1rem; color: var(--turquoise-hover);">Special Archive Recommendation</h3>
+      <h3 style="margin-bottom: 1rem; color: var(--gold-primary);">Special Archive Recommendation</h3>
       <div class="upsell-box">
         <p id="upsellText">
           We have your $250 Rehearsal Film package reserved! Most of our couples find that while 6 tapes and 14 photos make a perfect 4-minute film, parents usually have 2 or 3 extra tapes sitting in a drawer that haven't been seen in 20 years.<br><br>
@@ -238,7 +246,7 @@
         </p>
       </div>
       <div style="display: flex; gap: 10px; justify-content: flex-end;">
-        <button class="btn-gold" style="background: #888;" onclick="declineUpsell()">Keep Package 1 ($250)</button>
+        <button class="btn-gold" style="background: #444; color: #FFF !important;" onclick="declineUpsell()">Keep Package 1 ($250)</button>
         <button class="btn-gold" onclick="acceptUpsell()">Upgrade to Package 2 ($400)</button>
       </div>
     </div>
@@ -248,12 +256,12 @@
   <div id="checkoutModal" class="modal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal('checkoutModal')">&times;</span>
-      <h3 style="margin-bottom: 1rem; color: var(--turquoise-hover);">Complete Your Reservation</h3>
+      <h3 style="margin-bottom: 1rem; color: var(--gold-primary);">Complete Your Reservation</h3>
       
       <form id="checkoutForm" onsubmit="handleCheckoutSubmit(event)">
         <div class="form-group">
           <label>Selected Package / Service</label>
-          <input type="text" id="selectedPackageInput" readonly style="background: #f5f5f5;">
+          <input type="text" id="selectedPackageInput" readonly style="background: #222; color: var(--gold-primary);">
         </div>
 
         <div class="form-group">
@@ -291,10 +299,10 @@
           <textarea rows="3" placeholder="Client provides script/narrative. Let us know any special requests..."></textarea>
         </div>
 
-        <div style="background: var(--turquoise-light); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+        <div style="background: var(--gold-bg-subtle); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
           <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.1rem;">
             <span>Estimated Total:</span>
-            <span id="checkoutTotalDisplay">$250.00</span>
+            <span id="checkoutTotalDisplay" style="color: var(--gold-primary);">$250.00</span>
           </div>
         </div>
 
