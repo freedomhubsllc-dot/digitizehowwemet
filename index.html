@@ -87,6 +87,10 @@
     th, td { padding: 12px 14px; border-bottom: 1px solid #EFEAE0; font-size: 0.9rem; vertical-align: middle; }
     th { background: var(--gold-light-bg); color: var(--gold-dark); font-weight: 700; font-family: var(--font-serif); }
 
+    /* Quantity Controls */
+    .qty-btn { background: var(--gold-light-bg); border: 1px solid var(--border-gold); width: 24px; height: 24px; border-radius: 50%; cursor: pointer; font-weight: 700; color: var(--gold-dark); display: inline-flex; align-items: center; justify-content: center; }
+    .qty-btn:hover { background: var(--gold-solid); color: #FFF; }
+
     /* Modals & Upsells */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(3px); }
     .modal-content { background: var(--bg-card); border: 2px solid var(--border-gold); max-width: 580px; width: 100%; border-radius: 12px; padding: 2rem; position: relative; max-height: 90vh; overflow-y: auto; }
@@ -143,7 +147,7 @@
 </head>
 <body>
 
-  <!-- Top Contact Bar with New Wording & New Phone Number -->
+  <!-- Top Contact Bar -->
   <div class="contact-bar">
     Customizations Available — Call or Text Us: <strong>(936) 358-3090</strong>
     <span>|</span>
@@ -305,6 +309,14 @@
       'photo': { name: 'Photo Animation', price: 4.99, priceId: 'price_1UWd6A1PYpXC0BTgnhoVdfTs', isAddon: true, key: 'photo' }
     };
 
+    // Stripe Payment Link URLs (Replace with your actual Payment Links from Stripe Dashboard)
+    const paymentLinks = {
+      'pkg1': 'https://buy.stripe.com/YOUR_PACKAGE_1_LINK',
+      'pkg2': 'https://buy.stripe.com/YOUR_PACKAGE_2_LINK',
+      'vhs':  'https://buy.stripe.com/YOUR_VHS_LINK',
+      'photo': 'https://buy.stripe.com/YOUR_PHOTO_LINK'
+    };
+
     let cart = {
       weddingPackage: null, // Exclusive either/or package
       addOns: {}            // { vhs: { qty, ... }, photo: { qty, ... } }
@@ -377,11 +389,11 @@
         totalCount += 1;
         subtotal += cart.weddingPackage.price;
         container.innerHTML += `
-          <div class="cart-item" style="background: var(--gold-light-bg); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+          <div class="cart-item" style="background: var(--gold-light-bg); padding: 12px; border-radius: 8px; margin-bottom: 10px;">
             <div>
               <div class="cart-item-title" style="color: var(--gold-dark);">Wedding Package</div>
               <div style="font-size: 0.85rem; font-weight: 600;">${cart.weddingPackage.name}</div>
-              <div style="font-size: 0.8rem; color: var(--text-muted);">$${cart.weddingPackage.price.toFixed(2)} (Price ID: ${cart.weddingPackage.priceId})</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">$${cart.weddingPackage.price.toFixed(2)}</div>
             </div>
             <button onclick="removeWeddingPackage()" style="background: none; border: none; color: #c0392b; font-size: 0.75rem; font-weight: 700; cursor: pointer;">REMOVE</button>
           </div>
@@ -397,7 +409,7 @@
           <div class="cart-item">
             <div>
               <div class="cart-item-title">${item.name}</div>
-              <div class="cart-item-price">$${item.price.toFixed(2)} each (ID: ${item.priceId})</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">$${item.price.toFixed(2)} each</div>
               <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
                 <button class="qty-btn" onclick="changeAddOnQty('${key}', -1)">-</button>
                 <span style="font-size: 0.85rem; font-weight: 600;">${item.qty}</span>
@@ -434,34 +446,28 @@
         alert('Your cart is empty. Please select a package or service before checking out.');
         return;
       }
-      
-      // Routes based on primary selection (Package 1, Package 2, or standalone Add-ons)
+
+      // Prioritize primary package checkout routing
       if (cart.weddingPackage) {
         if (cart.weddingPackage.priceId === 'price_1UWcsM1PYpXC0BTguqdr3atn') {
-          // Paste your live Package 1 Stripe Payment Link here:
-          window.location.href = 'https://buy.stripe.com/YOUR_ACTUAL_LINK_FOR_PKG1';
+          window.location.href = paymentLinks['pkg1'];
           return;
         } else if (cart.weddingPackage.priceId === 'price_1UWd241PYpXC0BTgFl1fHW11') {
-          // Paste your live Package 2 Stripe Payment Link here:
-          window.location.href = 'https://buy.stripe.com/YOUR_ACTUAL_LINK_FOR_PKG2';
+          window.location.href = paymentLinks['pkg2'];
           return;
         }
       }
 
+      // Fallback for standalone a la carte items
       const addOnKeys = Object.keys(cart.addOns);
       if (addOnKeys.length > 0) {
         const firstKey = addOnKeys[0];
-        if (firstKey === 'vhs') {
-          // Paste your live VHS Add-on Stripe Payment Link here:
-          window.location.href = 'https://buy.stripe.com/YOUR_ACTUAL_LINK_FOR_VHS';
-          return;
-        } else if (firstKey === 'photo') {
-          // Paste your live Photo Add-on Stripe Payment Link here:
-          window.location.href = 'https://buy.stripe.com/YOUR_ACTUAL_LINK_FOR_PHOTO';
-          return;
-        }
+        window.location.href = paymentLinks[firstKey] || '#';
       }
     }
+
+    // Initialize UI on load
+    updateCartUI();
   </script>
 </body>
 </html>
