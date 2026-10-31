@@ -260,6 +260,8 @@
   </footer>
 
   <!-- Shopping Cart Logic JavaScript -->
+  
+  
   <script>
     let cart = JSON.parse(localStorage.getItem('digitizeCart')) || [];
 
@@ -286,10 +288,11 @@
             <div class="cart-item-info">
               <h4>${item.name}</h4>
               <p>$${item.price.toFixed(2)} each</p>
-              <div class="cart-qty-ctrl">
+              <div class="cart-qty-ctrl" style="display: flex; align-items: center; margin-top: 6px;">
                 <div class="cart-qty-btn" onclick="adjustQty(${index}, -1)">-</div>
-                <span style="font-size: 0.85rem; font-weight:600;">${item.qty}</span>
+                <span style="font-size: 0.85rem; font-weight:600; margin: 0 8px;">${item.qty}</span>
                 <div class="cart-qty-btn" onclick="adjustQty(${index}, 1)">+</div>
+                <button onclick="removeItem(${index})" style="background: none; border: none; color: #c0392b; font-size: 0.75rem; font-weight: 700; cursor: pointer; margin-left: 12px; font-family: inherit;">REMOVE</button>
               </div>
             </div>
             <div style="font-weight: 700; color: var(--gold-dark);">
@@ -305,12 +308,13 @@
       localStorage.setItem('digitizeCart', JSON.stringify(cart));
     }
 
-    function addToCart(name, price) {
+    function addToCart(name, price, stripeUrl = '') {
       const existing = cart.find(item => item.name === name);
       if (existing) {
         existing.qty += 1;
       } else {
-        cart.push({ name, price, qty: 1 });
+        // Starts the item counter at 0 so the user can use + / - freely
+        cart.push({ name, price, stripeUrl, qty: 0 });
       }
       updateCartUI();
       openCartDrawer();
@@ -318,9 +322,14 @@
 
     function adjustQty(index, change) {
       cart[index].qty += change;
-      if (cart[index].qty <= 0) {
-        cart.splice(index, 1);
+      if (cart[index].qty < 0) {
+        cart[index].qty = 0;
       }
+      updateCartUI();
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
       updateCartUI();
     }
 
@@ -348,12 +357,11 @@
         alert('Your cart is empty. Please add services before checking out.');
         return;
       }
-      // Redirect customers to your master Stripe multi-product checkout link
-      window.location.href = 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
+      // Routes to the individual item's link or the custom order URL
+      const targetUrl = cart[0].stripeUrl || 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
+      window.location.href = targetUrl;
     }
 
     // Initialize UI on page load
     updateCartUI();
   </script>
-</body>
-</html>
