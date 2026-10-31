@@ -297,7 +297,7 @@
 
   <!-- JavaScript Cart Engine & Stripe Mapping -->
   <script>
-    // Official Stripe Price IDs and details
+    // Official Stripe Price IDs catalog mapping
     const catalog = {
       'pkg1': { name: 'Package 1: Signature Rehearsal Film', price: 250.00, priceId: 'price_1UWcsM1PYpXC0BTguqdr3atn', isWedding: true },
       'pkg2': { name: 'Package 2: The Heritage Archive', price: 400.00, priceId: 'price_1UWd241PYpXC0BTgFl1fHW11', isWedding: true },
@@ -312,7 +312,6 @@
 
     function selectWeddingPackage(key) {
       if (key === 'pkg1') {
-        // Trigger upsell modal for Package 1
         document.getElementById('upsellModal').style.display = 'flex';
       } else {
         setWeddingPackage('pkg2');
@@ -382,7 +381,7 @@
             <div>
               <div class="cart-item-title" style="color: var(--gold-dark);">Wedding Package</div>
               <div style="font-size: 0.85rem; font-weight: 600;">${cart.weddingPackage.name}</div>
-              <div style="font-size: 0.8rem; color: var(--text-muted);">$${cart.weddingPackage.price.toFixed(2)}</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">$${cart.weddingPackage.price.toFixed(2)} (Price ID: ${cart.weddingPackage.priceId})</div>
             </div>
             <button onclick="removeWeddingPackage()" style="background: none; border: none; color: #c0392b; font-size: 0.75rem; font-weight: 700; cursor: pointer;">REMOVE</button>
           </div>
@@ -398,7 +397,7 @@
           <div class="cart-item">
             <div>
               <div class="cart-item-title">${item.name}</div>
-              <div class="cart-item-price">$${item.price.toFixed(2)} each</div>
+              <div class="cart-item-price">$${item.price.toFixed(2)} each (ID: ${item.priceId})</div>
               <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
                 <button class="qty-btn" onclick="changeAddOnQty('${key}', -1)">-</button>
                 <span style="font-size: 0.85rem; font-weight: 600;">${item.qty}</span>
@@ -431,42 +430,34 @@
     }
 
     function proceedToCheckout() {
-  if (!cart.weddingPackage && Object.keys(cart.addOns).length === 0) {
-    alert('Your cart is empty. Please select a package or service before checking out.');
-    return;
-  }
+      if (!cart.weddingPackage && Object.keys(cart.addOns).length === 0) {
+        alert('Your cart is empty. Please select a package or service before checking out.');
+        return;
+      }
+      
+      // Routes based on primary selection (Package 1, Package 2, or standalone Add-ons)
+      if (cart.weddingPackage) {
+        if (cart.weddingPackage.priceId === 'price_1UWcsM1PYpXC0BTguqdr3atn') {
+          window.location.href = 'https://buy.stripe.com/YOUR_PACKAGE_1_PAYMENT_LINK';
+          return;
+        } else if (cart.weddingPackage.priceId === 'price_1UWd241PYpXC0BTgFl1fHW11') {
+          window.location.href = 'https://buy.stripe.com/YOUR_PACKAGE_2_PAYMENT_LINK';
+          return;
+        }
+      }
 
-  // 1. If a wedding package is selected, send them to that package's link
-  if (cart.weddingPackage) {
-    // Package 1 Link
-    if (cart.weddingPackage.price === 250) {
-      window.location.href = 'https://buy.stripe.com/5kQeV5aEb4tP1Bp7Tv3AY07';
-      return;
+      const addOnKeys = Object.keys(cart.addOns);
+      if (addOnKeys.length > 0) {
+        const firstKey = addOnKeys[0];
+        if (firstKey === 'vhs') {
+          window.location.href = 'https://buy.stripe.com/YOUR_VHS_PAYMENT_LINK';
+          return;
+        } else if (firstKey === 'photo') {
+          window.location.href = 'https://buy.stripe.com/YOUR_PHOTO_PAYMENT_LINK';
+          return;
+        }
+      }
     }
-    // Package 2 Link
-    if (cart.weddingPackage.price === 400) {
-      window.location.href = 'https://buy.stripe.com/5kQeV5aEb4tP1Bp7Tv3AY07';
-      return;
-    }
-  }
-
-  // 2. Otherwise route to the first add-on item in cart
-  const addOnKeys = Object.keys(cart.addOns);
-  if (addOnKeys.length > 0) {
-    const firstAddOnKey = addOnKeys[0];
-    if (firstAddOnKey === 'vhs') {
-      window.location.href = 'https://buy.stripe.com/00w7sD3bJ9O91Bp1v73AY01';
-      return;
-    }
-    if (firstAddOnKey === 'photo') {
-      window.location.href = 'https://buy.stripe.com/cNi28j27F9O9gwj5Ln3AY03';
-      return;
-    }
-  }
-}
-
-    // Initialize UI on load
-    updateCartUI();
   </script>
 </body>
 </html>
