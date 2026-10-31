@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Foil Gold Palette */
       --gold-gradient: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
       --gold-solid: #C59B27;
       --gold-dark: #8C6211;
@@ -49,9 +48,17 @@
     .dropdown-menu a { display: block; padding: 0.6rem 1.2rem; font-size: 0.85rem; text-transform: none; font-weight: 500; }
     .dropdown-menu a:hover { background: var(--gold-light-bg); color: var(--gold-dark); }
 
-    /* Foil Button */
-    .btn-gold { background: var(--gold-gradient); color: #111 !important; padding: 0.6rem 1.4rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; box-shadow: 0 3px 10px rgba(197, 155, 39, 0.3); transition: all 0.3s; display: inline-block; text-align: center; }
+    /* Buttons */
+    .btn-gold { display: inline-block; background: var(--gold-gradient); color: #111 !important; padding: 0.6rem 1.4rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; box-shadow: 0 3px 10px rgba(197, 155, 39, 0.3); transition: all 0.3s; text-align: center; }
     .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 5px 15px rgba(197, 155, 39, 0.5); }
+    .btn-outline { background: transparent; border: 1.5px solid var(--gold-dark); color: var(--gold-dark) !important; box-shadow: none; }
+    .btn-outline:hover { background: var(--gold-light-bg); }
+    .btn-sm { padding: 0.4rem 0.9rem; font-size: 0.75rem; border-radius: 15px; }
+
+    /* Cart Button & Badge */
+    .cart-nav-btn { position: relative; display: flex; align-items: center; gap: 6px; cursor: pointer; background: var(--gold-light-bg); border: 1px solid var(--border-gold); padding: 0.5rem 1.1rem; border-radius: 20px; font-weight: 700; font-size: 0.82rem; color: var(--gold-dark); transition: all 0.3s; }
+    .cart-nav-btn:hover { background: var(--gold-gradient); color: #111; }
+    .cart-badge { background: var(--gold-dark); color: #FFF; border-radius: 50%; width: 18px; height: 18px; font-size: 0.7rem; display: flex; justify-content: center; align-items: center; font-weight: 700; }
 
     .container { max-width: 1200px; margin: 2.5rem auto; padding: 0 2rem; }
     .page-title { text-align: center; margin-bottom: 2.5rem; }
@@ -73,8 +80,29 @@
     .table-card { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 12px; padding: 1.8rem; box-shadow: var(--shadow-foil); }
     .table-card h3 { font-family: var(--font-serif); margin-bottom: 1.2rem; color: var(--gold-dark); font-size: 1.3rem; }
     table { width: 100%; border-collapse: collapse; text-align: left; }
-    th, td { padding: 10px 14px; border-bottom: 1px solid #EFEAE0; font-size: 0.9rem; }
+    th, td { padding: 10px 14px; border-bottom: 1px solid #EFEAE0; font-size: 0.9rem; vertical-align: middle; }
     th { background: var(--gold-light-bg); color: var(--gold-dark); font-weight: 700; font-family: var(--font-serif); }
+
+    /* Shopping Cart Slide-out Drawer */
+    .cart-backdrop { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); backdrop-filter: blur(2px); z-index: 2999; }
+    .cart-drawer { position: fixed; top: 0; right: -420px; width: 100%; max-width: 420px; height: 100vh; background: var(--bg-card); border-left: 2px solid var(--border-gold); box-shadow: -5px 0 25px rgba(0,0,0,0.15); z-index: 3000; display: flex; flex-direction: column; transition: right 0.35s ease-in-out; }
+    .cart-drawer.open { right: 0; }
+    
+    .cart-header { padding: 1.2rem 1.5rem; background: var(--gold-light-bg); border-bottom: 1px solid var(--border-gold); display: flex; justify-content: space-between; align-items: center; }
+    .cart-header h3 { font-family: var(--font-serif); color: var(--gold-dark); font-size: 1.2rem; }
+    .cart-close { font-size: 1.6rem; cursor: pointer; color: var(--text-dark); line-height: 1; }
+
+    .cart-body { padding: 1.5rem; flex-grow: 1; overflow-y: auto; }
+    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid #EFEAE0; }
+    .cart-item-info h4 { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); }
+    .cart-item-info p { font-size: 0.8rem; color: var(--text-muted); }
+    
+    .cart-qty-ctrl { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+    .cart-qty-btn { background: var(--gold-light-bg); border: 1px solid var(--border-gold); width: 22px; height: 22px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; user-select: none; }
+    
+    .cart-footer { padding: 1.5rem; background: #FAF9F6; border-top: 1px solid var(--border-gold); }
+    .cart-subtotal { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.1rem; color: var(--gold-dark); margin-bottom: 1.2rem; }
+    .cart-actions { display: flex; flex-direction: column; gap: 10px; }
 
     /* Footer */
     footer { background: #F1ECE1; border-top: 2px solid var(--border-gold); padding: 2.5rem 2rem; text-align: center; margin-top: 4rem; font-size: 0.85rem; color: var(--text-muted); }
@@ -104,7 +132,12 @@
               <a href="generalservices.html">General Services</a>
             </div>
           </li>
-          <li><a href="index.html" class="btn-gold">Back To Main</a></li>
+          <li>
+            <div class="cart-nav-btn" onclick="toggleCartDrawer()">
+              <span>Cart</span>
+              <div class="cart-badge" id="cartBadge">0</div>
+            </div>
+          </li>
         </ul>
       </nav>
     </div>
@@ -124,12 +157,12 @@
         <div class="price">$250</div>
         <ul>
           <li>Up to 5-minute custom film</li>
-          <li>Media Included: Up to 6 VHS Tapes + 14 Animated Photos (OR up to 20 photos if no tapes)</li>
+          <li>Media Included: Up to 6 VHS Tapes + 14 Animated Photos (OR up to 20 photos if no VHS tapes)</li>
           <li>Client provides script/narrative</li>
           <li>100 Custom QR Favor Gift Cards</li>
           <li>Web Link Delivery of Final Film</li>
         </ul>
-        <a href="index.html" class="btn-gold">Select Package 1</a>
+        <button class="btn-gold" onclick="addToCart('pkg1')">Select Package 1</button>
       </div>
 
       <!-- Package 2 -->
@@ -144,7 +177,7 @@
           <li>ALL 20 high-res AI-animated photos delivered as individual standalone video files</li>
           <li>Custom Branded Flash Drive with the complete digital archive</li>
         </ul>
-        <a href="index.html" class="btn-gold">Select Package 2</a>
+        <button class="btn-gold" onclick="addToCart('pkg2')">Select Package 2</button>
       </div>
     </div>
 
@@ -152,15 +185,55 @@
       <h3>Wedding Service Add-Ons</h3>
       <table>
         <thead>
-          <tr><th>Item</th><th>Price</th></tr>
+          <tr><th>Item</th><th>Price</th><th>Action</th></tr>
         </thead>
         <tbody>
-          <tr><td>Extra Minutes</td><td>$19.99 / minute</td></tr>
-          <tr><td>Extra VHS Tape Conversion</td><td>$39.99 / Tape</td></tr>
-          <tr><td>Extra Photo Animation</td><td>$4.99 / photo</td></tr>
-          <tr><td>Additional Favor Cards</td><td>$100.00 / batch of 50 cards (50-card increments)</td></tr>
+          <tr>
+            <td>Extra Minutes</td>
+            <td>$19.99 / minute</td>
+            <td><button class="btn-gold btn-sm" onclick="addToCart('extra_min')">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>Extra VHS Tape Conversion</td>
+            <td>$39.99 / Tape</td>
+            <td><button class="btn-gold btn-sm" onclick="addToCart('vhs_tape')">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>Extra Photo Animation</td>
+            <td>$4.99 / photo</td>
+            <td><button class="btn-gold btn-sm" onclick="addToCart('photo_anim')">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>Additional Favor Cards</td>
+            <td>$100.00 / batch of 50 cards (50-card increments)</td>
+            <td><button class="btn-gold btn-sm" onclick="addToCart('favor_cards')">Add to Cart</button></td>
+          </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- Sliding Cart Drawer & Backdrop -->
+  <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCartDrawer()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>Your Preservation Cart</h3>
+      <span class="cart-close" onclick="toggleCartDrawer()">&times;</span>
+    </div>
+
+    <div class="cart-body" id="cartItemsContainer">
+      <p style="text-align: center; color: var(--text-muted); margin-top: 2rem;">Your cart is currently empty.</p>
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal:</span>
+        <span id="cartSubtotalDisplay">$0.00</span>
+      </div>
+      <div class="cart-actions">
+        <button class="btn-gold" style="width: 100%;" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        <button class="btn-gold btn-outline" style="width: 100%;" onclick="toggleCartDrawer()">Continue Shopping</button>
+      </div>
     </div>
   </div>
 
@@ -169,5 +242,129 @@
     <p style="margin-top: 8px;"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
   </footer>
 
+  <!-- Shopping Cart Logic JavaScript -->
+  <script>
+    const products = {
+      'pkg1': { name: 'Package 1: Signature Rehearsal Film', price: 250.00, stripeUrl: 'https://buy.stripe.com/5kQeV5aEb4tP1Bp7Tv3AY07' },
+      'pkg2': { name: 'Package 2: The Heritage Archive', price: 400.00, stripeUrl: 'https://buy.stripe.com/5kQ9AL13BaSdfsf7Tv3AY06' },
+      'favor_cards': { name: 'Additional Favor Cards (Batch of 50)', price: 100.00, stripeUrl: 'https://buy.stripe.com/dRm7sDdQnf8teob7Tv3AY05' },
+      'extra_min': { name: 'Extra Minutes', price: 19.99, stripeUrl: 'https://buy.stripe.com/aFa7sDeUre4pcg33Df3AY04' },
+      'photo_anim': { name: 'Extra Photo Animation', price: 4.99, stripeUrl: 'https://buy.stripe.com/cNi28j27F9O9gwj5Ln3AY03' },
+      'vhs_tape': { name: 'Extra VHS Tape Conversion', price: 39.99, stripeUrl: 'https://buy.stripe.com/00w7sD3bJ9O91Bp1v73AY01' }
+    };
+
+    let cart = JSON.parse(localStorage.getItem('digitizeCart')) || [];
+
+    function updateCartUI() {
+      const container = document.getElementById('cartItemsContainer');
+      const badge = document.getElementById('cartBadge');
+      const subtotalDisplay = document.getElementById('cartSubtotalDisplay');
+      
+      if (!container || !badge || !subtotalDisplay) return;
+
+      let totalCount = 0;
+      let totalSubtotal = 0;
+
+      if (cart.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: var(--text-muted); margin-top: 2rem;">Your cart is currently empty.</p>';
+      } else {
+        container.innerHTML = '';
+        cart.forEach((item, index) => {
+          totalCount += (item.qty || 0);
+          const itemTotal = (item.price || 0) * (item.qty || 0);
+          totalSubtotal += itemTotal;
+
+          const itemEl = document.createElement('div');
+          itemEl.className = 'cart-item';
+          itemEl.innerHTML = `
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <p>$${(item.price || 0).toFixed(2)} each</p>
+              <div class="cart-qty-ctrl">
+                <div class="cart-qty-btn" onclick="adjustQty(${index}, -1)">-</div>
+                <span style="font-size: 0.85rem; font-weight:600; margin: 0 4px;">${item.qty}</span>
+                <div class="cart-qty-btn" onclick="adjustQty(${index}, 1)">+</div>
+                <button onclick="removeItem(${index})" style="background: none; border: none; color: #c0392b; font-size: 0.75rem; font-weight: 700; cursor: pointer; margin-left: 10px; font-family: inherit;">REMOVE</button>
+              </div>
+            </div>
+            <div style="font-weight: 700; color: var(--gold-dark);">
+              $${itemTotal.toFixed(2)}
+            </div>
+          `;
+          container.appendChild(itemEl);
+        });
+      }
+
+      badge.innerText = totalCount;
+      subtotalDisplay.innerText = '$' + totalSubtotal.toFixed(2);
+      localStorage.setItem('digitizeCart', JSON.stringify(cart));
+    }
+
+    function addToCart(productId) {
+      const prod = products[productId];
+      if (!prod) return;
+
+      const existing = cart.find(item => item.name === prod.name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name: prod.name, price: prod.price, stripeUrl: prod.stripeUrl, qty: 1 });
+      }
+      updateCartUI();
+      openCartDrawer();
+    }
+
+    function adjustQty(index, change) {
+      if (!cart[index]) return;
+      cart[index].qty += change;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function toggleCartDrawer() {
+      const drawer = document.getElementById('cartDrawer');
+      const backdrop = document.getElementById('cartBackdrop');
+      const isOpen = drawer.classList.contains('open');
+
+      if (isOpen) {
+        drawer.classList.remove('open');
+        backdrop.style.display = 'none';
+      } else {
+        drawer.classList.add('open');
+        backdrop.style.display = 'block';
+      }
+    }
+
+    function openCartDrawer() {
+      document.getElementById('cartDrawer').classList.add('open');
+      document.getElementById('cartBackdrop').style.display = 'block';
+    }
+
+    function proceedToCheckout() {
+      if (cart.length === 0) {
+        alert('Your cart is empty. Please add services before checking out.');
+        return;
+      }
+      
+      // If buying 1 specific item type, go directly to its exact Stripe link
+      if (cart.length === 1 && cart[0].stripeUrl) {
+        window.location.href = cart[0].stripeUrl;
+      } else {
+        // If mixing multiple items, direct to your master multi-product link
+        window.location.href = 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      updateCartUI();
+    });
+  </script>
 </body>
 </html>
