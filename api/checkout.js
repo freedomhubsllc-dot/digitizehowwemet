@@ -1,11 +1,16 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-module.exports = async (req, res) => {
-  // Allow requests from your website (CORS)
+export default async function handler(req, res) {
+  // 1. Set explicit CORS headers for cross-domain requests
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
 
+  // 2. Respond immediately to browser preflight OPTIONS requests
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
@@ -21,7 +26,7 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'Cart is empty or invalid payload.' });
     }
 
-    // Format items for Stripe (accepts both price and priceId gracefully)
+    // 3. Map line items flexibly (accepts price or priceId)
     const line_items = items.map(item => ({
       price: item.price || item.priceId,
       quantity: item.quantity || 1,
@@ -31,8 +36,8 @@ module.exports = async (req, res) => {
       payment_method_types: ['card'],
       line_items: line_items,
       mode: 'payment',
-      success_url: 'https://digitizehowwemet.com/?success=true',
-      cancel_url: 'https://digitizehowwemet.com/?canceled=true',
+      success_url: 'https://www.digitizehowwemet.com/?success=true',
+      cancel_url: 'https://www.digitizehowwemet.com/?canceled=true',
     });
 
     return res.status(200).json({ url: session.url });
@@ -40,4 +45,4 @@ module.exports = async (req, res) => {
     console.error('Stripe Checkout Error:', error.message);
     return res.status(500).json({ error: error.message });
   }
-};
+}
