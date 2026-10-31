@@ -341,116 +341,106 @@
       'vhs_tape': { name: 'Extra VHS Tape Conversion', price: 39.99, stripeUrl: 'https://buy.stripe.com/00w7sD3bJ9O91Bp1v73AY01' }
     };
 
-    let cart = {};
+   <script>
+    let cart = JSON.parse(localStorage.getItem('digitizeCart')) || [];
 
-    function addToCart(productId) {
-      if (!cart[productId]) {
-        cart[productId] = 1;
-      } else {
-        cart[productId] += 1;
-      }
-      renderCart();
-      openCart();
-    }
-
-    function updateQty(productId, change) {
-      if (cart[productId]) {
-        cart[productId] += change;
-        if (cart[productId] <= 0) {
-          delete cart[productId];
-        }
-      }
-      renderCart();
-    }
-
-    function renderCart() {
+    function updateCartUI() {
       const container = document.getElementById('cartItemsContainer');
-      const badge = document.getElementById('navCartCount');
-      const subtotalEl = document.getElementById('cartSubtotal');
+      const badge = document.getElementById('cartBadge');
+      const subtotalDisplay = document.getElementById('cartSubtotalDisplay');
       
-      container.innerHTML = '';
-      let totalQty = 0;
-      let totalAmount = 0.00;
+      let totalCount = 0;
+      let totalSubtotal = 0;
 
-      const keys = Object.keys(cart);
-      if (keys.length === 0) {
-        container.innerHTML = '<p style="text-align:center; color: var(--text-muted); margin-top: 2rem;">Your cart is empty.</p>';
+      if (cart.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: var(--text-muted); margin-top: 2rem;">Your cart is currently empty.</p>';
       } else {
-        keys.forEach(id => {
-          const item = products[id];
-          const qty = cart[id];
-          const itemTotal = item.price * qty;
-          
-          totalQty += qty;
-          totalAmount += itemTotal;
+        container.innerHTML = '';
+        cart.forEach((item, index) => {
+          totalCount += item.qty;
+          const itemTotal = item.price * item.qty;
+          totalSubtotal += itemTotal;
 
-          const itemDiv = document.createElement('div');
-          itemDiv.className = 'cart-item';
-          itemDiv.innerHTML = `
-            <div>
-              <div class="cart-item-title">${item.name}</div>
-              <div class="cart-item-price">$${item.price.toFixed(2)} each</div>
-              <div class="qty-controls">
-                <button class="qty-btn" onclick="updateQty('${id}', -1)">-</button>
-                <span style="font-weight:600; font-size:0.85rem;">${qty}</span>
-                <button class="qty-btn" onclick="updateQty('${id}', 1)">+</button>
+          const itemEl = document.createElement('div');
+          itemEl.className = 'cart-item';
+          itemEl.innerHTML = `
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <p>$${item.price.toFixed(2)} each</p>
+              <div class="cart-qty-ctrl" style="display: flex; align-items: center; margin-top: 6px;">
+                <div class="cart-qty-btn" onclick="adjustQty(${index}, -1)">-</div>
+                <span style="font-size: 0.85rem; font-weight:600; margin: 0 8px;">${item.qty}</span>
+                <div class="cart-qty-btn" onclick="adjustQty(${index}, 1)">+</div>
+                <button onclick="removeItem(${index})" style="background: none; border: none; color: #c0392b; font-size: 0.75rem; font-weight: 700; cursor: pointer; margin-left: 12px; font-family: inherit;">REMOVE</button>
               </div>
             </div>
-            <div style="font-weight:700; color:var(--gold-dark);">$${itemTotal.toFixed(2)}</div>
+            <div style="font-weight: 700; color: var(--gold-dark);">
+              $${itemTotal.toFixed(2)}
+            </div>
           `;
-          container.appendChild(itemDiv);
+          container.appendChild(itemEl);
         });
       }
 
-      badge.innerText = totalQty;
-      subtotalEl.innerText = '$' + totalAmount.toFixed(2);
+      badge.innerText = totalCount;
+      subtotalDisplay.innerText = '$' + totalSubtotal.toFixed(2);
+      localStorage.setItem('digitizeCart', JSON.stringify(cart));
     }
 
-    function openCart() {
-      document.getElementById('cartOverlay').style.display = 'block';
-      document.getElementById('cartDrawer').classList.add('open');
-    }
-
-    function closeCart() {
-      document.getElementById('cartOverlay').style.display = 'none';
-      document.getElementById('cartDrawer').classList.remove('open');
-    }
-
-    function proceedToCheckout() {
-  const keys = Object.keys(cart);
-  if (keys.length === 0) {
-    alert('Please add items to your cart before checking out.');
-    return;
-  }
-  
-  // Redirect to your master multi-product Stripe link
-  window.location.href = 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
-}
-
-    function triggerPackageSelection(pkgKey) {
-      if (pkgKey === 'pkg1') {
-        document.getElementById('upsellModal').style.display = 'flex';
+    function addToCart(name, price, stripeUrl = '') {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty += 1;
       } else {
-        addToCart(pkgKey);
+        // Starts the item counter at 0 so the user can use + / - freely
+        cart.push({ name, price, stripeUrl, qty: 0 });
+      }
+      updateCartUI();
+      openCartDrawer();
+    }
+
+    function adjustQty(index, change) {
+      cart[index].qty += change;
+      if (cart[index].qty < 0) {
+        cart[index].qty = 0;
+      }
+      updateCartUI();
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function toggleCartDrawer() {
+      const drawer = document.getElementById('cartDrawer');
+      const backdrop = document.getElementById('cartBackdrop');
+      const isOpen = drawer.classList.contains('open');
+
+      if (isOpen) {
+        drawer.classList.remove('open');
+        backdrop.style.display = 'none';
+      } else {
+        drawer.classList.add('open');
+        backdrop.style.display = 'block';
       }
     }
 
-    function declineUpsell() {
-      closeModal('upsellModal');
-      addToCart('pkg1');
+    function openCartDrawer() {
+      document.getElementById('cartDrawer').classList.add('open');
+      document.getElementById('cartBackdrop').style.display = 'block';
     }
 
-    function acceptUpsell() {
-      closeModal('upsellModal');
-      addToCart('pkg2');
+    function proceedToCheckout() {
+      if (cart.length === 0) {
+        alert('Your cart is empty. Please add services before checking out.');
+        return;
+      }
+      // Routes to the individual item's link or the custom order URL
+      const targetUrl = cart[0].stripeUrl || 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
+      window.location.href = targetUrl;
     }
 
-    function closeModal(modalId) {
-      document.getElementById(modalId).style.display = 'none';
-    }
-
-    // Initialize cart state on page load
-    renderCart();
+    // Initialize UI on page load
+    updateCartUI();
   </script>
-</body>
-</html>
