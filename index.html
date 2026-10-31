@@ -329,11 +329,11 @@
   </aside>
 
   <!-- JavaScript Cart Engine -->
-  <script>
+ <script>
     // Product catalog definitions mapped to Stripe links
     const products = {
       'pkg1': { name: 'Package 1: Signature Rehearsal Film', price: 250.00, stripeUrl: 'https://buy.stripe.com/5kQeV5aEb4tP1Bp7Tv3AY07' },
-      'pkg2': { name: 'Package 2: The Heritage Archive', price: 400.00, stripeUrl: 'https://buy.stripe.com/5kQeV5aEb4tP1Bp7Tv3AY07' },
+      'pkg2': { name: 'Package 2: The Heritage Archive', price: 400.00, stripeUrl: 'https://buy.stripe.com/5kQ9AL13BaSdfsf7Tv3AY06' },
       'montage_video': { name: '5-Min Photo Montage Video', price: 99.99, stripeUrl: 'https://buy.stripe.com/bJeaEPfYv5xT6VJgq13AY08' },
       'favor_cards': { name: 'Additional Favor Cards (Batch of 50)', price: 100.00, stripeUrl: 'https://buy.stripe.com/dRm7sDdQnf8teob7Tv3AY05' },
       'extra_min': { name: 'Extra Minutes', price: 19.99, stripeUrl: 'https://buy.stripe.com/aFa7sDeUre4pcg33Df3AY04' },
@@ -396,14 +396,12 @@
       if (existing) {
         existing.qty += 1;
       } else {
-        // Starts at 0 so user can click + to add items
-        cart.push({ name: prod.name, price: prod.price, stripeUrl: prod.stripeUrl, qty: 0 });
+        cart.push({ name: prod.name, price: prod.price, stripeUrl: prod.stripeUrl, qty: 1 });
       }
       updateCartUI();
       openCart();
     }
 
-    // Special handler for package 1 to trigger the upsell modal first
     function triggerPackageSelection(productId) {
       if (productId === 'pkg1') {
         const modal = document.getElementById('upsellModal');
@@ -431,8 +429,8 @@
     function adjustQty(index, change) {
       if (!cart[index]) return;
       cart[index].qty += change;
-      if (cart[index].qty < 0) {
-        cart[index].qty = 0;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
       }
       updateCartUI();
     }
@@ -456,26 +454,21 @@
       if (overlay) overlay.style.display = 'none';
     }
 
-   function proceedToCheckout() {
+    function proceedToCheckout() {
       if (cart.length === 0) {
         alert('Your cart is empty. Please add services before checking out.');
         return;
       }
-
-      // SMART ROUTING:
-      // If the customer has only 1 type of item in their cart, take them directly 
-      // to that specific item's Stripe link so they see the exact correct price.
+      
+      // If buying 1 specific item type, go directly to its exact Stripe link
       if (cart.length === 1 && cart[0].stripeUrl) {
         window.location.href = cart[0].stripeUrl;
-      } 
-      else {
-        // If they have multiple different services mixed together, 
-        // route them to your master multi-product checkout link
+      } else {
+        // If mixing multiple items, direct to your master multi-product link
         window.location.href = 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
       }
     }
 
-    // Initialize UI on page load
     document.addEventListener("DOMContentLoaded", function() {
       updateCartUI();
     });
