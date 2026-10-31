@@ -308,15 +308,14 @@
       'vhs':  { name: 'VHS Tape Conversion', price: 39.99, priceId: 'price_1UWd5V1PYpXC0BTgxxPbCt3b', isAddon: true, key: 'vhs' },
       'photo': { name: 'Photo Animation', price: 4.99, priceId: 'price_1UWd6A1PYpXC0BTgnhoVdfTs', isAddon: true, key: 'photo' }
     };
-
-   async function proceedToCheckout() {
+async function proceedToCheckout() {
       // 1. Check if cart is empty
       if (!cart.weddingPackage && Object.keys(cart.addOns).length === 0) {
         alert('Your cart is empty. Please select a package or service before checking out.');
         return;
       }
 
-      // 2. Build the items array to send to your serverless backend
+      // 2. Build the items array to send to your Vercel serverless backend
       const itemsPayload = [];
 
       if (cart.weddingPackage) {
