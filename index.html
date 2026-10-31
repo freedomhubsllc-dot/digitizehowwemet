@@ -417,17 +417,15 @@
     }
 
     function proceedToCheckout() {
-      const keys = Object.keys(cart);
-      if (keys.length === 0) {
-        alert('Please add items to your cart before checking out.');
-        return;
-      }
-      
-      // Redirect to the first/primary item in cart for checkout processing
-      const firstItemKey = keys[0];
-      const targetUrl = products[firstItemKey].stripeUrl;
-      window.location.href = targetUrl;
-    }
+  const keys = Object.keys(cart);
+  if (keys.length === 0) {
+    alert('Please add items to your cart before checking out.');
+    return;
+  }
+  
+  // Redirect to your master multi-product Stripe link
+  window.location.href = 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
+}
 
     function triggerPackageSelection(pkgKey) {
       if (pkgKey === 'pkg1') {
