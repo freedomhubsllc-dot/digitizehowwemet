@@ -341,14 +341,15 @@
       'vhs_tape': { name: 'Extra VHS Tape Conversion', price: 39.99, stripeUrl: 'https://buy.stripe.com/00w7sD3bJ9O91Bp1v73AY01' }
     };
 
-   <script>
     let cart = JSON.parse(localStorage.getItem('digitizeCart')) || [];
 
     function updateCartUI() {
       const container = document.getElementById('cartItemsContainer');
-      const badge = document.getElementById('cartBadge');
-      const subtotalDisplay = document.getElementById('cartSubtotalDisplay');
+      const badge = document.getElementById('navCartCount');
+      const subtotalDisplay = document.getElementById('cartSubtotal');
       
+      if (!container || !badge || !subtotalDisplay) return;
+
       let totalCount = 0;
       let totalSubtotal = 0;
 
@@ -357,21 +358,21 @@
       } else {
         container.innerHTML = '';
         cart.forEach((item, index) => {
-          totalCount += item.qty;
-          const itemTotal = item.price * item.qty;
+          totalCount += (item.qty || 0);
+          const itemTotal = (item.price || 0) * (item.qty || 0);
           totalSubtotal += itemTotal;
 
           const itemEl = document.createElement('div');
           itemEl.className = 'cart-item';
           itemEl.innerHTML = `
             <div class="cart-item-info">
-              <h4>${item.name}</h4>
-              <p>$${item.price.toFixed(2)} each</p>
-              <div class="cart-qty-ctrl" style="display: flex; align-items: center; margin-top: 6px;">
-                <div class="cart-qty-btn" onclick="adjustQty(${index}, -1)">-</div>
-                <span style="font-size: 0.85rem; font-weight:600; margin: 0 8px;">${item.qty}</span>
-                <div class="cart-qty-btn" onclick="adjustQty(${index}, 1)">+</div>
-                <button onclick="removeItem(${index})" style="background: none; border: none; color: #c0392b; font-size: 0.75rem; font-weight: 700; cursor: pointer; margin-left: 12px; font-family: inherit;">REMOVE</button>
+              <div class="cart-item-title">${item.name}</div>
+              <div class="cart-item-price">$${(item.price || 0).toFixed(2)} each</div>
+              <div class="qty-controls">
+                <div class="qty-btn" onclick="adjustQty(${index}, -1)">-</div>
+                <span style="font-size: 0.85rem; font-weight:600;">${item.qty}</span>
+                <div class="qty-btn" onclick="adjustQty(${index}, 1)">+</div>
+                <button onclick="removeItem(${index})" style="background: none; border: none; color: #c0392b; font-size: 0.75rem; font-weight: 700; cursor: pointer; margin-left: 10px; font-family: inherit;">REMOVE</button>
               </div>
             </div>
             <div style="font-weight: 700; color: var(--gold-dark);">
@@ -387,19 +388,48 @@
       localStorage.setItem('digitizeCart', JSON.stringify(cart));
     }
 
-    function addToCart(name, price, stripeUrl = '') {
-      const existing = cart.find(item => item.name === name);
+    function addToCart(productId) {
+      const prod = products[productId];
+      if (!prod) return;
+
+      const existing = cart.find(item => item.name === prod.name);
       if (existing) {
         existing.qty += 1;
       } else {
-        // Starts the item counter at 0 so the user can use + / - freely
-        cart.push({ name, price, stripeUrl, qty: 0 });
+        // Starts at 0 so user can click + to add items
+        cart.push({ name: prod.name, price: prod.price, stripeUrl: prod.stripeUrl, qty: 0 });
       }
       updateCartUI();
-      openCartDrawer();
+      openCart();
+    }
+
+    // Special handler for package 1 to trigger the upsell modal first
+    function triggerPackageSelection(productId) {
+      if (productId === 'pkg1') {
+        const modal = document.getElementById('upsellModal');
+        if (modal) modal.style.display = 'flex';
+      } else {
+        addToCart(productId);
+      }
+    }
+
+    function acceptUpsell() {
+      closeModal('upsellModal');
+      addToCart('pkg2');
+    }
+
+    function declineUpsell() {
+      closeModal('upsellModal');
+      addToCart('pkg1');
+    }
+
+    function closeModal(modalId) {
+      const m = document.getElementById(modalId);
+      if (m) m.style.display = 'none';
     }
 
     function adjustQty(index, change) {
+      if (!cart[index]) return;
       cart[index].qty += change;
       if (cart[index].qty < 0) {
         cart[index].qty = 0;
@@ -412,23 +442,18 @@
       updateCartUI();
     }
 
-    function toggleCartDrawer() {
+    function openCart() {
       const drawer = document.getElementById('cartDrawer');
-      const backdrop = document.getElementById('cartBackdrop');
-      const isOpen = drawer.classList.contains('open');
-
-      if (isOpen) {
-        drawer.classList.remove('open');
-        backdrop.style.display = 'none';
-      } else {
-        drawer.classList.add('open');
-        backdrop.style.display = 'block';
-      }
+      const overlay = document.getElementById('cartOverlay');
+      if (drawer) drawer.classList.add('open');
+      if (overlay) overlay.style.display = 'block';
     }
 
-    function openCartDrawer() {
-      document.getElementById('cartDrawer').classList.add('open');
-      document.getElementById('cartBackdrop').style.display = 'block';
+    function closeCart() {
+      const drawer = document.getElementById('cartDrawer');
+      const overlay = document.getElementById('cartOverlay');
+      if (drawer) drawer.classList.remove('open');
+      if (overlay) overlay.style.display = 'none';
     }
 
     function proceedToCheckout() {
@@ -436,11 +461,12 @@
         alert('Your cart is empty. Please add services before checking out.');
         return;
       }
-      // Routes to the individual item's link or the custom order URL
-      const targetUrl = cart[0].stripeUrl || 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
-      window.location.href = targetUrl;
+      // Routes to the master checkout link or item link
+      window.location.href = cart[0].stripeUrl || 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
     }
 
     // Initialize UI on page load
-    updateCartUI();
+    document.addEventListener("DOMContentLoaded", function() {
+      updateCartUI();
+    });
   </script>
