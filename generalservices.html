@@ -352,13 +352,23 @@
       document.getElementById('cartBackdrop').style.display = 'block';
     }
 
-   function proceedToCheckout() {
+  function proceedToCheckout() {
       if (cart.length === 0) {
         alert('Your cart is empty. Please add services before checking out.');
         return;
       }
-      // Always route directly to your master multi-product checkout link
-      window.location.href = 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
+
+      // SMART ROUTING:
+      // If the customer has only 1 type of item in their cart, take them directly 
+      // to that specific item's Stripe link so they see the exact correct price.
+      if (cart.length === 1 && cart[0].stripeUrl) {
+        window.location.href = cart[0].stripeUrl;
+      } 
+      else {
+        // If they have multiple different services mixed together, 
+        // route them to your master multi-product checkout link
+        window.location.href = 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
+      }
     }
 
     // Initialize UI on page load
