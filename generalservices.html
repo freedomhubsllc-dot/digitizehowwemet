@@ -48,8 +48,17 @@
     .dropdown-menu a { display: block; padding: 0.6rem 1.2rem; font-size: 0.85rem; text-transform: none; font-weight: 500; }
     .dropdown-menu a:hover { background: var(--gold-light-bg); color: var(--gold-dark); }
 
-    .btn-gold { background: var(--gold-gradient); color: #111 !important; padding: 0.6rem 1.4rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; box-shadow: 0 3px 10px rgba(197, 155, 39, 0.3); transition: all 0.3s; }
+    /* Buttons */
+    .btn-gold { display: inline-block; background: var(--gold-gradient); color: #111 !important; padding: 0.6rem 1.4rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; box-shadow: 0 3px 10px rgba(197, 155, 39, 0.3); transition: all 0.3s; text-align: center; }
     .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 5px 15px rgba(197, 155, 39, 0.5); }
+    .btn-outline { background: transparent; border: 1.5px solid var(--gold-dark); color: var(--gold-dark) !important; box-shadow: none; }
+    .btn-outline:hover { background: var(--gold-light-bg); }
+    .btn-sm { padding: 0.4rem 0.9rem; font-size: 0.75rem; border-radius: 15px; }
+
+    /* Cart Button & Badge */
+    .cart-nav-btn { position: relative; display: flex; align-items: center; gap: 6px; cursor: pointer; background: var(--gold-light-bg); border: 1px solid var(--border-gold); padding: 0.5rem 1.1rem; border-radius: 20px; font-weight: 700; font-size: 0.82rem; color: var(--gold-dark); transition: all 0.3s; }
+    .cart-nav-btn:hover { background: var(--gold-gradient); color: #111; }
+    .cart-badge { background: var(--gold-dark); color: #FFF; border-radius: 50%; width: 18px; height: 18px; font-size: 0.7rem; display: flex; justify-content: center; align-items: center; font-weight: 700; }
 
     .container { max-width: 1200px; margin: 2.5rem auto; padding: 0 2rem; }
     .page-title { text-align: center; margin-bottom: 2.5rem; }
@@ -60,22 +69,29 @@
     .table-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px; }
     .table-card h3 { font-family: var(--font-serif); color: var(--gold-dark); font-size: 1.3rem; margin: 0; }
     table { width: 100%; border-collapse: collapse; text-align: left; }
-    th, td { padding: 10px 14px; border-bottom: 1px solid #EFEAE0; font-size: 0.9rem; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid #EFEAE0; font-size: 0.9rem; vertical-align: middle; }
     th { background: var(--gold-light-bg); color: var(--gold-dark); font-weight: 700; font-family: var(--font-serif); }
 
-    /* Modals */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(3px); }
-    .modal-content { background: var(--bg-card); border: 2px solid var(--border-gold); max-width: 580px; width: 100%; border-radius: 12px; padding: 2rem; position: relative; max-height: 90vh; overflow-y: auto; }
-    .close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
-    .close-btn:hover { color: var(--gold-dark); }
+    /* Shopping Cart Slide-out Drawer */
+    .cart-backdrop { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); backdrop-filter: blur(2px); z-index: 2999; }
+    .cart-drawer { position: fixed; top: 0; right: -420px; width: 100%; max-width: 420px; height: 100vh; background: var(--bg-card); border-left: 2px solid var(--border-gold); box-shadow: -5px 0 25px rgba(0,0,0,0.15); z-index: 3000; display: flex; flex-direction: column; transition: right 0.35s ease-in-out; }
+    .cart-drawer.open { right: 0; }
     
-    .form-group { margin-bottom: 1.1rem; }
-    .form-group label { display: block; font-weight: 600; margin-bottom: 0.3rem; font-size: 0.85rem; color: var(--gold-dark); }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.7rem; background: #FAF9F6; border: 1px solid #DDD6C8; border-radius: 6px; font-family: inherit; font-size: 0.9rem; }
+    .cart-header { padding: 1.2rem 1.5rem; background: var(--gold-light-bg); border-bottom: 1px solid var(--border-gold); display: flex; justify-content: space-between; align-items: center; }
+    .cart-header h3 { font-family: var(--font-serif); color: var(--gold-dark); font-size: 1.2rem; }
+    .cart-close { font-size: 1.6rem; cursor: pointer; color: var(--text-dark); line-height: 1; }
+
+    .cart-body { padding: 1.5rem; flex-grow: 1; overflow-y: auto; }
+    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid #EFEAE0; }
+    .cart-item-info h4 { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); }
+    .cart-item-info p { font-size: 0.8rem; color: var(--text-muted); }
     
-    .summary-box { background: var(--gold-light-bg); border: 1px solid var(--border-gold); padding: 1rem; border-radius: 8px; margin-bottom: 1.2rem; }
-    .summary-row { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.4rem; }
-    .summary-row.total { font-weight: 700; font-size: 1.1rem; color: var(--gold-dark); border-top: 1px solid var(--border-gold); padding-top: 0.5rem; margin-top: 0.5rem; }
+    .cart-qty-ctrl { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+    .cart-qty-btn { background: var(--gold-light-bg); border: 1px solid var(--border-gold); width: 22px; height: 22px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; user-select: none; }
+    
+    .cart-footer { padding: 1.5rem; background: #FAF9F6; border-top: 1px solid var(--border-gold); }
+    .cart-subtotal { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.1rem; color: var(--gold-dark); margin-bottom: 1.2rem; }
+    .cart-actions { display: flex; flex-direction: column; gap: 10px; }
 
     /* Footer */
     footer { background: #F1ECE1; border-top: 2px solid var(--border-gold); padding: 2.5rem 2rem; text-align: center; margin-top: 4rem; font-size: 0.85rem; color: var(--text-muted); }
@@ -105,7 +121,12 @@
               <a href="generalservices.html">General Services</a>
             </div>
           </li>
-          <li><button class="btn-gold" onclick="openGeneralCheckout()">Cart & Checkout</button></li>
+          <li>
+            <div class="cart-nav-btn" onclick="toggleCartDrawer()">
+              <span>Cart</span>
+              <div class="cart-badge" id="cartBadge">0</div>
+            </div>
+          </li>
         </ul>
       </nav>
     </div>
@@ -121,17 +142,29 @@
     <div class="table-card">
       <div class="table-card-header">
         <h3>1. Standalone VHS Tape Conversion</h3>
-        <button class="btn-gold" onclick="openGeneralCheckout('tapes')">Order VHS Tape Conversion</button>
+        <button class="btn-gold" onclick="addToCart('VHS Tape Conversion', 39.99, 'https://buy.stripe.com/00w7sD3bJ9O91Bp1v73AY01')">+ Add Tape to Cart</button>
       </div>
       <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">High-definition digital transfers for VHS, VHS-C, Hi8, and MiniDV tapes.</p>
       <table>
         <thead>
-          <tr><th>Quantity Tier</th><th>Price Per VHS Tape</th></tr>
+          <tr><th>Quantity Tier</th><th>Price Per VHS Tape</th><th>Action</th></tr>
         </thead>
         <tbody>
-          <tr><td>1 to 4 VHS Tapes</td><td>$39.99 / Tape</td></tr>
-          <tr><td>5 to 10 VHS Tapes</td><td>$34.99 / Tape</td></tr>
-          <tr><td>10+ VHS Tapes</td><td>$29.99 / Tape</td></tr>
+          <tr>
+            <td>1 to 4 VHS Tapes</td>
+            <td>$39.99 / Tape</td>
+            <td><button class="btn-gold btn-sm" onclick="addToCart('VHS Tape Conversion (1-4)', 39.99, 'https://buy.stripe.com/00w7sD3bJ9O91Bp1v73AY01')">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>5 to 10 VHS Tapes</td>
+            <td>$34.99 / Tape</td>
+            <td><button class="btn-gold btn-sm" onclick="addToCart('VHS Tape Conversion (5-10)', 34.99, 'https://buy.stripe.com/00w7sD3bJ9O91Bp1v73AY01')">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>10+ VHS Tapes</td>
+            <td>$29.99 / Tape</td>
+            <td><button class="btn-gold btn-sm" onclick="addToCart('VHS Tape Conversion (10+)', 29.99, 'https://buy.stripe.com/00w7sD3bJ9O91Bp1v73AY01')">Add to Cart</button></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -140,17 +173,29 @@
     <div class="table-card">
       <div class="table-card-header">
         <h3>2. Photo Motion Animation</h3>
-        <button class="btn-gold" onclick="openGeneralCheckout('photos')">Order Photo Animation</button>
+        <button class="btn-gold" onclick="addToCart('Photo Motion Animation', 4.99, 'https://buy.stripe.com/cNi28j27F9O9gwj5Ln3AY03')">+ Add Photo to Cart</button>
       </div>
       <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">AI-powered depth and motion animation brought to your still photos.</p>
       <table>
         <thead>
-          <tr><th>Quantity Tier</th><th>Price Per Photo</th></tr>
+          <tr><th>Quantity Tier</th><th>Price Per Photo</th><th>Action</th></tr>
         </thead>
         <tbody>
-          <tr><td>1 to 5 Photos</td><td>$4.99 / photo</td></tr>
-          <tr><td>5 to 10 Photos</td><td>$3.99 / photo</td></tr>
-          <tr><td>10+ Photos</td><td>$2.99 / photo</td></tr>
+          <tr>
+            <td>1 to 5 Photos</td>
+            <td>$4.99 / Photo</td>
+            <td><button class="btn-gold btn-sm" onclick="addToCart('Photo Animation (1-5)', 4.99, 'https://buy.stripe.com/cNi28j27F9O9gwj5Ln3AY03')">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>5 to 10 Photos</td>
+            <td>$3.99 / Photo</td>
+            <td><button class="btn-gold btn-sm" onclick="addToCart('Photo Animation (5-10)', 3.99, 'https://buy.stripe.com/cNi28j27F9O9gwj5Ln3AY03')">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>10+ Photos</td>
+            <td>$2.99 / Photo</td>
+            <td><button class="btn-gold btn-sm" onclick="addToCart('Photo Animation (10+)', 2.99, 'https://buy.stripe.com/cNi28j27F9O9gwj5Ln3AY03')">Add to Cart</button></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -158,95 +203,51 @@
     <!-- 5-Min Video Montage -->
     <div class="table-card">
       <div class="table-card-header">
-        <h3>3. 5-Minute Photo Video Montage ($50 Flat)</h3>
-        <button class="btn-gold" onclick="openGeneralCheckout('montage')">Order Video Montage</button>
+        <h3>3. 5-Minute Photo Video Montage ($99.99 Flat)</h3>
+        <button class="btn-gold" onclick="addToCart('5-Min Photo Montage Video', 99.99, 'https://buy.stripe.com/bJeaEPfYv5xT6VJgq13AY08')">Add Montage to Cart</button>
       </div>
       <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">Includes animation of up to 20 photos set to a 5-minute video presentation with customer-provided script/narrative.</p>
       <table>
         <thead>
-          <tr><th>Feature</th><th>Details</th></tr>
+          <tr><th>Feature</th><th>Details</th><th>Action</th></tr>
         </thead>
         <tbody>
-          <tr><td>Base Montage Package</td><td>$50.00 (Includes 20 photos animated + 5-min video edit)</td></tr>
-          <tr><td>Additional Photos</td><td>$2.99 / photo (Regardless of final video length)</td></tr>
-          <tr><td>Script Requirement</td><td>Customer provides storyline or narrative</td></tr>
+          <tr>
+            <td>Base Montage Package</td>
+            <td>$99.99 (Includes 20 photos animated + 5-min video edit)</td>
+            <td><button class="btn-gold btn-sm" onclick="addToCart('5-Min Photo Montage Video', 99.99, 'https://buy.stripe.com/bJeaEPfYv5xT6VJgq13AY08')">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>Additional Photos</td>
+            <td>$2.99 / Photo (Regardless of final video length)</td>
+            <td><button class="btn-gold btn-sm" onclick="addToCart('Extra Photo for Montage', 2.99, 'https://buy.stripe.com/cNi28j27F9O9gwj5Ln3AY03')">Add to Cart</button></td>
+          </tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- General Services Checkout Modal -->
-  <div id="generalCheckoutModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal('generalCheckoutModal')">&times;</span>
-      <h3 style="font-family: var(--font-serif); margin-bottom: 1rem; color: var(--gold-dark);">General Services Checkout</h3>
-      
-      <form id="generalCheckoutForm" onsubmit="handleCheckoutSubmit(event)">
-        <!-- Service Configuration Inputs -->
-        <div class="form-group">
-          <label>VHS Tape Conversions (Quantity)</label>
-          <input type="number" id="tapeQtyInput" min="0" value="0" onchange="calculateGeneralTotal()">
-        </div>
+  <!-- Sliding Cart Drawer & Backdrop -->
+  <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCartDrawer()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>Your Preservation Cart</h3>
+      <span class="cart-close" onclick="toggleCartDrawer()">&times;</span>
+    </div>
 
-        <div class="form-group">
-          <label>Standalone Photo Motion Animations (Quantity)</label>
-          <input type="number" id="photoQtyInput" min="0" value="0" onchange="calculateGeneralTotal()">
-        </div>
+    <div class="cart-body" id="cartItemsContainer">
+      <p style="text-align: center; color: var(--text-muted); margin-top: 2rem;">Your cart is currently empty.</p>
+    </div>
 
-        <div class="form-group">
-          <label>5-Minute Photo Video Montage Packages ($50 Base / 20 Photos)</label>
-          <input type="number" id="montageQtyInput" min="0" value="0" onchange="calculateGeneralTotal()">
-        </div>
-
-        <div class="form-group">
-          <label>Extra Photos for Montage (Above 20 photos - $2.99/ea)</label>
-          <input type="number" id="extraMontagePhotoInput" min="0" value="0" onchange="calculateGeneralTotal()">
-        </div>
-
-        <div class="form-group">
-          <label>Physical Media Return Preference</label>
-          <select id="returnShippingSelect" onchange="calculateGeneralTotal()">
-            <option value="0">Free Eco-Friendly Disposal / Recycling (After 30 days)</option>
-            <option value="10">Return Shipping - 1 Tape ($10.00)</option>
-            <option value="18">Return Shipping - 2 to 8 Tapes ($18.00)</option>
-            <option value="25">Return Shipping - 9+ Tapes ($25.00)</option>
-          </select>
-        </div>
-
-        <hr style="border: 0; border-top: 1px solid #DDD6C8; margin: 1.2rem 0;">
-
-        <!-- Contact Information -->
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" placeholder="John Doe" required>
-        </div>
-
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="john@example.com" required>
-        </div>
-
-        <div class="form-group">
-          <label>Phone Number</label>
-          <input type="tel" placeholder="(904) 472-7777" required>
-        </div>
-
-        <div class="form-group">
-          <label>Notes & Script Instructions</label>
-          <textarea rows="2" placeholder="Include any special sequence order, script outlines, or details..."></textarea>
-        </div>
-
-        <!-- Calculated Summary Box -->
-        <div class="summary-box">
-          <div class="summary-row"><span>Tapes Subtotal:</span><span id="tapeSubtotalDisplay">$0.00</span></div>
-          <div class="summary-row"><span>Photos Subtotal:</span><span id="photoSubtotalDisplay">$0.00</span></div>
-          <div class="summary-row"><span>Montage Subtotal:</span><span id="montageSubtotalDisplay">$0.00</span></div>
-          <div class="summary-row"><span>Return Shipping:</span><span id="shippingDisplay">$0.00</span></div>
-          <div class="summary-row total"><span>Grand Total:</span><span id="grandTotalDisplay">$0.00</span></div>
-        </div>
-
-        <button type="submit" class="btn-gold" style="width: 100%;">Submit General Order Request</button>
-      </form>
+    <div class="cart-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal:</span>
+        <span id="cartSubtotalDisplay">$0.00</span>
+      </div>
+      <div class="cart-actions">
+        <button class="btn-gold" style="width: 100%;" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        <button class="btn-gold btn-outline" style="width: 100%;" onclick="toggleCartDrawer()">Continue Shopping</button>
+      </div>
     </div>
   </div>
 
@@ -258,70 +259,101 @@
     </p>
   </footer>
 
+  <!-- Shopping Cart Logic JavaScript -->
   <script>
-    function openGeneralCheckout(presetType = '') {
-      // Reset defaults
-      document.getElementById('tapeQtyInput').value = 0;
-      document.getElementById('photoQtyInput').value = 0;
-      document.getElementById('montageQtyInput').value = 0;
-      document.getElementById('extraMontagePhotoInput').value = 0;
+    let cart = JSON.parse(localStorage.getItem('digitizeCart')) || [];
 
-      if (presetType === 'tapes') {
-        document.getElementById('tapeQtyInput').value = 1;
-      } else if (presetType === 'photos') {
-        document.getElementById('photoQtyInput').value = 1;
-      } else if (presetType === 'montage') {
-        document.getElementById('montageQtyInput').value = 1;
+    function updateCartUI() {
+      const container = document.getElementById('cartItemsContainer');
+      const badge = document.getElementById('cartBadge');
+      const subtotalDisplay = document.getElementById('cartSubtotalDisplay');
+      
+      let totalCount = 0;
+      let totalSubtotal = 0;
+
+      if (cart.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: var(--text-muted); margin-top: 2rem;">Your cart is currently empty.</p>';
+      } else {
+        container.innerHTML = '';
+        cart.forEach((item, index) => {
+          totalCount += item.qty;
+          const itemTotal = item.price * item.qty;
+          totalSubtotal += itemTotal;
+
+          const itemEl = document.createElement('div');
+          itemEl.className = 'cart-item';
+          itemEl.innerHTML = `
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <p>$${item.price.toFixed(2)} each</p>
+              <div class="cart-qty-ctrl">
+                <div class="cart-qty-btn" onclick="adjustQty(${index}, -1)">-</div>
+                <span style="font-size: 0.85rem; font-weight:600;">${item.qty}</span>
+                <div class="cart-qty-btn" onclick="adjustQty(${index}, 1)">+</div>
+              </div>
+            </div>
+            <div style="font-weight: 700; color: var(--gold-dark);">
+              $${itemTotal.toFixed(2)}
+            </div>
+          `;
+          container.appendChild(itemEl);
+        });
       }
 
-      calculateGeneralTotal();
-      document.getElementById('generalCheckoutModal').style.display = 'flex';
+      badge.innerText = totalCount;
+      subtotalDisplay.innerText = '$' + totalSubtotal.toFixed(2);
+      localStorage.setItem('digitizeCart', JSON.stringify(cart));
     }
 
-    function closeModal(modalId) {
-      document.getElementById(modalId).style.display = 'none';
+    function addToCart(name, price, stripeUrl) {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name, price, stripeUrl, qty: 1 });
+      }
+      updateCartUI();
+      openCartDrawer();
     }
 
-    function calculateGeneralTotal() {
-      const tapeQty = parseInt(document.getElementById('tapeQtyInput').value) || 0;
-      const photoQty = parseInt(document.getElementById('photoQtyInput').value) || 0;
-      const montageQty = parseInt(document.getElementById('montageQtyInput').value) || 0;
-      const extraMontagePhotos = parseInt(document.getElementById('extraMontagePhotoInput').value) || 0;
-      const shippingFee = parseFloat(document.getElementById('returnShippingSelect').value) || 0;
-
-      // 1. Calculate Tape Tiered Pricing
-      let tapePrice = 0;
-      if (tapeQty >= 1 && tapeQty <= 4) tapePrice = 39.99;
-      else if (tapeQty >= 5 && tapeQty <= 10) tapePrice = 34.99;
-      else if (tapeQty > 10) tapePrice = 29.99;
-      const tapeSubtotal = tapeQty * tapePrice;
-
-      // 2. Calculate Photo Tiered Pricing
-      let photoPrice = 0;
-      if (photoQty >= 1 && photoQty <= 5) photoPrice = 4.99;
-      else if (photoQty >= 6 && photoQty <= 10) photoPrice = 3.99;
-      else if (photoQty > 10) photoPrice = 2.99;
-      const photoSubtotal = photoQty * photoPrice;
-
-      // 3. Calculate Video Montage Pricing
-      const montageSubtotal = (montageQty * 50.00) + (extraMontagePhotos * 2.99);
-
-      // 4. Totals
-      const grandTotal = tapeSubtotal + photoSubtotal + montageSubtotal + shippingFee;
-
-      // Update UI displays
-      document.getElementById('tapeSubtotalDisplay').innerText = '$' + tapeSubtotal.toFixed(2);
-      document.getElementById('photoSubtotalDisplay').innerText = '$' + photoSubtotal.toFixed(2);
-      document.getElementById('montageSubtotalDisplay').innerText = '$' + montageSubtotal.toFixed(2);
-      document.getElementById('shippingDisplay').innerText = '$' + shippingFee.toFixed(2);
-      document.getElementById('grandTotalDisplay').innerText = '$' + grandTotal.toFixed(2);
+    function adjustQty(index, change) {
+      cart[index].qty += change;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
     }
 
-    function handleCheckoutSubmit(e) {
-      e.preventDefault();
-      alert('Thank you! Your general service order request has been submitted. We will email/call you within 24 hours to confirm media drop-off/shipping details.');
-      closeModal('generalCheckoutModal');
+    function toggleCartDrawer() {
+      const drawer = document.getElementById('cartDrawer');
+      const backdrop = document.getElementById('cartBackdrop');
+      const isOpen = drawer.classList.contains('open');
+
+      if (isOpen) {
+        drawer.classList.remove('open');
+        backdrop.style.display = 'none';
+      } else {
+        drawer.classList.add('open');
+        backdrop.style.display = 'block';
+      }
     }
+
+    function openCartDrawer() {
+      document.getElementById('cartDrawer').classList.add('open');
+      document.getElementById('cartBackdrop').style.display = 'block';
+    }
+
+    function proceedToCheckout() {
+      if (cart.length === 0) {
+        alert('Your cart is empty. Please add services before checking out.');
+        return;
+      }
+      // Redirect to the Stripe hosted checkout link for the primary item in cart
+      window.location.href = cart[0].stripeUrl;
+    }
+
+    // Initialize UI on page load
+    updateCartUI();
   </script>
 </body>
 </html>
