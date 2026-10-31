@@ -461,8 +461,8 @@
         alert('Your cart is empty. Please add services before checking out.');
         return;
       }
-      // Routes to the master checkout link or item link
-      window.location.href = cart[0].stripeUrl || 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
+      // Always route directly to your master multi-product checkout link
+      window.location.href = 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
     }
 
     // Initialize UI on page load
