@@ -1,475 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digitize How We Met | Custom Wedding & Legacy Media Restoration</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      /* Foil Gold Palette */
-      --gold-gradient: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
-      --gold-solid: #C59B27;
-      --gold-dark: #8C6211;
-      --gold-light-bg: #F4EFE6;
-      --bg-cream: #FAF8F5;
-      --bg-card: #FFFFFF;
-      --text-dark: #222222;
-      --text-muted: #666666;
-      --border-gold: #D4AF37;
-      --shadow-foil: 0 8px 25px rgba(197, 155, 39, 0.15);
-      --font-serif: 'Playfair Display', Georgia, serif;
-      --font-sans: 'Montserrat', Arial, sans-serif;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-sans); color: var(--text-dark); background-color: var(--bg-cream); line-height: 1.5; }
-    a { text-decoration: none; color: inherit; }
-
-    /* Top Contact Bar */
-    .contact-bar { background: #F1ECE1; border-bottom: 1px solid rgba(197, 155, 39, 0.3); padding: 0.4rem 2rem; font-size: 0.8rem; text-align: center; color: var(--text-muted); font-weight: 500; }
-    .contact-bar strong { color: var(--gold-dark); }
-    .contact-bar span { margin: 0 8px; opacity: 0.4; }
-
-    /* Header & Navigation */
-    header { background: var(--bg-card); border-bottom: 2px solid var(--border-gold); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 12px rgba(0,0,0,0.03); }
-    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 2rem; }
-    .logo { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--gold-dark); letter-spacing: -0.2px; }
-    .logo span { color: var(--text-dark); }
-    nav ul { display: flex; list-style: none; gap: 1.8rem; align-items: center; }
-    nav a { font-weight: 600; font-size: 0.88rem; color: var(--text-dark); text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
-    nav a:hover { color: var(--gold-solid); }
-
-    /* Dropdown Navigation */
-    .dropdown { position: relative; }
-    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border-gold); box-shadow: var(--shadow-foil); border-radius: 6px; min-width: 200px; overflow: hidden; padding: 0.4rem 0; }
-    .dropdown:hover .dropdown-menu { display: block; }
-    .dropdown-menu a { display: block; padding: 0.6rem 1.2rem; font-size: 0.85rem; text-transform: none; font-weight: 500; }
-    .dropdown-menu a:hover { background: var(--gold-light-bg); color: var(--gold-dark); }
-
-    /* Cart Nav Badge */
-    .cart-nav-btn { background: transparent; border: 1px solid var(--border-gold); color: var(--gold-dark); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 700; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.3s; }
-    .cart-nav-btn:hover { background: var(--gold-light-bg); }
-    .cart-count-badge { background: var(--gold-dark); color: #FFF; border-radius: 50%; padding: 2px 7px; font-size: 0.75rem; }
-
-    /* Foil Buttons */
-    .btn-gold { display: inline-block; background: var(--gold-gradient); color: #111 !important; padding: 0.6rem 1.4rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; box-shadow: 0 3px 10px rgba(197, 155, 39, 0.3); transition: all 0.3s; text-align: center; }
-    .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 5px 15px rgba(197, 155, 39, 0.5); }
-    .btn-sm { padding: 0.4rem 0.9rem; font-size: 0.75rem; border-radius: 15px; }
-
-    /* Hero Section */
-    .hero-section { max-width: 1200px; margin: 1.2rem auto 2rem; padding: 0 2rem; }
-    .hero-header { text-align: center; max-width: 850px; margin: 0 auto 1.2rem; }
-    .hero-header h1 { font-family: var(--font-serif); font-size: 1.75rem; color: var(--gold-dark); font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.2px; }
-    .hero-header p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.4; }
-    
-    .hero-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: center; background: var(--bg-card); border: 2px solid var(--border-gold); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-foil); padding: 1rem; }
-    .hero-media { width: 100%; height: 320px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-gold); }
-
-    /* Pricing Section */
-    .section-title { text-align: center; margin: 3.5rem 0 1.8rem; }
-    .section-title h2 { font-family: var(--font-serif); font-size: 2rem; color: var(--gold-dark); }
-    .section-title p { color: var(--text-muted); font-size: 0.95rem; }
-
-    .pricing-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; padding: 0 2rem; }
-    .price-card { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 12px; padding: 2rem; box-shadow: var(--shadow-foil); display: flex; flex-direction: column; position: relative; transition: transform 0.3s; }
-    .price-card:hover { transform: translateY(-4px); }
-    .price-card.featured { border: 2px solid var(--gold-dark); }
-    .badge { position: absolute; top: -12px; right: 20px; background: var(--gold-gradient); color: #000; padding: 3px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-    
-    .price-card h3 { font-family: var(--font-serif); font-size: 1.35rem; color: var(--gold-dark); margin-bottom: 0.4rem; }
-    .price { font-size: 2.4rem; font-weight: 700; color: var(--text-dark); margin-bottom: 1.2rem; }
-    .price-card ul { list-style: none; margin-bottom: 1.8rem; flex-grow: 1; }
-    .price-card ul li { margin-bottom: 0.7rem; font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 8px; }
-    .price-card ul li::before { content: "♦"; color: var(--gold-solid); font-size: 0.8rem; }
-
-    /* Add-ons & General Pricing Tables */
-    .info-container { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
-    .table-card { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 12px; padding: 1.8rem; box-shadow: var(--shadow-foil); margin-bottom: 2rem; }
-    .table-card h3 { font-family: var(--font-serif); margin-bottom: 1.2rem; color: var(--gold-dark); font-size: 1.3rem; }
-    table { width: 100%; border-collapse: collapse; text-align: left; }
-    th, td { padding: 12px 14px; border-bottom: 1px solid #EFEAE0; font-size: 0.9rem; vertical-align: middle; }
-    th { background: var(--gold-light-bg); color: var(--gold-dark); font-weight: 700; font-family: var(--font-serif); }
-
-    /* Modals */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(3px); }
-    .modal-content { background: var(--bg-card); border: 2px solid var(--border-gold); max-width: 580px; width: 100%; border-radius: 12px; padding: 2rem; position: relative; max-height: 90vh; overflow-y: auto; }
-    .close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
-    .close-btn:hover { color: var(--gold-dark); }
-    
-    .upsell-box { background: var(--gold-light-bg); border: 1px dashed var(--gold-solid); padding: 1.2rem; border-radius: 8px; margin-bottom: 1.2rem; font-size: 0.9rem; }
-
-    /* Cart Drawer Styles */
-    .cart-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2500; backdrop-filter: blur(2px); }
-    .cart-drawer { position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100%; background: var(--bg-card); border-left: 2px solid var(--border-gold); box-shadow: -5px 0 25px rgba(0,0,0,0.15); z-index: 2600; display: flex; flex-direction: column; transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
-    .cart-drawer.open { right: 0; }
-    
-    .cart-header { padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--border-gold); background: var(--gold-light-bg); display: flex; justify-content: space-between; align-items: center; }
-    .cart-header h3 { font-family: var(--font-serif); color: var(--gold-dark); font-size: 1.3rem; }
-    
-    .cart-items-body { flex-grow: 1; overflow-y: auto; padding: 1.2rem 1.5rem; }
-    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid #EFEAE0; }
-    .cart-item-title { font-weight: 600; font-size: 0.9rem; color: var(--text-dark); margin-bottom: 4px; }
-    .cart-item-price { font-size: 0.85rem; color: var(--gold-dark); font-weight: 700; }
-    
-    .qty-controls { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
-    .qty-btn { background: var(--bg-cream); border: 1px solid var(--border-gold); width: 24px; height: 24px; border-radius: 50%; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; line-height: 1; }
-    .qty-btn:hover { background: var(--gold-light-bg); }
-
-    .cart-footer { padding: 1.5rem; border-top: 2px solid var(--border-gold); background: var(--bg-cream); }
-    .cart-total-row { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.1rem; margin-bottom: 1.2rem; }
-    .cart-actions { display: flex; flex-direction: column; gap: 10px; }
-    .btn-secondary { background: transparent; border: 1px solid var(--border-gold); color: var(--gold-dark); padding: 0.7rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; cursor: pointer; text-align: center; }
-    .btn-secondary:hover { background: var(--gold-light-bg); }
-
-    /* Footer */
-    footer { background: #F1ECE1; border-top: 2px solid var(--border-gold); padding: 2.5rem 2rem; text-align: center; margin-top: 4rem; font-size: 0.85rem; color: var(--text-muted); }
-    footer a { color: var(--gold-dark); font-weight: 600; margin: 0 8px; }
-
-    @media (max-width: 768px) {
-      .hero-split { grid-template-columns: 1fr; }
-      nav ul { gap: 0.8rem; }
-      .cart-drawer { max-width: 100%; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitize How We Met & Heritage Preservation</title>
+    <!-- Tailwind CSS CDN for modern, clean styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html { scroll-behavior: smooth; }
+    </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
 
-  <!-- Top Contact Bar -->
-  <div class="contact-bar">
-    Direct Contact Phone: <strong>(904) 472-7777</strong>
-    <span>|</span>
-    Email: Direct Contact (for fastest Response): <strong>freedomhubsll@gmail.com</strong>
-  </div>
-
-  <!-- Header -->
-  <header>
-    <div class="nav-container">
-      <a href="index.html" class="logo">Digitize How We Met<span>.com</span></a>
-      <nav>
-        <ul>
-          <li><a href="index.html">Basic Plus</a></li>
-          <li class="dropdown">
-            <a href="#">Our Services ▾</a>
-            <div class="dropdown-menu">
-              <a href="wedding.html">Wedding Services</a>
-              <a href="generalservices.html">General Services</a>
-            </div>
-          </li>
-          <li>
-            <button class="cart-nav-btn" onclick="openCart()">
-              🛒 Cart <span class="cart-count-badge" id="navCartCount">0</span>
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-2xl font-bold tracking-tight text-slate-900">Digitize How We Met</a>
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-600">
+                <a href="#packages" class="hover:text-blue-600 transition">Wedding Packages</a>
+                <a href="#generalservices" class="hover:text-blue-600 transition">Preservation Services</a>
+                <a href="#about" class="hover:text-blue-600 transition">About</a>
+            </nav>
+            <!-- Cart Trigger Button -->
+            <button onclick="toggleCart()" class="relative bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-slate-800 transition flex items-center gap-2">
+                <span>Cart</span>
+                <span id="cart-badge" class="bg-blue-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
             </button>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+        </div>
+    </header>
 
-  <!-- Hero Split View Section -->
-  <section class="hero-section">
-    <div class="hero-header">
-      <h1>Relive Your Story, Reimagined For Your Special Day</h1>
-      <p>Transforming vintage VHS tapes and family photos into breathtaking AI-animated love stories for wedding receptions, rehearsal dinners, and anniversaries.</p>
-    </div>
-
-    <div class="hero-split">
-      <video class="hero-media" controls autoplay muted loop playsinline>
-        <source src="howwemet.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <img src="wedding.jpg" alt="Bride and Groom watching video preview at wedding reception" class="hero-media">
-    </div>
-  </section>
-
-  <!-- Wedding Packages Section -->
-  <section id="packages" class="section-title">
-    <h2>Signature Wedding Packages</h2>
-    <p>Premium media preservation & customized rehearsal dinner film packages</p>
-  </section>
-
-  <section class="pricing-grid">
-    <!-- Package 1 -->
-    <div class="price-card">
-      <h3>PACKAGE 1: OUR SIGNATURE REHEARSAL FILM</h3>
-      <p style="color:var(--text-muted); font-size: 0.85rem; margin-bottom: 0.8rem;">"Rehearsal Dinner Feature"</p>
-      <div class="price">$250</div>
-      <ul>
-        <li>Up to 5-minute custom film</li>
-        <li>Media Included: Up to 6 VHS Tapes + 14 Animated Photos (OR up to 20 photos if no VHS tapes)</li>
-        <li>Client provides script/narrative</li>
-        <li>100 Custom QR Favor Gift Cards</li>
-        <li>Web Link Delivery of Final Film</li>
-      </ul>
-      <button class="btn-gold" onclick="triggerPackageSelection('pkg1')">Select Package 1</button>
-    </div>
-
-    <!-- Package 2 -->
-    <div class="price-card featured">
-      <div class="badge">Most Popular Archive</div>
-      <h3>PACKAGE 2: THE HERITAGE ARCHIVE</h3>
-      <p style="color:var(--text-muted); font-size: 0.85rem; margin-bottom: 0.8rem;">"Full Preservation & Event Film"</p>
-      <div class="price">$400</div>
-      <ul>
-        <li>Everything in Package 1 PLUS:</li>
-        <li>ALL fully converted VHS video files (un-cut, full-length raw transfers)</li>
-        <li>ALL 20 high-res AI-animated photos delivered as individual standalone video files</li>
-        <li>Custom Branded Flash Drive with the complete digital archive</li>
-      </ul>
-      <button class="btn-gold" onclick="addToCart('pkg2')">Add Package 2 To Cart</button>
-    </div>
-  </section>
-
-  <!-- Add-ons & General Services Overview -->
-  <div class="info-container">
-    <div class="table-card">
-      <h3>Add-On Services</h3>
-      <table>
-        <thead>
-          <tr><th>Item</th><th>Price</th><th>Action</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Extra Minutes</td>
-            <td>$19.99 / Minute</td>
-            <td><button class="btn-gold btn-sm" onclick="addToCart('extra_min')">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td>Extra VHS Tape Conversion</td>
-            <td>$39.99 / Tape</td>
-            <td><button class="btn-gold btn-sm" onclick="addToCart('vhs_tape')">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td>Extra Photo Animation</td>
-            <td>$4.99 / Photo</td>
-            <td><button class="btn-gold btn-sm" onclick="addToCart('photo_anim')">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td>Additional Favor Cards</td>
-            <td>$100.00 / batch of 50 cards</td>
-            <td><button class="btn-gold btn-sm" onclick="addToCart('favor_cards')">Add to Cart</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="table-card">
-      <h3>General Non-Wedding Services Overview</h3>
-      <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">Looking for standalone tape conversion or photo animation without a wedding film package?</p>
-      <table>
-        <thead>
-          <tr><th>Service</th><th>Quantity Tier</th><th>Price</th><th>Action</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>VHS Tape Conversion</td>
-            <td>Standard / Volume Tiers</td>
-            <td>From $29.99 - $39.99 / Tape</td>
-            <td><button class="btn-gold btn-sm" onclick="addToCart('vhs_tape')">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td>Photo Animation</td>
-            <td>Per Photo Tier</td>
-            <td>From $2.99 - $4.99 / Photo</td>
-            <td><button class="btn-gold btn-sm" onclick="addToCart('photo_anim')">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td>5-Min Photo Montage Video</td>
-            <td>20 Photos + Customer Script</td>
-            <td>$99.99 flat</td>
-            <td><button class="btn-gold btn-sm" onclick="addToCart('montage_video')">Add to Cart</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- Package 1 Upsell Modal -->
-  <div id="upsellModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal('upsellModal')">&times;</span>
-      <h3 style="font-family: var(--font-serif); margin-bottom: 0.8rem; color: var(--gold-dark);">Special Archive Recommendation</h3>
-      <div class="upsell-box">
-        <p>
-          We have your $250 Rehearsal Film package reserved! Most of our couples find that while 6 VHS tapes and 14 photos make a perfect 5-minute film, parents usually have 2 or 3 extra tapes sitting in a drawer that haven't been seen in 20 years.<br><br>
-          For just $150 more ($400 total), we’ll digitize ALL your raw, full-length VHS tapes, convert all 20 photos into individual motion files, and put the entire digital library onto a custom wooden USB drive for your parents as an heirloom gift. Would you like us to include the full heritage archive kit?
-        </p>
-      </div>
-      <div style="display: flex; gap: 10px; justify-content: flex-end;">
-        <button class="btn-gold" style="background: #888; color: #FFF !important;" onclick="declineUpsell()">Keep Package 1 ($250)</button>
-        <button class="btn-gold" onclick="acceptUpsell()">Upgrade to Package 2 ($400)</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Shopping Cart Sidebar Drawer & Backdrop Overlay -->
-  <div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
-  <aside id="cartDrawer" class="cart-drawer">
-    <div class="cart-header">
-      <h3>Your Selected Order</h3>
-      <span class="close-btn" onclick="closeCart()">&times;</span>
-    </div>
-
-    <div id="cartItemsContainer" class="cart-items-body">
-      <!-- Items dynamically populated by JS -->
-    </div>
-
-    <div class="cart-footer">
-      <div class="cart-total-row">
-        <span>Subtotal:</span>
-        <span id="cartSubtotal">$0.00</span>
-      </div>
-      <div class="cart-actions">
-        <button class="btn-gold" style="width: 100%;" onclick="proceedToCheckout()">Proceed to Checkout</button>
-        <button class="btn-secondary" onclick="closeCart()">Continue Shopping</button>
-      </div>
-    </div>
-  </aside>
-
-  <!-- JavaScript Cart Engine -->
- <script>
-    // Product catalog definitions mapped to Stripe links
-    const products = {
-      'pkg1': { name: 'Package 1: Signature Rehearsal Film', price: 250.00, stripeUrl: 'https://buy.stripe.com/5kQeV5aEb4tP1Bp7Tv3AY07' },
-      'pkg2': { name: 'Package 2: The Heritage Archive', price: 400.00, stripeUrl: 'https://buy.stripe.com/5kQ9AL13BaSdfsf7Tv3AY06' },
-      'montage_video': { name: '5-Min Photo Montage Video', price: 99.99, stripeUrl: 'https://buy.stripe.com/bJeaEPfYv5xT6VJgq13AY08' },
-      'favor_cards': { name: 'Additional Favor Cards (Batch of 50)', price: 100.00, stripeUrl: 'https://buy.stripe.com/dRm7sDdQnf8teob7Tv3AY05' },
-      'extra_min': { name: 'Extra Minutes', price: 19.99, stripeUrl: 'https://buy.stripe.com/aFa7sDeUre4pcg33Df3AY04' },
-      'photo_anim': { name: 'Extra Photo Animation', price: 4.99, stripeUrl: 'https://buy.stripe.com/cNi28j27F9O9gwj5Ln3AY03' },
-      'vhs_tape': { name: 'Extra VHS Tape Conversion', price: 39.99, stripeUrl: 'https://buy.stripe.com/00w7sD3bJ9O91Bp1v73AY01' }
-    };
-
-    let cart = JSON.parse(localStorage.getItem('digitizeCart')) || [];
-
-    function updateCartUI() {
-      const container = document.getElementById('cartItemsContainer');
-      const badge = document.getElementById('navCartCount');
-      const subtotalDisplay = document.getElementById('cartSubtotal');
-      
-      if (!container || !badge || !subtotalDisplay) return;
-
-      let totalCount = 0;
-      let totalSubtotal = 0;
-
-      if (cart.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: var(--text-muted); margin-top: 2rem;">Your cart is currently empty.</p>';
-      } else {
-        container.innerHTML = '';
-        cart.forEach((item, index) => {
-          totalCount += (item.qty || 0);
-          const itemTotal = (item.price || 0) * (item.qty || 0);
-          totalSubtotal += itemTotal;
-
-          const itemEl = document.createElement('div');
-          itemEl.className = 'cart-item';
-          itemEl.innerHTML = `
-            <div class="cart-item-info">
-              <div class="cart-item-title">${item.name}</div>
-              <div class="cart-item-price">$${(item.price || 0).toFixed(2)} each</div>
-              <div class="qty-controls">
-                <div class="qty-btn" onclick="adjustQty(${index}, -1)">-</div>
-                <span style="font-size: 0.85rem; font-weight:600;">${item.qty}</span>
-                <div class="qty-btn" onclick="adjustQty(${index}, 1)">+</div>
-                <button onclick="removeItem(${index})" style="background: none; border: none; color: #c0392b; font-size: 0.75rem; font-weight: 700; cursor: pointer; margin-left: 10px; font-family: inherit;">REMOVE</button>
-              </div>
+    <!-- Hero Section -->
+    <section class="py-20 px-6 text-center bg-gradient-to-b from-white to-slate-100 border-b border-slate-200">
+        <div class="max-w-3xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">Preserve Your Family Legacy & Milestone Memories</h1>
+            <p class="text-lg text-slate-600 mb-8">Professional VHS tape conversions, heirloom photo animations, and boutique wedding documentation designed to last generations.</p>
+            <div class="flex justify-center gap-4">
+                <a href="#packages" class="bg-blue-600 text-white px-8 py-3.5 rounded-xl font-medium hover:bg-blue-700 transition shadow-lg shadow-blue-600/20">Explore Wedding Packages</a>
+                <a href="#generalservices" class="bg-white border border-slate-300 text-slate-700 px-8 py-3.5 rounded-xl font-medium hover:bg-slate-50 transition">A La Carte Services</a>
             </div>
-            <div style="font-weight: 700; color: var(--gold-dark);">
-              $${itemTotal.toFixed(2)}
+        </div>
+    </section>
+
+    <!-- Wedding Packages Section -->
+    <section id="packages" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <h2 class="text-3xl font-bold text-slate-900 tracking-tight mb-4">Wedding Packages</h2>
+            <p class="text-slate-600">Select your preferred wedding package. (Note: Packages are exclusive; selecting one will update your package choice).</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- Package 1 -->
+            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Package 1</span>
+                    <h3 class="text-2xl font-bold text-slate-900 mt-4 mb-2">Our Signature Rehearsal Film</h3>
+                    <p class="text-slate-600 mb-6">Complete professional capture and highlight edit of your wedding rehearsal events.</p>
+                    <div class="text-3xl font-extrabold text-slate-900 mb-6">$250.00</div>
+                </div>
+                <button onclick="addWeddingPackage('Package 1: Signature Rehearsal Film', 250.00, 'price_1UWcsM1PYpXC0BTguqdr3atn')" class="w-full bg-slate-900 text-white py-3 rounded-xl font-medium hover:bg-slate-800 transition">
+                    Select Package 1
+                </button>
             </div>
-          `;
-          container.appendChild(itemEl);
-        });
-      }
 
-      badge.innerText = totalCount;
-      subtotalDisplay.innerText = '$' + totalSubtotal.toFixed(2);
-      localStorage.setItem('digitizeCart', JSON.stringify(cart));
-    }
+            <!-- Package 2 -->
+            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Package 2</span>
+                    <h3 class="text-2xl font-bold text-slate-900 mt-4 mb-2">The Heritage Archive</h3>
+                    <p class="text-slate-600 mb-6">Comprehensive multi-cam event recording, legacy interviews, and custom flash drive archive bundle.</p>
+                    <div class="text-3xl font-extrabold text-slate-900 mb-6">$400.00</div>
+                </div>
+                <button onclick="addWeddingPackage('Package 2: The Heritage Archive', 400.00, 'price_1UWd241PYpXC0BTgFl1fHW11')" class="w-full bg-slate-900 text-white py-3 rounded-xl font-medium hover:bg-slate-800 transition">
+                    Select Package 2
+                </button>
+            </div>
+        </div>
+    </section>
 
-    function addToCart(productId) {
-      const prod = products[productId];
-      if (!prod) return;
+    <!-- General Services Section -->
+    <section id="generalservices" class="py-20 px-6 bg-slate-100 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 tracking-tight mb-4">Preservation Services</h2>
+                <p class="text-slate-600">Bring your legacy analog media into the digital age with custom quantity conversions.</p>
+            </div>
 
-      const existing = cart.find(item => item.name === prod.name);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        cart.push({ name: prod.name, price: prod.price, stripeUrl: prod.stripeUrl, qty: 1 });
-      }
-      updateCartUI();
-      openCart();
-    }
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- VHS Conversion -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">VHS Tape Conversion</h3>
+                        <p class="text-slate-600 mb-6">High-resolution digital transfer per analog tape cassette.</p>
+                        <div class="text-2xl font-extrabold text-slate-900 mb-6">$39.99 <span class="text-xs font-normal text-slate-500">per tape</span></div>
+                    </div>
+                    <button onclick="addItem('VHS Tape Conversion', 39.99, 'price_1UWd5V1PYpXC0BTgxxPbCt3b', 'vhs')" class="w-full bg-blue-600 text-white py-3 rounded-xl font-medium hover:bg-blue-700 transition">
+                        Add Tape Conversion
+                    </button>
+                </div>
 
-    function triggerPackageSelection(productId) {
-      if (productId === 'pkg1') {
-        const modal = document.getElementById('upsellModal');
-        if (modal) modal.style.display = 'flex';
-      } else {
-        addToCart(productId);
-      }
-    }
+                <!-- Photo Animation -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Photo Animation</h3>
+                        <p class="text-slate-600 mb-6">AI-powered vintage photo depth animation and restoration bundle.</p>
+                        <div class="text-2xl font-extrabold text-slate-900 mb-6">$4.99 <span class="text-xs font-normal text-slate-500">per photo</span></div>
+                    </div>
+                    <button onclick="addItem('Photo Animation', 4.99, 'price_1UWd6A1PYpXC0BTgnhoVdfTs', 'photo')" class="w-full bg-blue-600 text-white py-3 rounded-xl font-medium hover:bg-blue-700 transition">
+                        Add Photo Animation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    function acceptUpsell() {
-      closeModal('upsellModal');
-      addToCart('pkg2');
-    }
+    <!-- Slide-over Cart Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+                <!-- Cart Header -->
+                <div class="p-6 border-b border-slate-200 flex items-center justify-between">
+                    <h3 class="text-lg font-bold text-slate-900">Your Selection Cart</h3>
+                    <button onclick="toggleCart()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+                </div>
+                <!-- Cart Body -->
+                <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Dynamic items inserted here -->
+                </div>
+                <!-- Cart Footer -->
+                <div class="p-6 border-t border-slate-200 bg-slate-50">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-base font-medium text-slate-600">Subtotal</span>
+                        <span id="cart-subtotal" class="text-2xl font-bold text-slate-900">$0.00</span>
+                    </div>
+                    <button onclick="proceedToCheckout()" class="w-full bg-blue-600 text-white py-3.5 rounded-xl font-medium hover:bg-blue-700 transition shadow-lg shadow-blue-600/20 text-center block">
+                        Proceed to Secure Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    function declineUpsell() {
-      closeModal('upsellModal');
-      addToCart('pkg1');
-    }
+    <!-- JavaScript Cart Management & Logic -->
+    <script>
+        let cart = {
+            weddingPackage: null, // Stores active wedding package object or null
+            addOns: {}            // Stores { id: { name, price, quantity, priceId } }
+        };
 
-    function closeModal(modalId) {
-      const m = document.getElementById(modalId);
-      if (m) m.style.display = 'none';
-    }
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+            renderCart();
+        }
 
-    function adjustQty(index, change) {
-      if (!cart[index]) return;
-      cart[index].qty += change;
-      if (cart[index].qty <= 0) {
-        cart.splice(index, 1);
-      }
-      updateCartUI();
-    }
+        function addWeddingPackage(name, price, priceId) {
+            cart.weddingPackage = { name, price, priceId, quantity: 1 };
+            updateBadge();
+            renderCart();
+            toggleCart();
+        }
 
-    function removeItem(index) {
-      cart.splice(index, 1);
-      updateCartUI();
-    }
+        function addItem(name, price, priceId, key) {
+            if (cart.addOns[key]) {
+                cart.addOns[key].quantity += 1;
+            } else {
+                cart.addOns[key] = { name, price, priceId, quantity: 1 };
+            }
+            updateBadge();
+            renderCart();
+            toggleCart();
+        }
 
-    function openCart() {
-      const drawer = document.getElementById('cartDrawer');
-      const overlay = document.getElementById('cartOverlay');
-      if (drawer) drawer.classList.add('open');
-      if (overlay) overlay.style.display = 'block';
-    }
+        function changeQuantity(key, delta) {
+            if (cart.addOns[key]) {
+                cart.addOns[key].quantity += delta;
+                if (cart.addOns[key].quantity <= 0) {
+                    delete cart.addOns[key];
+                }
+            }
+            updateBadge();
+            renderCart();
+        }
 
-    function closeCart() {
-      const drawer = document.getElementById('cartDrawer');
-      const overlay = document.getElementById('cartOverlay');
-      if (drawer) drawer.classList.remove('open');
-      if (overlay) overlay.style.display = 'none';
-    }
+        function removeWeddingPackage() {
+            cart.weddingPackage = null;
+            updateBadge();
+            renderCart();
+        }
 
-    function proceedToCheckout() {
-      if (cart.length === 0) {
-        alert('Your cart is empty. Please add services before checking out.');
-        return;
-      }
-      
-      // If buying 1 specific item type, go directly to its exact Stripe link
-      if (cart.length === 1 && cart[0].stripeUrl) {
-        window.location.href = cart[0].stripeUrl;
-      } else {
-        // If mixing multiple items, direct to your master multi-product link
-        window.location.href = 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
-      }
-    }
+        function updateBadge() {
+            let count = cart.weddingPackage ? 1 : 0;
+            Object.values(cart.addOns).forEach(item => count += item.quantity);
+            document.getElementById('cart-badge').innerText = count;
+        }
 
-    document.addEventListener("DOMContentLoaded", function() {
-      updateCartUI();
-    });
-  </script>
+        function renderCart() {
+            const container = document.getElementById('cart-items');
+            container.innerHTML = '';
+            let subtotal = 0;
+
+            // Render Wedding Package if selected
+            if (cart.weddingPackage) {
+                subtotal += cart.weddingPackage.price;
+                container.innerHTML += `
+                    <div class="flex items-center justify-between p-4 bg-blue-50 border border-blue-100 rounded-xl">
+                        <div>
+                            <span class="text-xs font-semibold text-blue-600 uppercase">Wedding Package</span>
+                            <h4 class="text-sm font-bold text-slate-900">${cart.weddingPackage.name}</h4>
+                            <div class="text-sm font-medium text-slate-600">$${cart.weddingPackage.price.toFixed(2)}</div>
+                        </div>
+                        <button onclick="removeWeddingPackage()" class="text-red-500 hover:text-red-700 text-xs font-semibold">Remove</button>
+                    </div>
+                `;
+            }
+
+            // Render Add-ons
+            Object.keys(cart.addOns).forEach(key => {
+                const item = cart.addOns[key];
+                subtotal += item.price * item.quantity;
+                container.innerHTML += `
+                    <div class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-xl">
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900">${item.name}</h4>
+                            <div class="text-sm font-medium text-slate-600">$${item.price.toFixed(2)} each</div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="changeQuantity('${key}', -1)" class="w-7 h-7 bg-slate-100 rounded-lg font-bold text-slate-600 hover:bg-slate-200">-</button>
+                            <span class="text-sm font-bold">${item.quantity}</span>
+                            <button onclick="changeQuantity('${key}', 1)" class="w-7 h-7 bg-slate-100 rounded-lg font-bold text-slate-600 hover:bg-slate-200">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            if (!cart.weddingPackage && Object.keys(cart.addOns).length === 0) {
+                container.innerHTML = `<p class="text-center text-slate-500 py-12">Your cart is currently empty.</p>`;
+            }
+
+            document.getElementById('cart-subtotal').innerText = `$${subtotal.toFixed(2)}`;
+        }
+
+        function proceedToCheckout() {
+            // Check if cart has items
+            if (!cart.weddingPackage && Object.keys(cart.addOns).length === 0) {
+                alert("Please add at least one item or package to your cart before proceeding.");
+                return;
+            }
+
+            // Fallback routing simulation or direct link integration
+            // When your serverless endpoint or Stripe Checkout API handler is hooked up, 
+            // this function sends cart.weddingPackage and cart.addOns to your backend.
+            alert("Redirecting to secure Stripe checkout session...");
+        }
+    </script>
+</body>
+</html>
