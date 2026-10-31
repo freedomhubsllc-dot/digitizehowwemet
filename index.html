@@ -431,13 +431,14 @@
     }
 
     function proceedToCheckout() {
-      if (!cart.weddingPackage && Object.keys(cart.addOns).length === 0) {
-        alert('Your cart is empty. Please select a package or service before checking out.');
-        return;
-      }
-      
-      alert('Connecting to secure Stripe Checkout session...');
-    }
+  if (!cart.weddingPackage && Object.keys(cart.addOns).length === 0) {
+    alert('Your cart is empty. Please select a package or service before checking out.');
+    return;
+  }
+  
+  // Directly sends the customer to your live Stripe Checkout page
+  window.location.href = 'https://buy.stripe.com/YOUR_STRIPE_PAYMENT_LINK_HERE';
+}
 
     // Initialize UI on load
     updateCartUI();
