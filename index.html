@@ -309,13 +309,55 @@
       'photo': { name: 'Photo Animation', price: 4.99, priceId: 'price_1UWd6A1PYpXC0BTgnhoVdfTs', isAddon: true, key: 'photo' }
     };
 
-    // Stripe Payment Link URLs (Replace with your actual Payment Links from Stripe Dashboard)
-    const paymentLinks = {
-      'pkg1': 'https://buy.stripe.com/YOUR_PACKAGE_1_LINK',
-      'pkg2': 'https://buy.stripe.com/YOUR_PACKAGE_2_LINK',
-      'vhs':  'https://buy.stripe.com/YOUR_VHS_LINK',
-      'photo': 'https://buy.stripe.com/YOUR_PHOTO_LINK'
-    };
+   async function proceedToCheckout() {
+      // 1. Check if cart is empty
+      if (!cart.weddingPackage && Object.keys(cart.addOns).length === 0) {
+        alert('Your cart is empty. Please select a package or service before checking out.');
+        return;
+      }
+
+      // 2. Build the items array to send to your serverless backend
+      const itemsPayload = [];
+
+      if (cart.weddingPackage) {
+        itemsPayload.push({
+          price: cart.weddingPackage.priceId,
+          quantity: 1
+        });
+      }
+
+      Object.keys(cart.addOns).forEach(key => {
+        const item = cart.addOns[key];
+        itemsPayload.push({
+          price: item.priceId,
+          quantity: item.qty
+        });
+      });
+
+      try {
+        // 3. Call your Vercel serverless function
+        const response = await fetch('https://digitizehowwemet.vercel.app/api/checkout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ items: itemsPayload }),
+        });
+
+        const data = await response.json();
+
+        // 4. Redirect to the secure Stripe Checkout session URL returned by Vercel
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          console.error('Checkout error:', data.error);
+          alert('Unable to initiate checkout: ' + (data.error || 'Please try again.'));
+        }
+      } catch (error) {
+        console.error('Error during checkout connection:', error);
+        alert('Something went wrong connecting to the checkout service. Please check your network connection.');
+      }
+    }
 
     let cart = {
       weddingPackage: null, // Exclusive either/or package
