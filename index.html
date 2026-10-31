@@ -438,10 +438,12 @@
       // Routes based on primary selection (Package 1, Package 2, or standalone Add-ons)
       if (cart.weddingPackage) {
         if (cart.weddingPackage.priceId === 'price_1UWcsM1PYpXC0BTguqdr3atn') {
-          window.location.href = 'https://buy.stripe.com/YOUR_PACKAGE_1_PAYMENT_LINK';
+          // Paste your live Package 1 Stripe Payment Link here:
+          window.location.href = 'https://buy.stripe.com/YOUR_ACTUAL_LINK_FOR_PKG1';
           return;
         } else if (cart.weddingPackage.priceId === 'price_1UWd241PYpXC0BTgFl1fHW11') {
-          window.location.href = 'https://buy.stripe.com/YOUR_PACKAGE_2_PAYMENT_LINK';
+          // Paste your live Package 2 Stripe Payment Link here:
+          window.location.href = 'https://buy.stripe.com/YOUR_ACTUAL_LINK_FOR_PKG2';
           return;
         }
       }
@@ -450,10 +452,12 @@
       if (addOnKeys.length > 0) {
         const firstKey = addOnKeys[0];
         if (firstKey === 'vhs') {
-          window.location.href = 'https://buy.stripe.com/YOUR_VHS_PAYMENT_LINK';
+          // Paste your live VHS Add-on Stripe Payment Link here:
+          window.location.href = 'https://buy.stripe.com/YOUR_ACTUAL_LINK_FOR_VHS';
           return;
         } else if (firstKey === 'photo') {
-          window.location.href = 'https://buy.stripe.com/YOUR_PHOTO_PAYMENT_LINK';
+          // Paste your live Photo Add-on Stripe Payment Link here:
+          window.location.href = 'https://buy.stripe.com/YOUR_ACTUAL_LINK_FOR_PHOTO';
           return;
         }
       }
