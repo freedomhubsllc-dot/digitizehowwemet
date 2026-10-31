@@ -435,9 +435,34 @@
     alert('Your cart is empty. Please select a package or service before checking out.');
     return;
   }
-  
-  // Directly sends the customer to your live Stripe Checkout page
-  window.location.href = 'https://buy.stripe.com/YOUR_STRIPE_PAYMENT_LINK_HERE';
+
+  // 1. If a wedding package is selected, send them to that package's link
+  if (cart.weddingPackage) {
+    // Package 1 Link
+    if (cart.weddingPackage.price === 250) {
+      window.location.href = 'https://buy.stripe.com/5kQeV5aEb4tP1Bp7Tv3AY07';
+      return;
+    }
+    // Package 2 Link
+    if (cart.weddingPackage.price === 400) {
+      window.location.href = 'https://buy.stripe.com/5kQeV5aEb4tP1Bp7Tv3AY07';
+      return;
+    }
+  }
+
+  // 2. Otherwise route to the first add-on item in cart
+  const addOnKeys = Object.keys(cart.addOns);
+  if (addOnKeys.length > 0) {
+    const firstAddOnKey = addOnKeys[0];
+    if (firstAddOnKey === 'vhs') {
+      window.location.href = 'https://buy.stripe.com/00w7sD3bJ9O91Bp1v73AY01';
+      return;
+    }
+    if (firstAddOnKey === 'photo') {
+      window.location.href = 'https://buy.stripe.com/cNi28j27F9O9gwj5Ln3AY03';
+      return;
+    }
+  }
 }
 
     // Initialize UI on load
