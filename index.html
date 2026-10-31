@@ -49,24 +49,19 @@
     .dropdown-menu a { display: block; padding: 0.6rem 1.2rem; font-size: 0.85rem; text-transform: none; font-weight: 500; }
     .dropdown-menu a:hover { background: var(--gold-light-bg); color: var(--gold-dark); }
 
-    /* Foil Button */
-    .btn-gold { background: var(--gold-gradient); color: #111 !important; padding: 0.6rem 1.4rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; box-shadow: 0 3px 10px rgba(197, 155, 39, 0.3); transition: all 0.3s; }
+    /* Foil Buttons */
+    .btn-gold { display: inline-block; background: var(--gold-gradient); color: #111 !important; padding: 0.6rem 1.4rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; box-shadow: 0 3px 10px rgba(197, 155, 39, 0.3); transition: all 0.3s; text-align: center; }
     .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 5px 15px rgba(197, 155, 39, 0.5); }
 
-    /* Hero Section (Above the Fold Compact View) */
+    .btn-sm { padding: 0.4rem 0.9rem; font-size: 0.75rem; border-radius: 15px; }
+
+    /* Hero Section */
     .hero-section { max-width: 1200px; margin: 1.2rem auto 2rem; padding: 0 2rem; }
     .hero-header { text-align: center; max-width: 850px; margin: 0 auto 1.2rem; }
     .hero-header h1 { font-family: var(--font-serif); font-size: 1.75rem; color: var(--gold-dark); font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.2px; }
     .hero-header p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.4; }
     
-    /* Swapped Split View: Left Video / Right Photo */
     .hero-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: center; background: var(--bg-card); border: 2px solid var(--border-gold); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-foil); padding: 1rem; }
-    
-    /* Left Spot: Video Placeholder */
-    .video-placeholder { width: 100%; height: 320px; background: #111111; border-radius: 8px; border: 1px solid var(--border-gold); display: flex; flex-direction: column; justify-content: center; align-items: center; color: #FFFFFF; text-align: center; position: relative; }
-    .video-placeholder p { margin-top: 8px; font-size: 0.85rem; color: #DDDDDD; }
-
-    /* Right Spot: Audience Image */
     .hero-media { width: 100%; height: 320px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-gold); }
 
     /* Pricing Section */
@@ -91,7 +86,7 @@
     .table-card { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 12px; padding: 1.8rem; box-shadow: var(--shadow-foil); margin-bottom: 2rem; }
     .table-card h3 { font-family: var(--font-serif); margin-bottom: 1.2rem; color: var(--gold-dark); font-size: 1.3rem; }
     table { width: 100%; border-collapse: collapse; text-align: left; }
-    th, td { padding: 10px 14px; border-bottom: 1px solid #EFEAE0; font-size: 0.9rem; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid #EFEAE0; font-size: 0.9rem; vertical-align: middle; }
     th { background: var(--gold-light-bg); color: var(--gold-dark); font-weight: 700; font-family: var(--font-serif); }
 
     /* Modals */
@@ -100,9 +95,6 @@
     .close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
     .close-btn:hover { color: var(--gold-dark); }
     
-    .form-group { margin-bottom: 1.1rem; }
-    .form-group label { display: block; font-weight: 600; margin-bottom: 0.3rem; font-size: 0.85rem; color: var(--gold-dark); }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.7rem; background: #FAF9F6; border: 1px solid #DDD6C8; border-radius: 6px; font-family: inherit; font-size: 0.9rem; }
     .upsell-box { background: var(--gold-light-bg); border: 1px dashed var(--gold-solid); padding: 1.2rem; border-radius: 8px; margin-bottom: 1.2rem; font-size: 0.9rem; }
 
     /* Footer */
@@ -138,13 +130,13 @@
               <a href="generalservices.html">General Services</a>
             </div>
           </li>
-          <li><button class="btn-gold" onclick="openCheckoutModal('Package 1')">Book Now</button></li>
+          <li><a href="#packages" class="btn-gold">Book Now</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Split View Section (Slightly higher & compact above the fold) -->
+  <!-- Hero Split View Section -->
   <section class="hero-section">
     <div class="hero-header">
       <h1>Relive Your Story, Reimagined For Your Special Day</h1>
@@ -152,19 +144,16 @@
     </div>
 
     <div class="hero-split">
-      <!-- Left Spot: Embedded Local Video -->
       <video class="hero-media" controls autoplay muted loop playsinline>
         <source src="howwemet.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
-
-      <!-- Right Spot: Audience Image (Bride/Groom looking left toward video) -->
       <img src="wedding.jpg" alt="Bride and Groom watching video preview at wedding reception" class="hero-media">
     </div>
   </section>
 
   <!-- Wedding Packages Section -->
-  <section class="section-title">
+  <section id="packages" class="section-title">
     <h2>Signature Wedding Packages</h2>
     <p>Premium media preservation & customized rehearsal dinner film packages</p>
   </section>
@@ -197,7 +186,7 @@
         <li>ALL 20 high-res AI-animated photos delivered as individual standalone video files</li>
         <li>Custom Branded Flash Drive with the complete digital archive</li>
       </ul>
-      <button class="btn-gold" onclick="triggerPackageSelection('Package 2')">Select Package 2</button>
+      <a href="https://buy.stripe.com/5kQeV5aEb4tP1Bp7Tv3AY07" class="btn-gold">Select Package 2</a>
     </div>
   </section>
 
@@ -207,13 +196,29 @@
       <h3>Add-On Services</h3>
       <table>
         <thead>
-          <tr><th>Item</th><th>Price</th></tr>
+          <tr><th>Item</th><th>Price</th><th>Action</th></tr>
         </thead>
         <tbody>
-          <tr><td>Extra Minutes</td><td>$19.99 / Minute</td></tr>
-          <tr><td>Extra VHS Tape Conversion</td><td>$39.99 / Tape</td></tr>
-          <tr><td>Extra Photo Animation</td><td>$4.99 / Photo</td></tr>
-          <tr><td>Additional Favor Cards</td><td>$100.00 / batch of 50 cards (50-card increments)</td></tr>
+          <tr>
+            <td>Extra Minutes</td>
+            <td>$19.99 / Minute</td>
+            <td><a href="https://buy.stripe.com/aFa7sDeUre4pcg33Df3AY04" class="btn-gold btn-sm">Buy Now</a></td>
+          </tr>
+          <tr>
+            <td>Extra VHS Tape Conversion</td>
+            <td>$39.99 / Tape</td>
+            <td><a href="https://buy.stripe.com/00w7sD3bJ9O91Bp1v73AY01" class="btn-gold btn-sm">Buy Now</a></td>
+          </tr>
+          <tr>
+            <td>Extra Photo Animation</td>
+            <td>$4.99 / Photo</td>
+            <td><a href="https://buy.stripe.com/cNi28j27F9O9gwj5Ln3AY03" class="btn-gold btn-sm">Buy Now</a></td>
+          </tr>
+          <tr>
+            <td>Additional Favor Cards</td>
+            <td>$100.00 / batch of 50 cards</td>
+            <td><a href="https://buy.stripe.com/dRm7sDdQnf8teob7Tv3AY05" class="btn-gold btn-sm">Buy Now</a></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -223,16 +228,27 @@
       <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">Looking for standalone tape conversion or photo animation without a wedding film package?</p>
       <table>
         <thead>
-          <tr><th>Service</th><th>Quantity Tier</th><th>Price</th></tr>
+          <tr><th>Service</th><th>Quantity Tier</th><th>Price</th><th>Action</th></tr>
         </thead>
         <tbody>
-          <tr><td rowspan="3">VHS Tape Conversion</td><td>1 – 4 Tapes</td><td>$39.99 / Tape</td></tr>
-          <tr><td>5 – 10 VHS Tapes</td><td>$34.99 / Tape</td></tr>
-          <tr><td>10+ VHS Tapes</td><td>$29.99 / Tape</td></tr>
-          <tr><td rowspan="3">Photo Animation</td><td>1 – 5 Photos</td><td>$4.99 / Photo</td></tr>
-          <tr><td>5 – 10 Photos</td><td>$3.99 / Photo</td></tr>
-          <tr><td>10+ Photos</td><td>$2.99 / Photo</td></tr>
-          <tr><td>5-Min Photo Montage Video</td><td>20 Photos + Customer Script</td><td>$50.00 flat ($2.99/extra photo)</td></tr>
+          <tr>
+            <td>VHS Tape Conversion</td>
+            <td>Standard / Volume Tiers</td>
+            <td>From $29.99 - $39.99 / Tape</td>
+            <td><a href="https://buy.stripe.com/00w7sD3bJ9O91Bp1v73AY01" class="btn-gold btn-sm">Buy Now</a></td>
+          </tr>
+          <tr>
+            <td>Photo Animation</td>
+            <td>Per Photo Tier</td>
+            <td>From $2.99 - $4.99 / Photo</td>
+            <td><a href="https://buy.stripe.com/cNi28j27F9O9gwj5Ln3AY03" class="btn-gold btn-sm">Buy Now</a></td>
+          </tr>
+          <tr>
+            <td>5-Min Photo Montage Video</td>
+            <td>20 Photos + Customer Script</td>
+            <td>$99.99 flat</td>
+            <td><a href="https://buy.stripe.com/bJeaEPfYv5xT6VJgq13AY08" class="btn-gold btn-sm">Buy Now</a></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -244,128 +260,28 @@
       <span class="close-btn" onclick="closeModal('upsellModal')">&times;</span>
       <h3 style="font-family: var(--font-serif); margin-bottom: 0.8rem; color: var(--gold-dark);">Special Archive Recommendation</h3>
       <div class="upsell-box">
-        <p id="upsellText">
+        <p>
           We have your $250 Rehearsal Film package reserved! Most of our couples find that while 6 VHS tapes and 14 photos make a perfect 5-minute film, parents usually have 2 or 3 extra tapes sitting in a drawer that haven't been seen in 20 years.<br><br>
-          For just $150 more ($400 total), we’ll digitize ALL your raw, full-length VHS tapes, convert all 20 photos into individual motion files, and put the entire digital library onto a custom wooden USB drive for your parents as a heirloom gift. Would you like us to include the full heritage archive kit?
+          For just $150 more ($400 total), we’ll digitize ALL your raw, full-length VHS tapes, convert all 20 photos into individual motion files, and put the entire digital library onto a custom wooden USB drive for your parents as an heirloom gift. Would you like us to include the full heritage archive kit?
         </p>
       </div>
       <div style="display: flex; gap: 10px; justify-content: flex-end;">
-        <button class="btn-gold" style="background: #888; color: #FFF !important;" onclick="declineUpsell()">Keep Package 1 ($250)</button>
-        <button class="btn-gold" onclick="acceptUpsell()">Upgrade to Package 2 ($400)</button>
+        <a href="https://buy.stripe.com/5kQeV5aEb4tP1Bp7Tv3AY07" class="btn-gold" style="background: #888; color: #FFF !important;">Keep Package 1 ($250)</a>
+        <a href="https://buy.stripe.com/5kQeV5aEb4tP1Bp7Tv3AY07" class="btn-gold">Upgrade to Package 2 ($400)</a>
       </div>
     </div>
   </div>
 
-  <!-- Checkout Modal -->
-  <div id="checkoutModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal('checkoutModal')">&times;</span>
-      <h3 style="font-family: var(--font-serif); margin-bottom: 0.8rem; color: var(--gold-dark);">Complete Your Reservation</h3>
-      
-      <form id="checkoutForm" onsubmit="handleCheckoutSubmit(event)">
-        <div class="form-group">
-          <label>Selected Package / Service</label>
-          <input type="text" id="selectedPackageInput" readonly style="background: #F0ECE1; color: var(--gold-dark); font-weight: 700;">
-        </div>
-
-        <div class="form-group">
-          <label>Event Date / Timeline Requirement</label>
-          <input type="date" required>
-        </div>
-
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" placeholder="Sarah Johnson" required>
-        </div>
-
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="sarah@example.com" required>
-        </div>
-
-        <div class="form-group">
-          <label>Phone Number</label>
-          <input type="tel" placeholder="(904) 472-7777" required>
-        </div>
-
-        <div class="form-group">
-          <label>Physical Media Return Preference</label>
-          <select id="returnShippingSelect" onchange="calculateTotal()">
-            <option value="0">Free Eco-Friendly Disposal / Recycling (After 30 days)</option>
-            <option value="10">Return Shipping - 1 VHS Tape ($10.00)</option>
-            <option value="18">Return Shipping - 2 to 8 VHS Tapes ($18.00)</option>
-            <option value="25">Return Shipping - 9+ VHS Tapes ($25.00)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>Notes / Custom Script Instructions</label>
-          <textarea rows="3" placeholder="Client provides script/narrative. Let us know any special requests..."></textarea>
-        </div>
-
-        <div style="background: var(--gold-light-bg); border: 1px solid var(--border-gold); padding: 0.8rem; border-radius: 6px; margin-bottom: 1.2rem;">
-          <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.05rem;">
-            <span>Estimated Total:</span>
-            <span id="checkoutTotalDisplay" style="color: var(--gold-dark);">$250.00</span>
-          </div>
-        </div>
-
-        <button type="submit" class="btn-gold" style="width: 100%;">Submit Order & Payment Setup</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2026 DigitizeHowWeMet.com | Freedom Hubs LLC. All Rights Reserved.</p>
-    <p style="margin-top: 8px;">
-      <a href="privacy.html">Privacy Policy</a> | 
-      <a href="terms.html">Terms of Service</a>
-    </p>
-  </footer>
-
+  <!-- JavaScript -->
   <script>
-    let currentSelectedPrice = 250;
-
     function triggerPackageSelection(pkgName) {
       if (pkgName === 'Package 1') {
         document.getElementById('upsellModal').style.display = 'flex';
-      } else {
-        openCheckoutModal('Package 2 - The Heritage Archive ($400)', 400);
       }
-    }
-
-    function declineUpsell() {
-      closeModal('upsellModal');
-      openCheckoutModal('Package 1 - Our Signature Rehearsal Film ($250)', 250);
-    }
-
-    function acceptUpsell() {
-      closeModal('upsellModal');
-      openCheckoutModal('Package 2 - The Heritage Archive ($400)', 400);
-    }
-
-    function openCheckoutModal(pkgTitle, price = 250) {
-      currentSelectedPrice = price;
-      document.getElementById('selectedPackageInput').value = pkgTitle;
-      calculateTotal();
-      document.getElementById('checkoutModal').style.display = 'flex';
     }
 
     function closeModal(modalId) {
       document.getElementById(modalId).style.display = 'none';
-    }
-
-    function calculateTotal() {
-      const shippingFee = parseFloat(document.getElementById('returnShippingSelect').value) || 0;
-      const grandTotal = currentSelectedPrice + shippingFee;
-      document.getElementById('checkoutTotalDisplay').innerText = '$' + grandTotal.toFixed(2);
-    }
-
-    function handleCheckoutSubmit(e) {
-      e.preventDefault();
-      alert('Thank you for your order request! We have received your details and will contact you directly at your provided email/phone within 24 hours to coordinate script submission and shipping instructions.');
-      closeModal('checkoutModal');
     }
   </script>
 </body>
