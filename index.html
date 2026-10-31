@@ -12,22 +12,28 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased">
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="text-2xl font-bold tracking-tight text-slate-900">Digitize How We Met</a>
-            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-600">
-                <a href="#packages" class="hover:text-blue-600 transition">Wedding Packages</a>
-                <a href="#generalservices" class="hover:text-blue-600 transition">Preservation Services</a>
-                <a href="#about" class="hover:text-blue-600 transition">About</a>
-            </nav>
-            <!-- Cart Trigger Button -->
-            <button onclick="toggleCart()" class="relative bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-slate-800 transition flex items-center gap-2">
-                <span>Cart</span>
-                <span id="cart-badge" class="bg-blue-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
-            </button>
-        </div>
-    </header>
+   <!-- Navigation Header (Cleaned up: No broken dropdowns) -->
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <!-- Logo / Home Link -->
+        <a href="#" class="text-2xl font-bold tracking-tight text-slate-900 hover:opacity-90 transition">
+            Digitize How We Met
+        </a>
+        
+        <!-- Clean Direct Anchor Navigation -->
+        <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-600">
+            <a href="#packages" class="hover:text-blue-600 transition">Wedding Packages</a>
+            <a href="#generalservices" class="hover:text-blue-600 transition">Preservation Services</a>
+            <a href="#about" class="hover:text-blue-600 transition">About Us</a>
+        </nav>
+
+        <!-- Cart Drawer Trigger Button -->
+        <button onclick="toggleCart()" class="relative bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-slate-800 transition flex items-center gap-2 shadow-sm">
+            <span>Cart</span>
+            <span id="cart-badge" class="bg-blue-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+        </button>
+    </div>
+</header>
 
     <!-- Hero Section -->
     <section class="py-20 px-6 text-center bg-gradient-to-b from-white to-slate-100 border-b border-slate-200">
