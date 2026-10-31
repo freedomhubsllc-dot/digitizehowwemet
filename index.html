@@ -482,31 +482,55 @@ async function proceedToCheckout() {
       document.getElementById('cartOverlay').style.display = 'none';
     }
 
-    function proceedToCheckout() {
+  async function proceedToCheckout() {
+      // 1. Check if cart is empty
       if (!cart.weddingPackage && Object.keys(cart.addOns).length === 0) {
         alert('Your cart is empty. Please select a package or service before checking out.');
         return;
       }
 
-      // Prioritize primary package checkout routing
+      // 2. Build the items array to send to your Vercel serverless backend
+      const itemsPayload = [];
+
       if (cart.weddingPackage) {
-        if (cart.weddingPackage.priceId === 'price_1UWcsM1PYpXC0BTguqdr3atn') {
-          window.location.href = paymentLinks['pkg1'];
-          return;
-        } else if (cart.weddingPackage.priceId === 'price_1UWd241PYpXC0BTgFl1fHW11') {
-          window.location.href = paymentLinks['pkg2'];
-          return;
-        }
+        itemsPayload.push({
+          price: cart.weddingPackage.priceId,
+          quantity: 1
+        });
       }
 
-      // Fallback for standalone a la carte items
-      const addOnKeys = Object.keys(cart.addOns);
-      if (addOnKeys.length > 0) {
-        const firstKey = addOnKeys[0];
-        window.location.href = paymentLinks[firstKey] || '#';
+      Object.keys(cart.addOns).forEach(key => {
+        const item = cart.addOns[key];
+        itemsPayload.push({
+          price: item.priceId,
+          quantity: item.qty
+        });
+      });
+
+      try {
+        // 3. Call your Vercel serverless function endpoint
+        const response = await fetch('https://digitizehowwemet.vercel.app/api/checkout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ items: itemsPayload }),
+        });
+
+        const data = await response.json();
+
+        // 4. Redirect to the secure Stripe Checkout session URL returned by Vercel
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          console.error('Checkout error:', data.error);
+          alert('Unable to initiate checkout: ' + (data.error || 'Please try again.'));
+        }
+      } catch (error) {
+        console.error('Error during checkout connection:', error);
+        alert('Something went wrong connecting to the checkout service. Please check your network connection.');
       }
     }
-
     // Initialize UI on load
     updateCartUI();
   </script>
