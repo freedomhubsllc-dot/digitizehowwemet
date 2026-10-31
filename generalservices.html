@@ -352,14 +352,13 @@
       document.getElementById('cartBackdrop').style.display = 'block';
     }
 
-    function proceedToCheckout() {
+   function proceedToCheckout() {
       if (cart.length === 0) {
         alert('Your cart is empty. Please add services before checking out.');
         return;
       }
-      // Routes to the individual item's link or the custom order URL
-      const targetUrl = cart[0].stripeUrl || 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
-      window.location.href = targetUrl;
+      // Always route directly to your master multi-product checkout link
+      window.location.href = 'https://buy.stripe.com/3cI14f4fN7G10xl5Ln3AY09';
     }
 
     // Initialize UI on page load
