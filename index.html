@@ -34,7 +34,7 @@
     .contact-bar strong { color: var(--gold-dark); }
     .contact-bar span { margin: 0 8px; opacity: 0.4; }
 
-    /* Header & Navigation (Cleaned: No 404 Dropdowns) */
+    /* Header & Navigation */
     header { background: var(--bg-card); border-bottom: 2px solid var(--border-gold); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 12px rgba(0,0,0,0.03); }
     .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 2rem; }
     .logo { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--gold-dark); letter-spacing: -0.2px; }
@@ -116,20 +116,38 @@
     footer { background: #F1ECE1; border-top: 2px solid var(--border-gold); padding: 2.5rem 2rem; text-align: center; margin-top: 4rem; font-size: 0.85rem; color: var(--text-muted); }
     footer a { color: var(--gold-dark); font-weight: 600; margin: 0 8px; }
 
+    /* Mobile Responsive Header Fix */
     @media (max-width: 768px) {
-      .hero-split { grid-template-columns: 1fr; }
-      nav ul { gap: 1rem; }
-      .cart-drawer { max-width: 100%; }
+      .nav-container { 
+        flex-direction: column; 
+        gap: 0.8rem; 
+        text-align: center; 
+        padding: 0.8rem 1rem; 
+      }
+      nav ul { 
+        gap: 0.7rem; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+      }
+      nav a { 
+        font-size: 0.75rem; 
+      }
+      .hero-split { 
+        grid-template-columns: 1fr; 
+      }
+      .cart-drawer { 
+        max-width: 100%; 
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Contact Bar -->
+  <!-- Top Contact Bar with New Wording & New Phone Number -->
   <div class="contact-bar">
-    Direct Contact Phone: <strong>(904) 472-7777</strong>
+    Customizations Available — Call or Text Us: <strong>(936) 358-3090</strong>
     <span>|</span>
-    Email: Direct Contact (for fastest Response): <strong>freedomhubsll@gmail.com</strong>
+    Email (for fastest response): <strong>freedomhubsll@gmail.com</strong>
   </div>
 
   <!-- Header -->
@@ -418,7 +436,6 @@
         return;
       }
       
-      // Temporary direct routing or backend integration handshake
       alert('Connecting to secure Stripe Checkout session...');
     }
 
