@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digitize How We Met & Heritage Preservation</title>
-    <!-- Tailwind CSS CDN for modern, clean styling -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         html { scroll-behavior: smooth; }
@@ -12,106 +12,115 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased">
 
-   <!-- Navigation Header (Cleaned up: No broken dropdowns) -->
-<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <!-- Logo / Home Link -->
-        <a href="#" class="text-2xl font-bold tracking-tight text-slate-900 hover:opacity-90 transition">
-            Digitize How We Met
-        </a>
-        
-        <!-- Clean Direct Anchor Navigation -->
-        <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-600">
-            <a href="#packages" class="hover:text-blue-600 transition">Wedding Packages</a>
-            <a href="#generalservices" class="hover:text-blue-600 transition">Preservation Services</a>
-            <a href="#about" class="hover:text-blue-600 transition">About Us</a>
-        </nav>
+    <!-- Navigation Header (Cleaned: No 404 Dropdowns) -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-2xl font-bold tracking-tight text-slate-900 hover:opacity-90 transition">
+                Digitize How We Met
+            </a>
+            
+            <!-- Direct Anchor Navigation -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-600">
+                <a href="#packages" class="hover:text-blue-600 transition">Wedding Packages</a>
+                <a href="#generalservices" class="hover:text-blue-600 transition">Preservation Services</a>
+                <a href="#about" class="hover:text-blue-600 transition">About</a>
+            </nav>
 
-        <!-- Cart Drawer Trigger Button -->
-        <button onclick="toggleCart()" class="relative bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-slate-800 transition flex items-center gap-2 shadow-sm">
-            <span>Cart</span>
-            <span id="cart-badge" class="bg-blue-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
-        </button>
-    </div>
-</header>
+            <!-- Cart Trigger Button -->
+            <button onclick="toggleCart()" class="relative bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-slate-800 transition flex items-center gap-2 shadow-sm">
+                <span>Cart</span>
+                <span id="cart-badge" class="bg-blue-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+            </button>
+        </div>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="py-20 px-6 text-center bg-gradient-to-b from-white to-slate-100 border-b border-slate-200">
-        <div class="max-w-3xl mx-auto">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">Preserve Your Family Legacy & Milestone Memories</h1>
-            <p class="text-lg text-slate-600 mb-8">Professional VHS tape conversions, heirloom photo animations, and boutique wedding documentation designed to last generations.</p>
-            <div class="flex justify-center gap-4">
-                <a href="#packages" class="bg-blue-600 text-white px-8 py-3.5 rounded-xl font-medium hover:bg-blue-700 transition shadow-lg shadow-blue-600/20">Explore Wedding Packages</a>
-                <a href="#generalservices" class="bg-white border border-slate-300 text-slate-700 px-8 py-3.5 rounded-xl font-medium hover:bg-slate-50 transition">A La Carte Services</a>
+    <!-- Original Clean Hero Section -->
+    <section class="py-24 px-6 text-center bg-gradient-to-b from-white to-slate-100 border-b border-slate-200">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6 leading-tight">
+                Preserve Your Family Legacy &amp;<br>Milestone Memories
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Professional VHS tape conversions, heirloom photo animations, and boutique wedding documentation designed to last generations.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#packages" class="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-500 transition shadow-lg shadow-blue-600/30 text-center">
+                    Explore Wedding Packages
+                </a>
+                <a href="#generalservices" class="bg-white border border-slate-300 text-slate-700 px-8 py-4 rounded-xl font-semibold hover:bg-slate-50 transition text-center shadow-sm">
+                    A La Carte Services
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Wedding Packages Section -->
-    <section id="packages" class="py-20 px-6 max-w-7xl mx-auto">
+    <section id="packages" class="py-24 px-6 max-w-7xl mx-auto">
         <div class="text-center max-w-2xl mx-auto mb-16">
-            <h2 class="text-3xl font-bold text-slate-900 tracking-tight mb-4">Wedding Packages</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">Wedding Packages</h2>
             <p class="text-slate-600">Select your preferred wedding package. (Note: Packages are exclusive; selecting one will update your package choice).</p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <!-- Package 1 -->
-            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div class="bg-white rounded-3xl p-8 md:p-10 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                 <div>
                     <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Package 1</span>
                     <h3 class="text-2xl font-bold text-slate-900 mt-4 mb-2">Our Signature Rehearsal Film</h3>
                     <p class="text-slate-600 mb-6">Complete professional capture and highlight edit of your wedding rehearsal events.</p>
-                    <div class="text-3xl font-extrabold text-slate-900 mb-6">$250.00</div>
+                    <div class="text-4xl font-extrabold text-slate-900 mb-6">$250.00</div>
                 </div>
-                <button onclick="addWeddingPackage('Package 1: Signature Rehearsal Film', 250.00, 'price_1UWcsM1PYpXC0BTguqdr3atn')" class="w-full bg-slate-900 text-white py-3 rounded-xl font-medium hover:bg-slate-800 transition">
+                <button onclick="addWeddingPackage('Package 1: Signature Rehearsal Film', 250.00, 'price_1UWcsM1PYpXC0BTguqdr3atn')" class="w-full bg-slate-900 text-white py-4 rounded-xl font-semibold hover:bg-slate-800 transition">
                     Select Package 1
                 </button>
             </div>
 
             <!-- Package 2 -->
-            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div class="bg-white rounded-3xl p-8 md:p-10 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                 <div>
                     <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Package 2</span>
                     <h3 class="text-2xl font-bold text-slate-900 mt-4 mb-2">The Heritage Archive</h3>
                     <p class="text-slate-600 mb-6">Comprehensive multi-cam event recording, legacy interviews, and custom flash drive archive bundle.</p>
-                    <div class="text-3xl font-extrabold text-slate-900 mb-6">$400.00</div>
+                    <div class="text-4xl font-extrabold text-slate-900 mb-6">$400.00</div>
                 </div>
-                <button onclick="addWeddingPackage('Package 2: The Heritage Archive', 400.00, 'price_1UWd241PYpXC0BTgFl1fHW11')" class="w-full bg-slate-900 text-white py-3 rounded-xl font-medium hover:bg-slate-800 transition">
+                <button onclick="addWeddingPackage('Package 2: The Heritage Archive', 400.00, 'price_1UWd241PYpXC0BTgFl1fHW11')" class="w-full bg-slate-900 text-white py-4 rounded-xl font-semibold hover:bg-slate-800 transition">
                     Select Package 2
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- General Services Section -->
-    <section id="generalservices" class="py-20 px-6 bg-slate-100 border-t border-slate-200">
+    <!-- Preservation Services Section -->
+    <section id="generalservices" class="py-24 px-6 bg-slate-100 border-t border-slate-200">
         <div class="max-w-7xl mx-auto">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="text-3xl font-bold text-slate-900 tracking-tight mb-4">Preservation Services</h2>
-                <p class="text-slate-600">Bring your legacy analog media into the digital age with custom quantity conversions.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">Preservation Services</h2>
+                <p class="text-slate-600">Bring your analog memories into the modern era with custom quantity transfers.</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <!-- VHS Conversion -->
-                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                <!-- VHS Tape Conversion -->
+                <div class="bg-white rounded-3xl p-8 md:p-10 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                     <div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">VHS Tape Conversion</h3>
-                        <p class="text-slate-600 mb-6">High-resolution digital transfer per analog tape cassette.</p>
-                        <div class="text-2xl font-extrabold text-slate-900 mb-6">$39.99 <span class="text-xs font-normal text-slate-500">per tape</span></div>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Analog Transfer</span>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-4 mb-2">VHS Tape Conversion</h3>
+                        <p class="text-slate-600 mb-6">High-resolution digital conversion to MP4 format per analog tape cassette.</p>
+                        <div class="text-3xl font-extrabold text-slate-900 mb-6">$39.99 <span class="text-sm font-normal text-slate-500">/ tape</span></div>
                     </div>
-                    <button onclick="addItem('VHS Tape Conversion', 39.99, 'price_1UWd5V1PYpXC0BTgxxPbCt3b', 'vhs')" class="w-full bg-blue-600 text-white py-3 rounded-xl font-medium hover:bg-blue-700 transition">
+                    <button onclick="addItem('VHS Tape Conversion', 39.99, 'price_1UWd5V1PYpXC0BTgxxPbCt3b', 'vhs')" class="w-full bg-blue-600 text-white py-4 rounded-xl font-semibold hover:bg-blue-500 transition shadow-md shadow-blue-600/20">
                         Add Tape Conversion
                     </button>
                 </div>
 
                 <!-- Photo Animation -->
-                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div class="bg-white rounded-3xl p-8 md:p-10 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                     <div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Photo Animation</h3>
-                        <p class="text-slate-600 mb-6">AI-powered vintage photo depth animation and restoration bundle.</p>
-                        <div class="text-2xl font-extrabold text-slate-900 mb-6">$4.99 <span class="text-xs font-normal text-slate-500">per photo</span></div>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">AI Enhancement</span>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-4 mb-2">Photo Animation</h3>
+                        <p class="text-slate-600 mb-6">AI-powered vintage photo depth animation and high-resolution enhancement.</p>
+                        <div class="text-3xl font-extrabold text-slate-900 mb-6">$4.99 <span class="text-sm font-normal text-slate-500">/ photo</span></div>
                     </div>
-                    <button onclick="addItem('Photo Animation', 4.99, 'price_1UWd6A1PYpXC0BTgnhoVdfTs', 'photo')" class="w-full bg-blue-600 text-white py-3 rounded-xl font-medium hover:bg-blue-700 transition">
+                    <button onclick="addItem('Photo Animation', 4.99, 'price_1UWd6A1PYpXC0BTgnhoVdfTs', 'photo')" class="w-full bg-blue-600 text-white py-4 rounded-xl font-semibold hover:bg-blue-500 transition shadow-md shadow-blue-600/20">
                         Add Photo Animation
                     </button>
                 </div>
@@ -119,27 +128,33 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 max-w-4xl mx-auto text-center border-t border-slate-200">
+        <h2 class="text-3xl font-bold text-slate-900 mb-6">About Digitize How We Met</h2>
+        <p class="text-slate-600 leading-relaxed mb-8">
+            We are dedicated to preserving life’s most precious moments. From VHS conversion and vintage photo animation to capturing rehearsal dinners and wedding stories, we craft modern digital media that keeps your history alive.
+        </p>
+    </section>
+
     <!-- Slide-over Cart Drawer -->
     <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
         <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
         <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
             <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
-                <!-- Cart Header -->
+                <!-- Header -->
                 <div class="p-6 border-b border-slate-200 flex items-center justify-between">
                     <h3 class="text-lg font-bold text-slate-900">Your Selection Cart</h3>
                     <button onclick="toggleCart()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
                 </div>
-                <!-- Cart Body -->
-                <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
-                    <!-- Dynamic items inserted here -->
-                </div>
-                <!-- Cart Footer -->
+                <!-- Body -->
+                <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
+                <!-- Footer -->
                 <div class="p-6 border-t border-slate-200 bg-slate-50">
                     <div class="flex justify-between items-center mb-4">
                         <span class="text-base font-medium text-slate-600">Subtotal</span>
                         <span id="cart-subtotal" class="text-2xl font-bold text-slate-900">$0.00</span>
                     </div>
-                    <button onclick="proceedToCheckout()" class="w-full bg-blue-600 text-white py-3.5 rounded-xl font-medium hover:bg-blue-700 transition shadow-lg shadow-blue-600/20 text-center block">
+                    <button onclick="proceedToCheckout()" class="w-full bg-blue-600 text-white py-4 rounded-xl font-semibold hover:bg-blue-500 transition shadow-lg shadow-blue-600/20 text-center block">
                         Proceed to Secure Checkout
                     </button>
                 </div>
@@ -147,11 +162,11 @@
         </div>
     </div>
 
-    <!-- JavaScript Cart Management & Logic -->
+    <!-- Cart Management Script -->
     <script>
         let cart = {
-            weddingPackage: null, // Stores active wedding package object or null
-            addOns: {}            // Stores { id: { name, price, quantity, priceId } }
+            weddingPackage: null,
+            addOns: {}
         };
 
         function toggleCart() {
@@ -206,7 +221,6 @@
             container.innerHTML = '';
             let subtotal = 0;
 
-            // Render Wedding Package if selected
             if (cart.weddingPackage) {
                 subtotal += cart.weddingPackage.price;
                 container.innerHTML += `
@@ -221,7 +235,6 @@
                 `;
             }
 
-            // Render Add-ons
             Object.keys(cart.addOns).forEach(key => {
                 const item = cart.addOns[key];
                 subtotal += item.price * item.quantity;
@@ -248,16 +261,11 @@
         }
 
         function proceedToCheckout() {
-            // Check if cart has items
             if (!cart.weddingPackage && Object.keys(cart.addOns).length === 0) {
-                alert("Please add at least one item or package to your cart before proceeding.");
+                alert("Please select at least one item or package.");
                 return;
             }
-
-            // Fallback routing simulation or direct link integration
-            // When your serverless endpoint or Stripe Checkout API handler is hooked up, 
-            // this function sends cart.weddingPackage and cart.addOns to your backend.
-            alert("Redirecting to secure Stripe checkout session...");
+            alert("Redirecting to secure Stripe checkout...");
         }
     </script>
 </body>
