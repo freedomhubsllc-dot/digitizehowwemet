@@ -1,9 +1,10 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 module.exports = async (req, res) => {
-  // Allow requests from your front end (CORS)
+  // Allow requests from your website (CORS)
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -14,19 +15,18 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { items } = req.body; // Expecting array of { price, quantity }
+    const { items } = req.body || {};
 
-    if (!items || items.length === 0) {
-      return res.status(400).json({ error: 'Cart is empty' });
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ error: 'Cart is empty or invalid payload.' });
     }
 
-    // Format items for Stripe Checkout
+    // Format items for Stripe (accepts both price and priceId gracefully)
     const line_items = items.map(item => ({
-      price: item.price || item.priceId, // Accepts either price or priceId securely
+      price: item.price || item.priceId,
       quantity: item.quantity || 1,
     }));
 
-    // Create Stripe Checkout Session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: line_items,
