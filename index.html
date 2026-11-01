@@ -227,6 +227,16 @@
     </div>
   </section>
 
+  <!-- Bulk Order Notice Banner -->
+<div style="background-color: #fdf8f0; border: 1px solid #e0c9a6; border-radius: 8px; padding: 15px; margin-bottom: 25px; text-align: center;">
+  <p style="margin: 0; color: #5a3e1b; font-weight: 600; font-size: 1.05rem;">
+    💡 <strong>Have a large collection?</strong>
+  </p>
+  <p style="margin: 5px 0 0 0; color: #6b5231; font-size: 0.95rem;">
+    For orders with <strong>6+ VHS tapes</strong> or <strong>11+ photo animations</strong>, call us at <strong>(XXX) XXX-XXXX</strong> before ordering for custom bulk rates!
+  </p>
+</div>
+  
   <!-- Preservation Services Section -->
   <div id="generalservices" class="info-container">
     <div class="table-card">
@@ -306,10 +316,30 @@
       'pkg1': { name: 'Package 1: Signature Rehearsal Film', price: 250.00, priceId: 'price_1UWcsM1PYpXC0BTguqdr3atn', isWedding: true },
       'pkg2': { name: 'Package 2: The Heritage Archive', price: 400.00, priceId: 'price_1UWd241PYpXC0BTgFl1fHW11', isWedding: true },
       'vhs':  { name: 'VHS Tape Conversion', price: 39.99, priceId: 'price_1UWd5V1PYpXC0BTgxxPbCt3b', isAddon: true, key: 'vhs' },
+     <!-- VHS Non-Return Agreement Checkbox -->
+<div style="margin-top: 10px; padding: 10px; background: #fafafa; border-radius: 6px; border: 1px solid #eee;">
+  <label style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer; font-size: 0.88rem; color: #444; line-height: 1.4;">
+    <input type="checkbox" id="vhsNoReturnCheck" style="margin-top: 3px;" required />
+    <span>
+      I acknowledge that original VHS tapes are recycled after digital conversion and will <strong>not be returned</strong>. 
+      <br><small style="color: #777;">(Need your physical tapes shipped back? Call <strong>(936) 358-3090</strong> prior to placing your order to arrange return shipping.)</small>
+    </span>
+  </label>
+</div>
+      
+      
       'photo': { name: 'Photo Animation', price: 4.99, priceId: 'price_1UWd6A1PYpXC0BTgnhoVdfTs', isAddon: true, key: 'photo' }
     };
 async function proceedToCheckout() {
-      // 1. Check if cart is empty
+     // 0. Check VHS non-return agreement if VHS is in the cart
+  const vhsInCart = cart.addOns && cart.addOns['vhs'];
+  const vhsChecked = document.getElementById('vhsNoReturnCheck')?.checked;
+  if (vhsInCart && !vhsChecked) {
+    alert("Please check the box to acknowledge the VHS tape non-return agreement before proceeding.");
+    return;
+  } 
+  
+  // 1. Check if cart is empty
       if (!cart.weddingPackage && Object.keys(cart.addOns).length === 0) {
         alert('Your cart is empty. Please select a package or service before checking out.');
         return;
