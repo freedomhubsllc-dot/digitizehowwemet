@@ -286,7 +286,22 @@
       </p>
       <div style="display: flex; gap: 10px; justify-content: center;">
         <button class="btn-secondary" style="padding: 0.6rem 1.4rem;" onclick="cancelVhsAgreement()">Cancel</button>
-        <button class="btn-gold" style="padding: 0.6rem 1.4rem;" onclick="acceptVhsAgreement()">I Agree & Add to Cart</button>
+        <button class="btn-gold" style="padding: 0.6rem 1.4rem;" onclick="acceptVhsAgreement()">I AGREE & ADD TO CART</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- VHS Quality & No-Editing Disclaimer Modal -->
+  <div id="qualityModal" class="modal">
+    <div class="modal-content" style="max-width: 480px; text-align: center;">
+      <h3 style="font-family: var(--font-serif); margin-bottom: 0.8rem; color: var(--gold-dark);">Tape Condition & Editing Notice</h3>
+      <p style="font-size: 0.92rem; color: var(--text-dark); line-height: 1.5; margin-bottom: 1.5rem; text-align: left;">
+        Please note that our service provides a direct, raw 1:1 digital transfer of your tapes. <strong>We do not edit, enhance, or color-correct films.</strong><br><br>
+        Because vintage tapes degrade over time, colors may already be faded or footage unstable. We convert the content exactly as it exists on your tape today.
+      </p>
+      <div style="display: flex; gap: 10px; justify-content: center;">
+        <button class="btn-secondary" style="padding: 0.6rem 1.4rem;" onclick="cancelQualityAgreement()">Cancel</button>
+        <button class="btn-gold" style="padding: 0.6rem 1.4rem;" onclick="acceptQualityAgreement()">I AGREE & ADD TO CART</button>
       </div>
     </div>
   </div>
@@ -373,16 +388,28 @@
       }
     }
 
+    // Step 1: User agrees to non-return terms -> Open Modal 2 (Quality Notice)
     function acceptVhsAgreement() {
       document.getElementById('vhsModal').style.display = 'none';
+      document.getElementById('qualityModal').style.display = 'flex';
+    }
+
+    function cancelVhsAgreement() {
+      document.getElementById('vhsModal').style.display = 'none';
+      pendingVhsKey = null;
+    }
+
+    // Step 2: User agrees to quality/no-editing terms -> Finalize add to cart
+    function acceptQualityAgreement() {
+      document.getElementById('qualityModal').style.display = 'none';
       if (pendingVhsKey) {
         proceedAddAddOn(pendingVhsKey);
         pendingVhsKey = null;
       }
     }
 
-    function cancelVhsAgreement() {
-      document.getElementById('vhsModal').style.display = 'none';
+    function cancelQualityAgreement() {
+      document.getElementById('qualityModal').style.display = 'none';
       pendingVhsKey = null;
     }
 
