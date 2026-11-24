@@ -61,10 +61,23 @@
     .btn-sm { padding: 0.4rem 0.9rem; font-size: 0.75rem; border-radius: 15px; }
 
     /* Hero Section */
-    .hero-section { max-width: 1200px; margin: 1.2rem auto 2rem; padding: 0 2rem; }
-    .hero-header { text-align: center; max-width: 850px; margin: 0 auto 1.2rem; }
-    .hero-header h1 { font-family: var(--font-serif); font-size: 1.75rem; color: var(--gold-dark); font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.2px; }
-    .hero-header p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.4; }
+    .hero-section { max-width: 1200px; margin: 1rem auto 2rem; padding: 0 2rem; }
+    .hero-header { text-align: center; max-width: 850px; margin: 0 auto 0.9rem; }
+    .hero-header h1 { font-family: var(--font-serif); font-size: 1.75rem; color: var(--gold-dark); font-weight: 700; margin-bottom: 0.35rem; letter-spacing: -0.2px; line-height: 1.25; }
+    .hero-header p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.4; }
+
+    .video-prompt-wrap { text-align: center; margin-bottom: 0.65rem; }
+    .video-prompt-badge {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      background-color: var(--gold-light-bg);
+      border: 1px solid var(--border-gold);
+      border-radius: 999px;
+      color: var(--gold-dark);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
     
     .hero-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: center; background: var(--bg-card); border: 2px solid var(--border-gold); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-foil); padding: 1rem; }
     .hero-media { width: 100%; height: 320px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-gold); }
@@ -143,6 +156,12 @@
   nav a {
     font-size: 0.75rem;
   }
+  .hero-header h1 {
+    font-size: 1.3rem;
+  }
+  .hero-header p {
+    font-size: 0.82rem;
+  }
   .hero-split {
     grid-template-columns: 1fr;
   }
@@ -183,6 +202,9 @@
     <div class="hero-header">
       <h1>Relive Your Story, Reimagined For Your Special Day</h1>
       <p>Transforming vintage VHS tapes and family photos into breathtaking AI-animated love stories for wedding receptions, rehearsal dinners, and anniversaries.</p>
+    </div>
+    <div class="video-prompt-wrap">
+      <div class="video-prompt-badge">▶ Watch 1-Minute Sample Video (Tap Speaker Icon for Sound)</div>
     </div>
     <div class="hero-split">
       <video class="hero-media" controls autoplay muted loop playsinline>
